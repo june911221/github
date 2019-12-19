@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>항공</title>
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src= "flight.js" ></script>
+
+
+<link rel="stylesheet" type="text/css" href="css.css">
+
+ </head>
+ <body>
+  <header>
+  <div id="src">
+<form class="example" action="/action_page.php" style="margin:auto;max-width:300px">
+  <input type="text" placeholder="Search.." name="search2">
+  <button type="submit"><i class="fa fa-search"></i></button>
+</form></div>
+   <a href="mainpage_2.html"><img id="logo" width=300px height=150px src="img\logo2.png"></a>
+  <div id="top_nav"><a href="../login_js_ver..html">로그인</div>
+  <div id="slash">/</div>
+   <div id="top_nav2"><a href="../Signin_js_ver..html">회원가입</a></div>
+  </header>
+
+<nav>
+  <div class="topMenu">
+            <ul class="menu01">
+                <li><span>항공</span>
+                    <ul class="dept01">
+                        <li id="nop">항공예약</li>
+                    </ul>
+                </li>
+                <li><span><a href="tripinfo.html">여행정보</a></span>
+                    <ul class="dept01">
+                        <li id="nop"><a href="city.html">도시여행</a></li>
+                        <li id="nop">테마여행</li>
+                        <li id="nop">여행정보</li>
+                    </ul>
+                </li>
+                <li><span>커뮤니티</span>
+                    <ul class="dept01">
+                        <li id="nop">함께해요</li>
+                        <li id="nop">여행후기</li>
+                        <li id="nop">정보&팁</li>
+                        <li id="nop">Q&A</li>
+                    </ul>
+                </li>
+                <li><span>마이페이지</span>
+                    <ul class="dept01">
+                        <li id="nop">회원정보수정</li>
+                        <li id="nop">스크랩</li>
+                        <li id="nop">예약확인&취소</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        </div>
+
+ </ul>
+</nav>
+
+
+
+
+<section>
+<div id="tofrom">
+<ul id="to_from">
+<li><input type="text" id="originplace" placeholder="도시명" title="도시명" data-value="ICN" data-query="인천국제공항" value="인천국제공항(ICN)" autocomplete="off" tabindex="1"></li>
+<li><input type="text" id="destination" placeholder="도시명" title="도시명" data-value="LHR" data-query="런던 히드로 국제 공항" value="런던 히드로 국제 공항(LHR)" autocomplete="off" tabindex="1"></li><br><br>
+<li><br><br><br>출발일:<br></li><p><input type="text" id="from" name="from"></p><br>
+<li><br><br>도착일:<br></li><p><input type="text" id="to" name="to"></p><br>
+<button class="button" style="vertical-align:middle"><span>검색 </span></button>
+</ul>
+</div>
+
+<div id="charge">
+<ul id="charge1">
+<li>성인 1</li>
+<li>좌석 등급:이코노미</li>
+<li></li>
+<li>항공권 총 금액:</li><br>
+<li>KRW</li>
+<li> 세금 수수료 및 할증 요금이 포함되어있지 않습니다.</li>
+<button class="button" style="vertical-align:middle"><span>결과 </span></button>
+</ul>
+</div>
+
+
+<div id="date1">
+<table id="oz1" align="center" width="500px" height="250px">
+<tr>
+<td rowspan="2" colspan="3">
+<div id="a-day">출발 선택 날짜:</div></td>
+
+<td rowspan="2" colspan="5">
+<input type="text" id="d_date" name="d_date" value="출발일 지정값"> </td>
+<td rowspan="4" colspan="2">
+<input type="checkbox" value="economy"></td>
+</tr><tr></tr>
+<tr>
+<td rowspan="4" colspan="2">
+<div id="a-logo"><img src="img/oz.png" width="100px" height="100px"></div></td>
+</tr>
+<tr>
+<td>출발지:</td>
+<td><div id="a-dest">서울</div></td>
+<td><div id="a-dest">-></div></td>
+<td><div id="a-dest">도착지:</div></td>
+<td><div id="a-dest">런던</div></td>
+</tr>
+
+<tr>
+<td>
+<div id="a-code">시간</div></td> <td>공항코드</td> <td>-</td> <td>시간</td> <td>공항 코드</td> 
+</tr>
+<tr>
+<td>
+<div id="a-time" >소요시간:</div></td><td>17시간</td>
+</tr>
+</table>
+</div>
+
+<div id="date2">
+<table id="oz1" align="center" width="500px" height="250px">
+<tr>
+<td rowspan="2" colspan="3">
+<div id="a-day">도착 선택 날짜:</div></td>
+<td rowspan="2" colspan="5"> <input type="text" id="d_date" name="d_date" value="도착일 지정값"> </td>
+<td rowspan="4" colspan="2"><div id="a-economy">
+<input type="checkbox" value="economy"></div></td>
+</tr><tr></tr>
+<tr>
+<td rowspan="4" colspan="2">
+<div id="a-logo"><img src="img/ke.png" width="100px" height="100px"></div></td>
+</tr>
+<tr>
+<td>출발지:</td>
+<td><div id="a-dest">프라하</div></td>
+<td><div id="a-dest">-></div></td>
+<td><div id="a-dest">도착지:</div></td>
+<td><div id="a-dest">서울</div></td>
+</tr>
+
+<tr>
+<td>
+<div id="a-code">시간</div></td> <td>공항코드</td> <td>-</td> <td>시간</td> <td>공항 코드</td> 
+</tr>
+<tr>
+<td>
+<div id="a-time" >소요시간:</div></td><td>12시간</td>
+</tr>
+</table>
+</div>
+
+</section>
+
+<footer>
+  <div id="fot_nav">제작자: 박하영, 홍준영, 한상혁 <br>
+  Copyrightⓒ2019 for traveler.c All rights reserved.
+
+</div>
+</footer>
+
+ </body>
+</html>

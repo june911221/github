@@ -10,7 +10,7 @@
  <body>
  <h2>학생명단</h2>
     <jsp:useBean id="std" class="javabean.Students">
-	<table>
+	<table border="solid 1px black">
 	<tr>
 	<td>아이디</td><td>성명</td><td>번호</td><td>년도</td><td>패스여부</td><td>이메일</td></tr>
 	<%

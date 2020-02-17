@@ -36,9 +36,9 @@
 		<li><a href="Tour.jsp">여행정보</a>
 			<ul class="dept01">
 				<li id="nop"><a href="CitySel.jsp">도시</a></li>
-				<li id="nop"><a href="#">테마</a></li>
+				<li id="nop"><a href="thema.jsp">테마</a></li>
 				<li id="nop"><a href="place.jsp">명소</a></li>
-				<li id="nop"><a href="#">맛집</a></li>
+				<li id="nop"><a href="food.jsp">맛집</a></li>
 			</ul>
 		<li><a href="#">커뮤니티</a>
 			<ul class="dept01">

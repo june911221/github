@@ -8,47 +8,95 @@ height:1400px;
 width:100%;
 height:500px;
 }
-/*사이드메뉴*/
-
- aside {
- position: absolute;
- top:800px;
- left:1%;
-  width: 200px;
-  height:300px;
-  min-height: 200px;
-  padding: 35px;
-  margin: 0 22px 44px 22px;
-  position: absolute;
-  top:800px;
-  vertical-align: top;
-  display: inline-block;
-  font-family: Englebert, Arial;
-  color: #4b453c;
-  background: url(https://i.imgur.com/2BdQt0g.jpg);
-  line-height: 34px;
-  text-align: center;
-  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
-  z-index:1111;
-}
-.sidefixed {
-position: fixed; 
-top:70px;
-}
 
 
 ul{
 list-style:none;
 }
+
+
+
+/* SIDE CSS */
+.sideArea {
+    width: 200px;
+    min-width: 200px;
+    background: /* #c0c0c0 *//* #ADCDED */ rgba(173,205,237,0.2);
+    position: absolute;
+    top: 715px;
+    bottom: 0;
+    left: 0;
+    transition: 0.5s;
+    height:1370px;
+    
+    
+    
+}
+.container.is-click .sideArea {
+    left: -200px;
+}
+.sideArea li>a {
+    display: block;
+    color: black;
+    font-weight:bold;
+    font-size:12pt;
+    padding: 1em;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    margin-bottom:40px;
+    opacity:1.0;
+}
+.sideArea li>a:hover {
+    background: rgba(255,255,255,0.1);
+}
+.sideArea li>a>.fa {
+    width: 1em;
+    text-align: center;
+    margin-right: 10px;
+}
+.submenu {
+    display: none;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    margin-top: 170px;
+}
+.submenu li>a {
+    padding-left: 2em;
+    border-bottom: none;
+}
+.sideMenu {
+    border-top: 1px solid rgba(255,255,255,0.2);
+    margin-top:200px;
+}
+
+
+
+
+
 /*섹션*/
 section{
 height:1870px;
 }
+
+#searchbar{text-align: right;
+position:relative;
+top:120px;
+margin-right:280px;}
+
+#id{font-size:18pt;
+position:relative;
+top:60px;
+left:500px;}
+
+hr{position:relative;
+top:90px;
+left:200px;
+width:100%;}
+
+
 #sub-menu {
 width:1300px;
 height:700px;
 position:absolute;
 left:400px;
+margin-top:90px;
 }
 #sub-menu > li {
  padding: 20px 30px;
@@ -198,7 +246,7 @@ span {
 .product-price-btn button:hover {
   background-color: #79b0a1;
 }
-
+/* footer */
 footer{
 height:200px;
 width:100%;

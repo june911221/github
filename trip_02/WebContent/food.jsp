@@ -21,7 +21,7 @@ String cityname= view.getCityname(); %>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>명소</title>
+<title>맛집</title>
 <link rel="stylesheet" href="css/place.css?ver=1.5">
 </head>
 <body>
@@ -40,38 +40,48 @@ String cityname= view.getCityname(); %>
 	%>
 
 	<section>
+<!-- 
+		  사이드메뉴
+		<aside>
+			<ul class="note-wrap note" style="list-style-type: none">
 
-		<div class="mainbox">
-			<img src="img/08.jpg" width="100%" height="500" />
-		</div>
-		<div class="container">
-
-			<!--     SIDE AREA -->
-			<div class="sideArea">
-
-
-				<ul class="sideMenu">
-					<li><a href="CitySel.jsp" class="has-submenu"><span
-							class="fa fa-table"></span>도시</a></li>
-					<li><a href="thema.jsp"><span class="fa fa-sitemap"></span>테마</a></li>
-					<li><a href="place.jsp"><span class="fa fa-money"></span>명소</a></li>
-					<li><a href="food.jsp"><span class="fa fa-user-o"></span>맛집</a></li>
-
-				</ul>
-			</div>
-			<!--     SIDE AREA -->
-
-		</div>
-		</div>
+				<li align="left" list style=""><a href="#">도시</a></li>
+				<li align="left"><a href="#">테마</a></li>
+				<li align="left"><a href="#">맛집</a></li>
+				<li align="left"><a href="#">맛집</a></li>
+			</ul>
+		</aside>
+		<div>
+		 -->
+		 
+		 
+		 <div class="mainbox" >
+<img src="img/08.jpg"width="100%" height="500"/></div>
+		 <div class="container">
+		 
+<!--     SIDE AREA -->
+    <div class="sideArea">
 
 
+        <ul class="sideMenu">
+            <li><a href="CitySel.jsp" class="has-submenu"><span class="fa fa-table"></span>도시</a>
+            </li>
+            <li><a href="thema.jsp"><span class="fa fa-sitemap"></span>테마</a></li>
+            <li><a href="place.jsp"><span class="fa fa-money"></span>명소</a></li>
+            <li><a href="food.jsp"><span class="fa fa-user-o"></span>맛집</a></li>
+            
+        </ul>
+    </div>
+<!--     SIDE AREA -->
+   
+    </div>
+</div>
 
 
-		<h2 id="id">명소 BEST</h2>
-		<br>
-		<br>
-		<hr>
 
+
+		 <h2 id="id">맛집 BEST</h2><br><br><hr>
+		 
 		<!-- 검색창 -->
 		<div id="searchbar">
 			<input type="text" placeholder="검색할 도시를 입력하세요.">
@@ -86,8 +96,8 @@ String cityname= view.getCityname(); %>
 					</div>
 					<div class="product-info">
 						<div class="product-text">
-							<h1>BEST 명소</h1>
-							<h2>명소는 명소지</h2>
+							<h1>BEST 맛집</h1>
+							<h2>맛집는 맛집지</h2>
 							<p>이곳은 카피올리니 공원</p>
 						</div>
 						<div class="product-price-btn">
@@ -105,8 +115,8 @@ String cityname= view.getCityname(); %>
 					</div>
 					<div class="product-info">
 						<div class="product-text">
-							<h1>BEST 명소</h1>
-							<h2>명소는 명소지</h2>
+							<h1>BEST 맛집</h1>
+							<h2>맛집는 맛집지</h2>
 							<p>이곳은 상해의 예원</p>
 						</div>
 						<div class="product-price-btn">
@@ -123,8 +133,8 @@ String cityname= view.getCityname(); %>
 					</div>
 					<div class="product-info">
 						<div class="product-text">
-							<h1>BEST 명소</h1>
-							<h2>명소는 명소지</h2>
+							<h1>BEST 맛집</h1>
+							<h2>맛집는 맛집지</h2>
 							<p>이곳은 카피올리니 공원</p>
 						</div>
 						<div class="product-price-btn">
@@ -141,8 +151,8 @@ String cityname= view.getCityname(); %>
 					</div>
 					<div class="product-info">
 						<div class="product-text">
-							<h1>BEST 명소</h1>
-							<h2>명소는 명소지</h2>
+							<h1>BEST 맛집</h1>
+							<h2>맛집는 맛집지</h2>
 							<p>이곳은 카피올리니 공원</p>
 						</div>
 						<div class="product-price-btn">
@@ -159,8 +169,8 @@ String cityname= view.getCityname(); %>
 					</div>
 					<div class="product-info">
 						<div class="product-text">
-							<h1>BEST 명소</h1>
-							<h2>명소는 명소지</h2>
+							<h1>BEST 맛집</h1>
+							<h2>맛집는 맛집지</h2>
 							<p>이곳은 카피올리니 공원</p>
 						</div>
 						<div class="product-price-btn">
@@ -177,8 +187,8 @@ String cityname= view.getCityname(); %>
 					</div>
 					<div class="product-info">
 						<div class="product-text">
-							<h1>BEST 명소</h1>
-							<h2>명소는 명소지</h2>
+							<h1>BEST 맛집</h1>
+							<h2>맛집는 맛집지</h2>
 							<p>이곳은 카피올리니 공원</p>
 						</div>
 						<div class="product-price-btn">
@@ -195,8 +205,8 @@ String cityname= view.getCityname(); %>
 					</div>
 					<div class="product-info">
 						<div class="product-text">
-							<h1>BEST 명소</h1>
-							<h2>명소는 명소지</h2>
+							<h1>BEST 맛집</h1>
+							<h2>맛집는 맛집지</h2>
 							<p>이곳은 카피올리니 공원</p>
 						</div>
 						<div class="product-price-btn">
@@ -213,8 +223,8 @@ String cityname= view.getCityname(); %>
 					</div>
 					<div class="product-info">
 						<div class="product-text">
-							<h1>BEST 명소</h1>
-							<h2>명소는 명소지</h2>
+							<h1>BEST 맛집</h1>
+							<h2>맛집는 맛집지</h2>
 							<p>이곳은 카피올리니 공원</p>
 						</div>
 						<div class="product-price-btn">
@@ -231,8 +241,8 @@ String cityname= view.getCityname(); %>
 					</div>
 					<div class="product-info">
 						<div class="product-text">
-							<h1>BEST 명소</h1>
-							<h2>명소는 명소지</h2>
+							<h1>BEST 맛집</h1>
+							<h2>맛집는 맛집지</h2>
 							<p>이곳은 카피올리니 공원</p>
 						</div>
 						<div class="product-price-btn">

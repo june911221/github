@@ -5,18 +5,12 @@
 <%@ page import="dao.Food_placeDao"%>
 <%@ page import="java.util.ArrayList"%>
 <jsp:useBean id="user" class="dao.Food_placeDao" />
-<%-- <%
-Food_placeDto view= (Food_placeDto)request.getAttribute("article");
- int num= view.getNum(); 
-String title= view.getTitle();
-String contents= view.getContents();
-String pic= view.getPic();
-String place= view.getPlace();
-String tel= view.getTel();
-String time= view.getTime();
-String category= view.getCategory();
-String cityname= view.getCityname(); %>
- --%>
+<%
+
+ArrayList<Food_placeDto> view= (ArrayList<Food_placeDto>)user.Food_placeDto();
+out.println(view.size());
+for(int i =0 ; i<view.size(); i++)
+ %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -66,7 +60,6 @@ String cityname= view.getCityname(); %>
 
 
 
-
 		<h2 id="id">명소 BEST</h2>
 		<br>
 		<br>
@@ -98,149 +91,7 @@ String cityname= view.getCityname(); %>
 				</div>
 			</li>
 
-			<li id="list2">
-				<div class="wrapper2">
-					<div class="product-img">
-						<img src="img/Shanghai.jpg" height="210" width="200">
-					</div>
-					<div class="product-info">
-						<div class="product-text">
-							<h1>BEST 명소</h1>
-							<h2>명소는 명소지</h2>
-							<p>이곳은 상해의 예원</p>
-						</div>
-						<div class="product-price-btn">
-							<a><button type="button" onclick="location.href='#'">바로가기</button></a>
-						</div>
-					</div>
-				</div>
-			</li>
-
-			<li id="list2">
-				<div class="wrapper2">
-					<div class="product-img">
-						<img src="img/Paris.jpg" height="210" width="200">
-					</div>
-					<div class="product-info">
-						<div class="product-text">
-							<h1>BEST 명소</h1>
-							<h2>명소는 명소지</h2>
-							<p>이곳은 카피올리니 공원</p>
-						</div>
-						<div class="product-price-btn">
-							<a><button type="button" onclick="location.href='#'">바로가기</button></a>
-						</div>
-					</div>
-				</div>
-			</li>
-
-			<li id="list2">
-				<div class="wrapper2">
-					<div class="product-img">
-						<img src="img/kapiolani_park.jpg" height="210" width="200">
-					</div>
-					<div class="product-info">
-						<div class="product-text">
-							<h1>BEST 명소</h1>
-							<h2>명소는 명소지</h2>
-							<p>이곳은 카피올리니 공원</p>
-						</div>
-						<div class="product-price-btn">
-							<a><button type="button" onclick="location.href='#'">바로가기</button></a>
-						</div>
-					</div>
-				</div>
-			</li>
-
-			<li id="list2">
-				<div class="wrapper2">
-					<div class="product-img">
-						<img src="img/kapiolani_park.jpg" height="210" width="200">
-					</div>
-					<div class="product-info">
-						<div class="product-text">
-							<h1>BEST 명소</h1>
-							<h2>명소는 명소지</h2>
-							<p>이곳은 카피올리니 공원</p>
-						</div>
-						<div class="product-price-btn">
-							<a><button type="button" onclick="location.href='#'">바로가기</button></a>
-						</div>
-					</div>
-				</div>
-			</li>
-
-			<li id="list2">
-				<div class="wrapper2">
-					<div class="product-img">
-						<img src="img/kapiolani_park.jpg" height="210" width="200">
-					</div>
-					<div class="product-info">
-						<div class="product-text">
-							<h1>BEST 명소</h1>
-							<h2>명소는 명소지</h2>
-							<p>이곳은 카피올리니 공원</p>
-						</div>
-						<div class="product-price-btn">
-							<a><button type="button" onclick="location.href='#'">바로가기</button></a>
-						</div>
-					</div>
-				</div>
-			</li>
-
-			<li id="list2">
-				<div class="wrapper2">
-					<div class="product-img">
-						<img src="img/kapiolani_park.jpg" height="210" width="200">
-					</div>
-					<div class="product-info">
-						<div class="product-text">
-							<h1>BEST 명소</h1>
-							<h2>명소는 명소지</h2>
-							<p>이곳은 카피올리니 공원</p>
-						</div>
-						<div class="product-price-btn">
-							<a><button type="button" onclick="location.href='#'">바로가기</button></a>
-						</div>
-					</div>
-				</div>
-			</li>
-
-			<li id="list2">
-				<div class="wrapper2">
-					<div class="product-img">
-						<img src="img/kapiolani_park.jpg" height="210" width="200">
-					</div>
-					<div class="product-info">
-						<div class="product-text">
-							<h1>BEST 명소</h1>
-							<h2>명소는 명소지</h2>
-							<p>이곳은 카피올리니 공원</p>
-						</div>
-						<div class="product-price-btn">
-							<a><button type="button" onclick="location.href='#'">바로가기</button></a>
-						</div>
-					</div>
-				</div>
-			</li>
-
-			<li id="list2">
-				<div class="wrapper2">
-					<div class="product-img">
-						<img src="img/kapiolani_park.jpg" height="210" width="200">
-					</div>
-					<div class="product-info">
-						<div class="product-text">
-							<h1>BEST 명소</h1>
-							<h2>명소는 명소지</h2>
-							<p>이곳은 카피올리니 공원</p>
-						</div>
-						<div class="product-price-btn">
-							<a><button type="button" onclick="location.href='#'">바로가기</button></a>
-						</div>
-					</div>
-				</div>
-			</li>
+			
 		</ul>
 	</section>
 	<footer>

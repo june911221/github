@@ -63,12 +63,12 @@ public class Food_placeDao {
 			System.out.println(e);
 		}
 	}
-	public ArrayList<Food_placeDto> Food_placeDto(String title){
+	public ArrayList<Food_placeDto> Food_placeDto(){
 		ArrayList<Food_placeDto> fp = new ArrayList<Food_placeDto>();
 		try {
 			conn=Drive();
 			stmt=conn.createStatement();
-			String command = "select * from food_place where title='"+title+"';";
+			String command = "select * from food_place order by num desc;";
 			ResultSet rs= stmt.executeQuery(command);
 			while(rs.next()) {
 				Food_placeDto dto= new Food_placeDto();
@@ -77,6 +77,11 @@ public class Food_placeDao {
 				dto.setCityname(rs.getString("cityname"));
 				dto.setContents(rs.getString("contents"));
 				dto.setTel(rs.getString("tel"));
+				dto.setPic(rs.getString("pic"));
+				dto.setPlace(rs.getString("place"));
+				dto.setTime(rs.getString("time"));
+				dto.setNum(rs.getInt("num"));
+				fp.add(dto);
 			}
 		
 		

@@ -5,12 +5,7 @@
 <%@ page import="dao.Food_placeDao"%>
 <%@ page import="java.util.ArrayList"%>
 <jsp:useBean id="user" class="dao.Food_placeDao" />
-<%
 
-ArrayList<Food_placeDto> view= (ArrayList<Food_placeDto>)user.Food_placeDto();
-out.println(view.size());
-for(int i =0 ; i<view.size(); i++)
- %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -70,8 +65,13 @@ for(int i =0 ; i<view.size(); i++)
 			<input type="text" placeholder="검색할 도시를 입력하세요.">
 			<button>검색</button>
 		</div>
-
 		<ul id="sub-menu">
+<%
+ArrayList<Food_placeDto> view= (ArrayList<Food_placeDto>)user.Food_placeDto();
+/* out.println(view.size()); */
+for(int i =0 ; i<view.size(); i++){
+ %>
+		
 			<li id="list2">
 				<div class="wrapper2">
 					<div class="product-img">
@@ -79,9 +79,9 @@ for(int i =0 ; i<view.size(); i++)
 					</div>
 					<div class="product-info">
 						<div class="product-text">
-							<h1>BEST 명소</h1>
-							<h2>명소는 명소지</h2>
-							<p>이곳은 카피올리니 공원</p>
+							<h1><%=view.get(i).getTitle() %></h1>
+							<h2><%=view.get(i).getCityname() %></h2>
+							<p><%=view.get(i).getNum() %></p>
 						</div>
 						<div class="product-price-btn">
 							<a><button type="button"
@@ -90,6 +90,7 @@ for(int i =0 ; i<view.size(); i++)
 					</div>
 				</div>
 			</li>
+<%} %>
 
 			
 		</ul>

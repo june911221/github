@@ -11,19 +11,9 @@
 <head>
 <meta charset="UTF-8">
 <title>명소</title>
-<link rel="stylesheet" href="css/place.css?ver=1.4">
+<link rel="stylesheet" href="css/place.css?ver=1.44">
 </head>
-<style>
-div.ellip {
-	position: relative;
-	top: -150px;
-	left: 20px;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	word-wrap: break-word;
-	white-space: nowrap;
-}
-</style>
+
 <body>
 	<%
 		String ses = null;
@@ -89,31 +79,44 @@ div.ellip {
 			<li id="list2">
 				<div class="wrapper2">
 					<div class="product-img">
-						<img src="img/<%=view.get(i).getPic()%>.jpg" height="210"
+						<img src="img/<%=view.get(i).getPic()%>" height="210"
 							width="200">
+
+<style>
+div.ellip {
+	position: relative;
+	top: -20px;
+	left: 20px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	word-break: keep-all;
+	white-space: initial;
+	line-height: 1.2;
+	max-height: 3.6em;
+	/* white-space: nowrap; */
+}
+</style>
 					</div>
 					<div class="product-info">
 						<div class="product-text">
 							<h3><%=view.get(i).getCategory()%></h3>
 							<h1><%=view.get(i).getTitle()%></h1>
 							<h2><%=view.get(i).getCityname()%></h2>
-							<div class='content-box'
-								style='box-sizing: border-box; width: 140px; height: 80px; border: solid black 1px;'><%="<div class='ellip' style='width:400px;'>" + view.get(i).getContents() + "</div>"%></div>
-						</div>
-						<div></div>
-						<div class="product-price-btn">
-							<a><button type="button"
-									onclick="location.href='placedetail.jsp?num='">바로가기</button></a>
+							<div class='contentbox' style=''>
+								<%="<div class='ellip' style='width:150px;'>" + view.get(i).getContents() + "</div>"%>
+							</div>
+							<div></div>
+							<div class="product-price-btn">
+								<a><button type="button"
+										onclick="location.href='placedetail.jsp?num=<%=view.get(i).getNum()%>'">바로가기</button></a>
+							</div>
 						</div>
 					</div>
-				</div>
 			</li>
 			<%
 				}
 				}
 			%>
-
-
 		</ul>
 	</section>
 	<footer>

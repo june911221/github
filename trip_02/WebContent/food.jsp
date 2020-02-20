@@ -85,7 +85,7 @@
 			<li id="list2">
 				<div class="wrapper2">
 					<div class="product-img">
-						<img src="img/<%=view.get(i).getPic()%>.jpg" height="210"
+						<img src="img/<%=view.get(i).getPic()%>" height="210"
 							width="200">
 					</div>
 					<div class="product-info">
@@ -97,7 +97,7 @@
 						</div>
 						<div class="product-price-btn">
 							<a><button type="button"
-									onclick="location.href='placedetail.jsp?num='">바로가기</button></a>
+									onclick="location.href='placedetail.jsp?num=<%=view.get(i).getNum()%>'">바로가기</button></a>
 						</div>
 					</div>
 				</div>

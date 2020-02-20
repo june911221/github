@@ -13,6 +13,18 @@
 <title>맛집</title>
 <link rel="stylesheet" href="css/place.css?ver=1.6">
 </head>
+<style>
+div.ellip {
+	position: relative;
+	top: -20px;
+	left: 20px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	word-break: keep-all;
+	white-space: initial;
+	line-height: 1.2;
+	max-height: 3.6em;
+	/* white-space: nowrap; */</style>
 <body>
 	<%
 		String ses = null;
@@ -74,12 +86,11 @@
 
 		<ul id="sub-menu">
 			<%
-				ArrayList<Food_placeDto> view = (ArrayList<Food_placeDto>) user.Food_placeDto();
+			String category= request.getParameter("category1");
+				ArrayList<Food_placeDto> view = (ArrayList<Food_placeDto>) user.Food_placeDto(category);
 				/* out.println(view.size()); */
 				for (int i = 0; i < view.size(); i++) {
-					String my = "맛집";
-
-					if (view.get(i).getCategory().equals(my)) {
+	
 			%>
 
 			<li id="list2">
@@ -90,24 +101,24 @@
 					</div>
 					<div class="product-info">
 						<div class="product-text">
-							<h3><%=view.get(i).getCategory()%></h3>
+							
 							<h1><%=view.get(i).getTitle()%></h1>
 							<h2><%=view.get(i).getCityname()%></h2>
-							<p><%="<div class='ellip' style='width:150px;'>" + view.get(i).getContents() + "</div>"%></p>
-						</div>
-						<div class="product-price-btn">
-							<a><button type="button"
-									onclick="location.href='placedetail.jsp?num=<%=view.get(i).getNum()%>'">바로가기</button></a>
+							<div class='contentbox' style=''>
+								<%="<div class='ellip' style='width:150px;'>" + view.get(i).getContents() + "</div>"%>
+							</div>
+							<div></div>
+							<div class="product-price-btn">
+								<a><button type="button"
+										onclick="location.href='placedetail.jsp?num=<%=view.get(i).getNum()%>'">바로가기</button></a>
+							</div>
 						</div>
 					</div>
-				</div>
 			</li>
 			<%
 				}
-				}
+				
 			%>
-
-
 		</ul>
 	</section>
 	<footer>

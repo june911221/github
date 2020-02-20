@@ -8,7 +8,7 @@
 <title>header</title>
 <link rel="stylesheet" href="./css/header.css">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script  src="js/header.js"></script>
+<script src="js/header.js"></script>
 
 </head>
 <body>
@@ -38,8 +38,8 @@
 			<ul class="dept01">
 				<li id="nop"><a href="CitySel.jsp">도시</a></li>
 				<li id="nop"><a href="thema.jsp">테마</a></li>
-				<li id="nop"><a href="place.jsp">명소</a></li>
-				<li id="nop"><a href="food.jsp">맛집</a></li>
+				<li id="nop"><a href="place.jsp?category1=명소">명소</a></li>
+				<li id="nop"><a href="food.jsp?category1=맛집">맛집</a></li>
 			</ul>
 		<li><a href="#">커뮤니티</a>
 			<ul class="dept01">

@@ -67,22 +67,18 @@
 		</div>
 		<ul id="sub-menu">
 			<%
-				ArrayList<Food_placeDto> view = (ArrayList<Food_placeDto>) user.Food_placeDto();
-				/* out.println(view.size()); */
+				String category = request.getParameter("category1");
+				ArrayList<Food_placeDto> view = (ArrayList<Food_placeDto>) user.Food_placeDto(category);
+				/* out.println(category);*/
 				for (int i = 0; i < view.size(); i++) {
-					String my = "명소";
-
-					if (view.get(i).getCategory().equals(my)) {
-						//out.print(view.get(i).getNum());
 			%>
 
 			<li id="list2">
 				<div class="wrapper2">
 					<div class="product-img">
-						<img src="img/<%=view.get(i).getPic()%>" height="210"
-							width="200">
+						<img src="img/<%=view.get(i).getPic()%>" height="210" width="200">
 
-<style>
+						<style>
 div.ellip {
 	position: relative;
 	top: -20px;
@@ -99,7 +95,7 @@ div.ellip {
 					</div>
 					<div class="product-info">
 						<div class="product-text">
-							<h3><%=view.get(i).getCategory()%></h3>
+
 							<h1><%=view.get(i).getTitle()%></h1>
 							<h2><%=view.get(i).getCityname()%></h2>
 							<div class='contentbox' style=''>
@@ -114,7 +110,6 @@ div.ellip {
 					</div>
 			</li>
 			<%
-				}
 				}
 			%>
 		</ul>

@@ -80,12 +80,12 @@ public class Food_placeDao {
 		
 	}
 	
-	public ArrayList<Food_placeDto> Food_placeDto(){
+	public ArrayList<Food_placeDto> Food_placeDto(String category){
 		ArrayList<Food_placeDto> fp = new ArrayList<Food_placeDto>();
 		try {
 			conn=Drive();
 			stmt=conn.createStatement();
-			String command = "select * from food_place order by num desc;";
+			String command = "select * from food_place where category='"+category+"' order by num desc limit 9;";
 			ResultSet rs= stmt.executeQuery(command);
 			while(rs.next()) {
 				Food_placeDto dto= new Food_placeDto();

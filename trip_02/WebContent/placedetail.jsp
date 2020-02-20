@@ -9,7 +9,7 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 %>
-<%-- <%Food_placeDto view= (Food_placeDto)request.getAttribute("arti");
+<%-- <%Food_placeDto view= (Food_placeDto)
 int num= view.getNum();
 String title= view.getTitle();
 String contents= view.getContents();

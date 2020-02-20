@@ -11,8 +11,19 @@
 <head>
 <meta charset="UTF-8">
 <title>명소</title>
-<link rel="stylesheet" href="css/place.css?ver=1.5">
+<link rel="stylesheet" href="css/place.css?ver=1.4">
 </head>
+<style>
+div.ellip {
+	position: relative;
+	top: -150px;
+	left: 20px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	word-wrap: break-word;
+	white-space: nowrap;
+}
+</style>
 <body>
 	<%
 		String ses = null;
@@ -56,8 +67,7 @@
 
 
 		<h2 id="id">명소 BEST</h2>
-		<br>
-		<br>
+		<br> <br>
 		<hr>
 
 		<!-- 검색창 -->
@@ -66,23 +76,31 @@
 			<button>검색</button>
 		</div>
 		<ul id="sub-menu">
-<%
-ArrayList<Food_placeDto> view= (ArrayList<Food_placeDto>)user.Food_placeDto();
-/* out.println(view.size()); */
-for(int i =0 ; i<view.size(); i++){
- %>
-		
+			<%
+				ArrayList<Food_placeDto> view = (ArrayList<Food_placeDto>) user.Food_placeDto();
+				/* out.println(view.size()); */
+				for (int i = 0; i < view.size(); i++) {
+					String my = "명소";
+
+					if (view.get(i).getCategory().equals(my)) {
+						//out.print(view.get(i).getNum());
+			%>
+
 			<li id="list2">
 				<div class="wrapper2">
 					<div class="product-img">
-						<img src="img/kapiolani_park.jpg" height="210" width="200">
+						<img src="img/<%=view.get(i).getPic()%>.jpg" height="210"
+							width="200">
 					</div>
 					<div class="product-info">
 						<div class="product-text">
-							<h1><%=view.get(i).getTitle() %></h1>
-							<h2><%=view.get(i).getCityname() %></h2>
-							<p><%=view.get(i).getNum() %></p>
+							<h3><%=view.get(i).getCategory()%></h3>
+							<h1><%=view.get(i).getTitle()%></h1>
+							<h2><%=view.get(i).getCityname()%></h2>
+							<div class='content-box'
+								style='box-sizing: border-box; width: 140px; height: 80px; border: solid black 1px;'><%="<div class='ellip' style='width:400px;'>" + view.get(i).getContents() + "</div>"%></div>
 						</div>
+						<div></div>
 						<div class="product-price-btn">
 							<a><button type="button"
 									onclick="location.href='placedetail.jsp?num='">바로가기</button></a>
@@ -90,9 +108,12 @@ for(int i =0 ; i<view.size(); i++){
 					</div>
 				</div>
 			</li>
-<%} %>
+			<%
+				}
+				}
+			%>
 
-			
+
 		</ul>
 	</section>
 	<footer>

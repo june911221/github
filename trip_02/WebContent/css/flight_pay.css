@@ -1,0 +1,614 @@
+section{margin:auto;
+widht:100%;
+height:1200px;}
+body {
+  font-family: "Lato", sans-serif;
+}
+/*.has-passed{}*/
+.container {
+  position:relative;
+  top:150px;
+  min-width: 360px;
+  width: auto;
+  max-width: 940px;
+  margin: 0 auto;
+}
+.active{
+  display: block !important;
+}
+
+.none{
+  display: none;
+}
+
+.active-menu{
+  background: orange !important;
+  color: white;
+  width: 35px;
+  height: 35px;
+  border-radius: 69px;
+}
+
+.next{
+  border: 2px solid blue;
+}
+
+/* Style the tab */
+.menu-steps {
+	position:relative;
+	left:15%;
+    overflow: hidden;
+    margin-bottom: 40px;
+}
+
+/* Style the buttons inside the tab */
+.menu-steps .btn-step {
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 0px;
+    width: 20px;
+    height: 23px;
+    background: #ccc;
+    border-radius: 70px;
+    position: relative;
+    margin-right: 136px;
+}
+
+.menu-steps .btn-step.active {
+    background-color: #ccc;
+}
+.menu-steps .btn-step.active-menu span {
+    border-top: 4px solid orange;
+    position: absolute;
+    width: 137px;
+    top: 26px;
+    left: 51px;
+}
+.menu-steps .btn-step:last-child span {
+  border-top: none;
+}
+.menu-steps .btn-step span {
+    border-top: 4px solid #ccc;
+    position: absolute;
+    width: 137px;
+    top: 26px;
+    left: 51px;
+}
+
+
+/* Style the tab content */
+.step-content{
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    
+    
+}
+.step-content form div {
+    margin-bottom: 30px;
+}
+.step-content form label {
+  color: #666;
+}
+
+.step-content h3{
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 20px;
+}
+.step-content p {
+  color: #666;
+}
+
+.btn-next[disabled='disabled'],
+.btn-conclude[disabled='disabled']{
+  background: #ccc;
+  color: #fff;
+}
+
+.btn-next {
+  background: #003767;
+  color: #fff;
+  border: none;
+  width: 90px;
+  height: 30px;
+  border-radius: 7px;
+}
+
+.btn-back {
+  color: #fff;
+  width: 55px;
+  height: 30px;
+  border: none;
+  background: #A2A2A2;
+  border-radius: 7px;
+  margin-right: 10px;
+}
+
+#btn-back4{  color: #fff;
+  width: 90px;
+  height: 30px;
+  border: none;
+  background: #A2A2A2;
+  border-radius: 7px;
+  margin-right: 10px;
+  position: relative;
+    left: -200px;
+    top: 40px;}
+
+.btn-conclude{
+    background: #003767;
+    color: #fff;
+    border: none;
+    height: 30px;
+    width: 75px;
+    border-radius: 7px;
+}
+
+
+#conclude #form-conclude{}
+#conclude #form-conclude input[type='text']{
+  display: block;
+  margin: 10px auto 20px 0px;
+}
+
+#result{
+  display: none;
+}
+
+.step-content{
+	
+	height:700px;}
+
+.flight-info{font-size:13pt;
+position:relative;
+top:30px;
+left:30px;}
+
+.flight-info2
+{font-size:13pt;
+position:relative;
+top:100px;
+left:30px;}
+
+.flight-info3
+{font-size:13pt;
+position:relative;
+top:100px;
+left:30px;}
+
+tr {text-align:center;
+    display: table-row;
+    vertical-align: inherit;
+    }
+    
+tbody td {
+    padding: 5px 65px;
+    border: 1px solid #ccdcdf;
+    text-align: center;
+    color: #333;
+}
+
+ thead th {
+    background-color: #186686;
+    color: #fff;    
+    font-size: .875rem;
+    line-height: 16px;
+    padding: 11px 3px;
+  
+}
+
+#go_table{position:relative;
+top:50px;
+left:25px;
+}
+
+#ok_text{position:relative;
+top:180px;
+left:10px;}
+
+.btn-next{position:relative;
+top:180px;
+left:10px;}
+
+.back_table{position:relative;
+top:120px;
+left:25px;}
+
+.btn-back{position:relative;
+width: 90px;
+top:200px;
+}
+
+#rider_info{position:relative;
+top:100px;}
+
+#rider_table{position:relative;
+top:60px;}
+
+#pay_ok{
+text-align:center;
+position:relative;
+top:70px;
+font-size:15pt;
+font-weight:bold;}
+
+#text_box{position:relative;
+top:100px;
+text-align:center;}
+
+
+
+#ok_text3{position:relative;
+top:180px;
+left:10px;}
+
+#btn-next3{position:relative;
+top:200px;}
+
+.main_back{position:relative;
+    left: -200px;
+    top: 80px;
+	box-shadow:inset 0px 1px 0px 0px #ffffff;
+	background:linear-gradient(to bottom, #f9f9f9 5%, #e9e9e9 100%);
+	background-color:#f9f9f9;
+	border-radius:6px;
+	border:1px solid #dcdcdc;
+	display:inline-block;
+	cursor:pointer;
+	color:#666666;
+	font-family:Arial;
+	font-size:16px;
+	font-weight:bold;
+	padding:12px 38px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffffff;}
+	
+#select{position: relative;
+    left: -10px;
+    width: 80px;
+    height: 26px;
+    font-size: 13pt;
+}
+
+#text_box_num{position:relative;
+width:65px;
+height:20px;
+top:-1px;
+left:5px;}
+
+#text_box_num2{position:relative;
+width:65px;
+height:20px;
+    top: -1px;
+    left: 10px;}
+    
+h4{position:relative;
+top:30px;
+left:30px;}
+
+#re_table{position:relative;
+top:50px;
+left:30px;}
+
+#re_table td{	
+	padding: 5px 25px;
+    border: 1px solid #ccdcdf;
+    text-align: center;
+    color: #333;}
+
+
+
+#rider_td {
+    padding: 5px 40px;
+    border: 1px solid #ccdcdf;
+    text-align: center;
+    color: #333;
+}
+
+#rider_tr{
+    background-color: #186686;
+    color: #fff;    
+    font-size: .875rem;
+    line-height: 16px;
+    padding: 11px 3px;
+}
+
+#ok_text2{position:relative;
+top:200px;}
+
+#btn-next3{position:relative;
+top:200px;}
+
+#price_table{
+position:relative;
+top:60px;
+left:30px;
+width: 800px;}
+
+#price_table2{position:relative;
+top:120px;
+left:30px;
+width: 800px;}
+
+
+#price_table2 td{
+	padding: 5px 20px;
+    border: 1px solid #ccdcdf;
+    text-align: center;
+    color: #333;}
+
+#price_table td{
+	padding: 5px 20px;
+    border: 1px solid #ccdcdf;
+    text-align: center;
+    color: #333;}
+ 
+ #re_table2{position:relative;
+top:120px;
+left:30px;}   
+    
+ #re_table2 td
+ {padding: 5px 20px;
+    border: 1px solid #ccdcdf;
+    text-align: center;
+    color: #333;}
+    
+    
+
+#question-4 {
+    position: relative;
+    top: -50px;}
+    
+ 
+ #payinfo_text{
+ display: block;
+    font-size: 1.17em;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    margin-top: 50px;}
+ 
+ hr{position:relative;
+ top:30px;}
+ 
+ #line{position:relative;
+ top:-5px;}
+ 
+.card, .bank, .phone {
+	box-shadow:inset 1px 1px 0px 0px #ffffff;
+	background:linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
+	background-color:#ffffff;
+	border:1px solid #dcdcdc;
+	display:inline-block;
+	cursor:pointer;
+	color:#666666;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:11px 36px;
+	text-decoration:none;
+	text-shadow:1px 0px 0px #ffffff;
+	margin-right:15px;
+}
+
+#pay{position:relative;
+    top: 70px;
+    left: 50px;}
+    
+#ok_text4{position:relative;
+        top: -280px;
+    left: -180px;
+}
+
+#btn-next4{position:relative;
+    top: 40px;
+    left: -180px;}
+
+#card2{display:none;}
+
+/*결제버튼*/
+.container {
+	position:relative;
+    width: 90%;
+    margin: 30px auto;
+	position:relative;
+}
+.tab-section1 {
+    width: 670px;
+    height: 600px;
+    margin-right: 40px;
+    position:relative;
+    text-align: center;
+    top: -150px;
+    left:70px;
+}
+
+.tab-section1 input{
+  /*visibility: hidden; 
+    opacity: 0; */
+    position: relative;
+}
+
+#sec1{
+	visibility: hidden; 
+    opacity: 0; 
+     position: relative;
+}
+
+.tab-section1 label{
+   font-size: 15px;
+    padding: 10px 35px;
+    color: #333;
+    text-align: center;
+    background-color: rgba(200, 200, 200, 0.2);
+    border-radius: 4px;
+    text-shadow: inherit;
+    cursor: pointer;
+    margin-top: 10px;
+}
+.tab2-content {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    top: 50px;
+    transition: all 0.3s ease-in-out;
+   width: 800px;
+    height: 500px;
+}
+
+input#section1:checked ~ #sec1, input#section2:checked ~  #sec2,
+input#section3:checked ~ #sec3, input#section4:checked ~ #sec4,
+input#section5:checked ~ #sec5{
+    visibility: visible;
+    opacity: 1;
+   
+}
+
+input#section1:checked + label, input#section2:checked +  label,
+input#section3:checked + label, input#section4:checked + label,
+input#section5:checked + label{
+   background-color: #EAEAEA;
+      padding: 15px 35px;
+      
+}
+label{font-color:black;
+background:white;}
+
+#sub-menu {
+	position:relative;
+	left:-100px;
+}
+#sub-menu > li {
+list-style:none;
+ padding: 20px 30px;
+}
+#sub-menu > li >  a {
+color:black;
+margin-left:7px;
+}
+#sub-menu  li   img{/*�����̹���*/
+position:relative;
+top:8px;
+left:-10px;
+}
+#list2{/*���󸮽�Ʈ*/
+font-size:10pt;
+float:left;
+color:black;
+}
+#list2:hover{
+color:gray;
+}
+#sub-menu > li >  a:hover{
+color:red;
+}
+
+#cardSec2{font-size: 12pt;
+    width: 110px;
+    height: 30px;
+    text-align: center;}
+
+#nstallmentSec
+{font-size: 12pt;
+    width: 110px;
+    height: 30px;
+    text-align: center;}
+    
+#pay_box{width: 600px;
+    height: 200px;
+    position: relative;
+    top: 30px;
+    left: 150px;
+    }
+
+ #cardnum
+    {position:relative;
+    top:30px;
+    left: -130px;}
+    
+#cvcnum{position:relative;
+    top: 35px;
+    left: -175px;}
+    
+    .tab-section1 label {
+    font-size: 15px;
+    padding: 10px 35px;
+    color: #333;
+    text-align: center;
+    background-color:white; 
+    border-radius: 4px;
+    text-shadow: inherit;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+#T{position: relative;
+    left: 30px;
+    width: 70px;
+    height: 27px;
+   }
+   
+#birth{position:relative;
+top: 20px;
+    left: -50px;}
+
+#birth_text{
+    width: 100px;
+    height: 20px;}
+
+#number{position:relative;
+top:20px;}
+
+#in_num{width: 120px;
+    height: 20px;}
+    
+#go{position:relative;
+    left: 10px;
+    height: 27px;
+    top: 1px;}
+    
+.menu2{position:relative;
+top:20px;}
+
+#name{
+    position: relative;
+    top: 10px;}
+
+#name_text{width: 120px;
+    height: 23px;
+    position: relative;
+    left: -9px;}
+    
+#bank_num {
+    position: relative;
+    top: 10px;
+    left: -25px;}
+
+#banknum_show{width: 120px;
+    height: 23px;
+    position: relative;
+    left: -9px;}
+
+#bank{width: 100px;
+    height: 30px;
+    position: relative;
+        left: -8px;}
+    
+#bank_name{position: relative;
+    top: 15px;
+    left: -25px;}
+
+#conclude-last{width: 50%;
+    height: 550px;
+    margin: auto;
+    position: relative;
+    top: 150px;}    
+   

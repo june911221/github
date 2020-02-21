@@ -8,15 +8,15 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import vo.boardDto;
+import vo.BoardDto;
 
-public class boardDao {
+public class BoardDao {
 	private static final int ArrayList = 0;
 	private static final int BoardDto = 0;
 	Connection conn=null; 
 	Statement stmt=null;
 
-	public boardDao(){
+	public BoardDao(){
 	try{//생성자로 드라이버 호출
 		Class.forName("com.mysql.jdbc.Driver");
 	}catch(Exception e){
@@ -51,8 +51,8 @@ public class boardDao {
 	}
 	
 	
-	public ArrayList<boardDto> List() {//여행후기 게시판 순서대로 출력
-		ArrayList<boardDto> boarderlist=new ArrayList<boardDto>(); 
+	public ArrayList<BoardDto> List() {//여행후기 게시판 순서대로 출력
+		ArrayList<BoardDto> boarderlist=new ArrayList<BoardDto>(); 
 		try{
 			conn=Drive();
 		stmt=conn.createStatement();//여행후기 게실글 전체출력으로 order by num desc 게시물번호로 내림차순으로 정렬
@@ -60,7 +60,7 @@ public class boardDao {
 		ResultSet rs=stmt.executeQuery(command);
 		while(rs.next()) {
 			
-			boardDto dto=new boardDto();
+			BoardDto dto=new BoardDto();
 			dto.setNum(rs.getInt("num"));
 			dto.setCategory(rs.getString("category"));
 			dto.setTitle(rs.getString("title"));
@@ -78,8 +78,8 @@ public class boardDao {
 		return boarderlist;
 	}
 	
-	public ArrayList<boardDto> List(String opt,String sel) {//검색조건과 검색내용을 받아 리스트 출력
-		ArrayList<boardDto> boarderlist=new ArrayList<boardDto>();
+	public ArrayList<BoardDto> List(String opt,String sel) {//검색조건과 검색내용을 받아 리스트 출력
+		ArrayList<BoardDto> boarderlist=new ArrayList<BoardDto>();
 		
 		try{
 			conn=Drive();
@@ -90,7 +90,7 @@ public class boardDao {
 			ResultSet rs=stmt.executeQuery(command);
 			while(rs.next()) {
 				
-				boardDto dto=new boardDto();
+				BoardDto dto=new BoardDto();
 				dto.setNum(rs.getInt("num"));
 				dto.setCategory(rs.getString("category"));
 				dto.setTitle(rs.getString("title"));
@@ -108,7 +108,7 @@ public class boardDao {
 			ResultSet rs=stmt.executeQuery(command);
 			while(rs.next()) {
 				
-				boardDto dto=new boardDto();
+				BoardDto dto=new BoardDto();
 				dto.setNum(rs.getInt("num"));
 				dto.setCategory(rs.getString("category"));
 				dto.setTitle(rs.getString("title"));
@@ -127,7 +127,7 @@ public class boardDao {
 			
 			while(rs.next()) {
 			
-			boardDto dto=new boardDto();
+			BoardDto dto=new BoardDto();
 			dto.setNum(rs.getInt("num"));
 			dto.setCategory(rs.getString("category"));
 			dto.setTitle(rs.getString("title"));
@@ -173,8 +173,8 @@ public class boardDao {
 	
 	
 	
-	public  ArrayList<boardDto> BoardContentsView(String num) {//뷰페이지 게시글번호를 받아서 리스트를 출력
-		ArrayList<boardDto> boarderView = new ArrayList<boardDto>();
+	public  ArrayList<BoardDto> BoardContentsView(String num) {//뷰페이지 게시글번호를 받아서 리스트를 출력
+		ArrayList<BoardDto> boarderView = new ArrayList<BoardDto>();
 		int number;
 		number=Integer.parseInt(num);
 		try {
@@ -184,7 +184,7 @@ public class boardDao {
 			ResultSet rs = stmt.executeQuery(command);	
 			
 			while(rs.next()){
-				boardDto dto = new boardDto();
+				BoardDto dto = new BoardDto();
 				dto.setNum(rs.getInt("num"));
 				dto.setCategory(rs.getString("category"));
 				dto.setTitle(rs.getString("title"));

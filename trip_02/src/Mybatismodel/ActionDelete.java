@@ -4,6 +4,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import Mybatis.Map;
+import vo.BoardDto;
 
 public class ActionDelete {
 	static ActionDelete model = new ActionDelete();
@@ -12,18 +13,14 @@ public class ActionDelete {
 	}
 
 
-	private SqlSessionFactory factory = Map.getSqlSession(); //Map.java ï¿½ë™†ï¿½ì”ªï¿½ì“£ ï§¡ì– ë¸˜ï¿½?ƒ‚
+	private SqlSessionFactory factory = Map.getSqlSession();
 	
-	public void Delete(int num) {
-	InfoandTipDto list=new InfoandTipDto();
-	list.setNum(num);
-	
-	
-	//System.out.println("MODEL delete(): num="+num);
+	public void Delete(BoardDto list) {
 	
 	SqlSession sqlSession = factory.openSession();
-	sqlSession.delete("deleteDB",list);//mapperï¿½ë¿‰ï¿½ê½Œ ï§žï¿½ï¿½ì ™ï¿½ë¸³ id ï¿½ê½”ï¿½ë¼±äºŒì‡¨ë¦?
-	//System.out.println("Listvalue: "+"num="+list.num);
+	sqlSession.delete("deleteDB",list);
+	//mapper.xml ¿¡¼­ deleteDB ¸¦ id·Î»ç¿ëÇÏ´Â delete ±¸¹®¿¡ º¯¼ö¸¦ º¸³»ÁÖ¸é¼­ È£Ãâ("id",º¯¼ö)
+	
 	sqlSession.commit();
 	sqlSession.close();
 	}

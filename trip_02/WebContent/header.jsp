@@ -37,16 +37,16 @@
 		<li><a href="Tour.jsp">여행정보</a>
 			<ul class="dept01">
 				<li id="nop"><a href="CitySel.jsp">도시</a></li>
-				<li id="nop"><a href="thema.jsp">테마</a></li>
+				<li id="nop"><a href="Thema.do">테마</a></li>
 				<li id="nop"><a href="place.jsp?category1=명소">명소</a></li>
 				<li id="nop"><a href="food.jsp?category1=맛집">맛집</a></li>
 			</ul>
 		<li><a href="#">커뮤니티</a>
 			<ul class="dept01">
 				<li id="nop"><a href="WithMe.bo">함께해요</a></li>
-				<li id="nop"><a href="Hugi.jsp">여행후기</a></li>
-				<li id="nop"><a href="infoandtip.my?command=list">정보&팁</a></li>
-				<li id="nop"><a href="#">Q&A</a></li>
+				<li id="nop"><a href="infoandtip.my?command=list&category=hugi">여행후기</a></li>
+				<li id="nop"><a href="infoandtip.my?command=list&category=infoandtip">정보&팁</a></li>
+				<li id="nop"><a href="infoandtip.my?command=list&category=qa">Q&A</a></li>
 			</ul>
 		</li>
 		<li><a href="Mypages.jsp">마이페이지</a>

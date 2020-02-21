@@ -1,0 +1,348 @@
+section{margin:auto;
+width:100%;
+height:1500px;}
+.inpage
+{
+ position:relative;
+ margin:auto;
+top:-110px;
+ width:90%;
+ height:1450px;
+ left:3%;}
+
+
+.dal{
+position:relative;
+top:-10px;
+left:29%;
+width: 180px;
+	height: 50px;
+	border:0px;
+	border-bottom: 1.5px solid #868686;
+	text-align: left;
+}
+
+.dal2 {position:relative;
+top:-10px;
+left:33%;
+	width: 180px;
+	height: 50px;
+	border:0px;
+	border-bottom: 1.5px solid #868686;
+	text-align:  left;
+
+}
+
+
+#autocomplete {
+position:relative;
+top:85px;
+left:60px;
+width: 180px;
+	height: 50px;
+	border:0px;
+	border-bottom: 1.5px solid #868686;
+	
+}
+
+#autocomplete2 {
+	position:relative;
+	top:-11px;
+	left:25%;
+    width: 180px;
+	height: 50px;
+	border:0px;
+	border-bottom: 1.5px solid #868686;	
+}
+
+#air_box{
+position : relative;
+left:20%;
+top:-250px;
+width:1150px;
+height:160px;
+background:white;
+border: 1.5px solid lightgray;}
+
+#text_air{position:relative;
+top:10px;
+left:60px;
+font-size:23pt;}
+
+.pressDown {
+position:relative;
+left:470px;
+font-size:14pt;
+    background-color: #23a3a7;
+    padding: 10px 25px;
+    color: #fff;
+    border-radius: 5px;
+    border-bottom: 4px solid #007087;
+    transition: 0.1s;
+}
+
+
+.box-radio-input input{
+    display:none;
+}
+
+.box-radio-input input[type="radio"] + span{
+position:relative;
+top:30px;
+left:60px;
+margin-right:10px;
+    display:inline-block;
+    background:none;
+    border:1px solid #dfdfdf;    
+    padding:0px 25px;
+    text-align:center;
+    line-height:33px;
+    font-weight:500;
+    cursor:pointer;
+}
+
+.box-radio-input input[type="radio"]:checked + span{
+    border:1px solid #23a3a7;
+    background:#23a3a7;
+    color:#fff;
+}
+
+.box-radio-input2 input[type="radio"]{
+    display:none;
+}
+
+.box-radio-input2 input[type="radio"] + span{
+position:relative;
+top:-100px;
+left:650px;
+margin-right:10px;
+    display:inline-block;
+    background:none;
+    border:1px solid #dfdfdf;    
+    padding:0px 25px;
+    text-align:center;
+    line-height:33px;
+    font-weight:500;
+    cursor:pointer;
+}
+
+.box-radio-input2 input[type="radio"]:checked + span{
+    border:1px solid #23a3a7;
+    background:#23a3a7;
+    color:#fff;
+}
+
+
+
+#count_number{position:relative;
+top:-30px;
+left:370px;}
+
+#numberUpDown
+{position:relative;
+margin-left:10px;
+margin-right:10px;
+top:-10px;
+font-size:16pt;
+font-weight:bold;}
+
+#h2_text{position:relative;
+top:2px;
+left:300px;
+font-size:13pt;
+}
+
+#h2_text2{position:relative;
+top:-65px;
+left:550px;
+font-size:13pt;}
+
+#text_section{position:relative;
+width:1200px;
+height:5px;
+top:-165px;}
+
+
+
+html, body, div, span, ul, li,
+{padding:0;margin:0;vertical-align:top}
+html {font-family:'Roboto';font-weight:400;}
+ul, ol {list-style-type:none}
+* {box-sizing:border-box}
+
+.comm_tab1 {width:70%;
+position:relative;
+left:15%;
+}
+
+.comm_tab1>.tab_menu {
+  border-left:1px solid #d9d9d9; margin-bottom:45px; overflow:hidden;
+    box-shadow: 4px 10px 8px rgba(0, 0, 0, 0.2)  ; 
+	-webkit-box-shadow: 4px 10px 8px rgba(0, 0, 0, 0.2); 
+	-moz-box-shadow: 4px 10px 8px rgba(0, 0, 0, 0.2);
+}
+.comm_tab1>.tab_menu>li {position:relative; float:left; display:block; width:50%; line-height:50px; font-size:18px; color:#4a4a4a; text-align:center; border:1px solid #d9d9d9; cursor:pointer}
+.comm_tab1>.tab_menu>li:hover {color:#fff;background-color:#999; border:1px solid #999;}
+.comm_tab1>.tab_menu>li.on {color:#fff;background-color:#007dc3; border:1px solid #007dc3; opacity:1}
+
+
+.comm_tab2>.tab_menu {margin-bottom:20px; overflow:hidden; padding-bottom:10px;}
+.comm_tab2>.tab_menu>li {position:relative; float:left; width:25%; cursor:pointer;  margin-right:5px; font-size:18px; color:#737373; padding:0 0 20px 30px;}   
+.comm_tab2>.tab_menu>li>span.bar {
+    position:absolute; bottom:3px; left:0;
+    display:inline-block; width:100%; height:2px; background:#a3a3a3;
+    box-shadow: 0 7px 8px rgba(0, 0, 0, 0.3)  ; 
+	-webkit-box-shadow: 0 7px 8px rgba(0, 0, 0, 0.3); 
+	-moz-box-shadow: 0 7px 8px rgba(0, 0, 0, 0.3);
+}
+.comm_tab2>.tab_menu>li:hover {color:#007dc3;}
+.comm_tab2>.tab_menu>li.on {color:#007dc3;}
+.comm_tab2>.tab_menu>li:hover>span.bar {background:#007dc3;}
+.comm_tab2>.tab_menu>li.on>span.bar {background:#007dc3;}
+
+
+.start_table
+{border:1px solid lightgray;
+font-size:12pt;
+position:relative;
+top:60px;
+left:5%;
+width:900px;
+}
+
+.start_table2
+{border:1px solid lightgray;
+font-size:12pt;
+position:relative;
+top:75px;
+left:5%;
+width:900px;
+}
+
+
+
+tr {text-align:center;
+    display: table-row;
+    vertical-align: inherit;}
+    
+tbody td {
+    padding: 30px 20px;
+    border-left: 1px solid #ccdcdf;
+    border-bottom: 1px solid #ccdcdf;
+    text-align: center;
+    color: #333;
+}
+
+ thead th {
+    background-color: #186686;
+    color: #fff;
+    
+    font-size: .875rem;
+    line-height: 16px;
+    padding: 11px 3px;
+    border-left: 1px solid #46859e;
+}
+
+.txt-belt {
+
+    padding: 0 11px;
+    font-size: 14px;
+  
+    color: #333;
+}
+
+.flight-info{
+position:relative;
+top:30px;
+left:15%;}
+
+
+
+form ul {
+	list-style: none;
+}
+
+label {position:relative;
+left:-10px;
+	cursor: pointer;
+	display: inline-block;
+}
+
+.options{width:100%;
+height:550px;
+position:relative;
+top:60px;
+boder:white;
+}
+
+#pay{width:260px;
+height:350px;
+border:2px solid lightgray;
+position:relative;
+top:-310px;
+left:1030px;}
+
+#pay_list
+{position:relative;
+top:70px;
+text-align:center;
+
+}
+
+
+h3{text-align:center;
+position:relative;
+top:40px;
+}
+
+#all{font-size:15pt;
+	margin-bottom:10px;
+	font-weight:bold;}
+
+#fare{margin-bottom:10px;}
+
+#tax{margin-bottom:10px;}
+
+#oil{margin-bottom:10px;}
+
+#tictax{margin-bottom:10px;}
+
+.myButton {position:relative;
+left:3px;
+top:20px;
+	box-shadow:inset 0px 1px 0px 0px #ffffff;
+	background:linear-gradient(to bottom, #f9f9f9 5%, #e9e9e9 100%);
+	background-color:#f9f9f9;
+	border-radius:6px;
+	border:1px solid #dcdcdc;
+	display:inline-block;
+	cursor:pointer;
+	color:#666666;
+	font-family:Arial;
+	font-size:16px;
+	font-weight:bold;
+	padding:12px 38px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffffff;
+}
+.myButton:hover {
+	background:linear-gradient(to bottom, #e9e9e9 5%, #f9f9f9 100%);
+	background-color:#e9e9e9;
+}
+
+#air_radio1{position: relative;
+    top: 90px;
+}
+
+#air_radio2{position: relative;
+    top: 100px;
+}
+
+#air_radio3{position: relative;
+    top: 90px;
+}
+
+#air_radio4{position: relative;
+    top: 100px;
+}
+

@@ -90,13 +90,14 @@
 			</div>
 			<div class="product-info">
 				<div class="product-text">
-					<h1>BESt 명소</h1>
-					<h2>by studio and friends</h2>
+					<h1>BEST 명소</h1>
+					<h2>지역의 명소를 한 눈에 살펴볼 수 있는 곳~</h2>
 					<p>
-						Harvest Vases are a reinterpretation<br> of peeled fruits and
-						vegetables as<br> functional objects. The surfaces<br>
-						appear to be sliced and pulled aside,<br> allowing room for
-						growth.
+			
+
+관광객들의 사랑을 받고 있는 명소들을 모아 여행의 퀄리티를 한층 높이기 위한 FOR TRAVELER의 명소 컬렉션.
+운영시간, 연락처, 주소 등의 정보를 포함하여 쉽게 현장을 방문하시고 즐길 수 있게 해드립니다.
+
 					</p>
 				</div>
 				<div class="product-price-btn">
@@ -112,10 +113,10 @@
 			<div class="product-info">
 				<div class="product-text">
 					<h1>BEST 맛집</h1>
-					<h2>by studio and friends</h2>
+					<h2>지역의 맛집을 한 눈에 살펴볼 수 있는 곳~</h2>
 					<p>
-						Harvest Vases are a reinterpretation<br> of peeled fruits and
-						vegetables as
+			현지인들과 관광객들 모두에게 사랑 받는 맛집들을 모아 식도락의 재미를 한 층 높이기 위한 FOR TRAVELER의 맛집 컬랙션. 
+운영시간, 연락처, 주소 등의 정보도 있어 쉽게 방문하시고 즐길 수 있게 도와드려요. 
 				</div>
 				<div class="product-price-btn">
 					<a><button type="button">바로가기</button></a>

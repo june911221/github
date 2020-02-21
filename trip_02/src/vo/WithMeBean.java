@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class WithMeBean {
 	
-	int num,people;
+	int num,people,peoplecount;
 	String title,lim,photo,pic1,pic2,pic3,pic4,writer,localcontect,contents;
 	Date date,writedate,limitdate;
 	
@@ -13,6 +13,12 @@ public class WithMeBean {
 	}
 	public void setNum(int num) {
 		this.num = num;
+	}
+	public int getPeoplecount() {
+		return peoplecount;
+	}
+	public void setPeoplecount(int peoplecount) {
+		this.peoplecount = peoplecount;
 	}
 	public int getPeople() {
 		return people;

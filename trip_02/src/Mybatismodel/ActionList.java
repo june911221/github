@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import Mybatis.Map;
+import vo.BoardDto;
 
 public class ActionList {
 	static ActionList model = new ActionList();
@@ -16,14 +17,13 @@ public class ActionList {
 
 	private SqlSessionFactory factory = Map.getSqlSession(); //Map.java ?뙆?씪?쓣 李얠븘?샂
 
-	public List<InfoandTipDto> boardlist(){
-		List<InfoandTipDto> list = null;
-		InfoandTipDto li=new InfoandTipDto();
-		li.setCategory("정보&팁");
+	public List<BoardDto> boardlist(BoardDto li){
+		List<BoardDto> list = null;//List<BoardDto> 객체 생성후 null로 초기화 시켜준다
 		
 		SqlSession sqlSession = factory.openSession();
-		list = sqlSession.selectList("infoANDtip",li);//mapper?뿉?꽌 吏??젙?븳 id ?꽔?뼱二쇨린
-		//System.out.println("aa"+list.size());
+		list = sqlSession.selectList("boardList",li);
+		//mapper.xml 에서 boardList 를 id로사용하는 select 구문에 변수를 보내주면서 호출("id",변수) list변수에 select값들을 담아준다
+		
 		sqlSession.close();
 		return list;
 	}

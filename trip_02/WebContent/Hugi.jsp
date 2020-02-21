@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ page import="vo.boardDto"%>
-<%@ page import="dao.boardDao"%>
+<%@ page import="vo.BoardDto"%>
+<%@ page import="dao.BoardDao"%>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.sql.Date"%>
 <!doctype html>
@@ -20,8 +20,8 @@
  
   <%
    	String ses=null;
-                   ses=(String)session.getAttribute("ID");
-                   if(ses==null){
+                      ses=(String)session.getAttribute("ID");
+                      if(ses==null){
    %>
  <jsp:include page="header.jsp"/>
  <%
@@ -33,7 +33,7 @@
  %>
  
  <section>
-<jsp:useBean id="board" class="dao.boardDao"/>
+<jsp:useBean id="board" class="dao.BoardDao"/>
 <table class="sub_news" border="1" cellspacing="0">
 <caption>게시판 리스트</caption>
 <colgroup>
@@ -61,7 +61,7 @@ opt=(String)request.getParameter("Boardselectmenu");
 text=(String)request.getParameter("searchinfo");
 //out.print(opt+"   "+text);
 if(text==""||opt==null||text==null){//검색어가 없거나 셀렉트값이 없으면 리스트 전체 순서대로 출력
-ArrayList<boardDto> list=board.List();
+ArrayList<BoardDto> list=board.List();
 out.print("<input type='hidden' id=size value="+list.size()+">");
 //out.print(list.size());
 
@@ -76,7 +76,7 @@ out.print("<input type='hidden' id=size value="+list.size()+">");
  }
 }
 else{//검색에따른 리스트 출력 
-	 ArrayList<boardDto> list=board.List(opt,text);
+	 ArrayList<BoardDto> list=board.List(opt,text);
 	 for(int i=0; i<list.size(); i++){
 	out.print("<tr>"+"<td width=100 align=center>"+list.get(i).getNum()+"</td>");
 	out.print("<td width=100 align=center>"+list.get(i).getCategory()+"</td>");

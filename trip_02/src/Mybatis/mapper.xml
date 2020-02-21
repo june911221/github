@@ -3,22 +3,80 @@
 
 <mapper namespace="abc">
 
-<select id="infoANDtip" resultType="Dto" parameterType="list"> <!-- 형태를 남긴다  List를써서 여러줄 받을수있음-->
-select * from board where category=#{category} order by num desc;
+<select id="boardList" resultType="Dto" parameterType="list"> <!-- 형태를 남긴다  List를써서 여러줄 받을수있음-->
+select * from board where category=#{category} order by num desc; 
+<!--카테고리를 구별해서 리스트를 뽑아주고 게시글 번호를 내림차순으로 정렬--> 
 </select>
-<select id="infoANDtipView" resultType="Dto" parameterType="list"> <!-- 형태를 남긴다  List를써서 여러줄 받을수있음-->
-select * from board where num=#{num};
+
+<select id="boardView" resultType="Dto" parameterType="list">
+select * from board where num=#{num}; 
+<!-- 게시글내용보기 where 변수는 게시글번호 -->
 </select>
+
+<select id="CommentList" resultType="coDto" parameterType="list">
+select * from comment where B_number=#{b_number} order by c_number asc;
+<!-- 댓글불러오기 where 변수는 게시글번호 해당게시글에해당하는 댓글불러온다 -->
+</select>
+
+<select id="commentModify" resultType="coDto" parameterType="list">
+select * from comment where C_number=#{c_number};
+<!-- 수정할 댓글불러오기 where 변수는 댓글번호 해당번호해당하는 댓글불러온다 -->
+</select>
+
 <insert id="insertDB" parameterType="list"> 
 insert into board (category,title,writer,date,hits,contents) values(#{category},#{title},#{writer},now(),0,#{contents});
+<!-- 게시글쓰기 -->
 </insert>
+
+<insert id="commentInsert" parameterType="list">
+insert into comment (b_number,comment_box,writer,date) values(#{b_number},#{comment_box},#{writer},now());
+<!-- 댓글 쓰기 -->
+</insert>
+
 <update id="updateDB" parameterType="list"> 
 update board set title=#{title},contents=#{contents} where num=#{num};
+<!-- 게시글 수정 where 변수는 게시글 번호 해당게시글을 수정한다 -->
 </update>
+
 <update id="hitsupdate" parameterType="list">
 update board set hits=#{hits} where num=#{num};
+<!-- 조회수 업데이트 where 변수는 게시글번호 해당게시글의 조회수를 +1만큼올린다 -->
 </update>
+
+<update id="commentupdateDB" parameterType="list"> 
+update comment set comment_box=#{comment_box} where c_number=#{c_number};
+<!-- 댓글삭제 where 변수는 댓글번호 -->
+</update>
+
 <delete id="deleteDB" parameterType="list"> 
 delete from board where num=#{num};
+<!-- 게시글삭제 where 변수는 게시글번호 -->
 </delete>
+
+<delete id="commentdeleteDB" parameterType="list"> 
+delete from comment where c_number=#{c_number};
+<!-- 댓글삭제 where 변수는 댓글번호 -->
+</delete>
+<!-- 	<select id="infoANDtip" resultType="Dto" parameterType="list"> 형태를 남긴다 List를써서 여러줄 받을수있음
+		select * from board where category=#{category} order by num desc;
+		카테고리를 구별해서 리스트를 뽑아주고 게시글 번호를 내림차순으로 정렬
+	</select>
+	
+	<select id="infoANDtipView" resultType="Dto"
+		parameterType="list"> 형태를 남긴다 List를써서 여러줄 받을수있음
+		select * from board where num=#{num};
+	</select>
+	<insert id="insertDB" parameterType="list">
+		insert into board (category,title,writer,date,hits,contents)
+		values(#{category},#{title},#{writer},now(),0,#{contents});
+	</insert>
+	<update id="updateDB" parameterType="list">
+		update board set title=#{title},contents=#{contents} where num=#{num};
+	</update>
+	<update id="hitsupdate" parameterType="list">
+		update board set hits=#{hits} where num=#{num};
+	</update>
+	<delete id="deleteDB" parameterType="list">
+		delete from board where num=#{num};
+	</delete> -->
 </mapper>

@@ -4,6 +4,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import Mybatis.Map;
+import vo.BoardDto;
 
 public class ActionUpdate {
 	static ActionUpdate model = new ActionUpdate();
@@ -14,18 +15,14 @@ public class ActionUpdate {
 
 	private SqlSessionFactory factory = Map.getSqlSession(); //Map.java ï¿½ë™†ï¿½ì”ªï¿½ì“£ ï§¡ì– ë¸˜ï¿½?ƒ‚
 	
-	public void Update(int num,String title,String contents) {
-	InfoandTipDto list=new InfoandTipDto();
-	list.setNum(num);
-	list.setTitle(title);
-	list.setContents(contents);
-	
-	//System.out.println("MODEL update(): num="+num+"title="+title+"contents="+contents);
+	public void Update(BoardDto list) {
 	
 	SqlSession sqlSession = factory.openSession();
-	sqlSession.update("updateDB",list);//mapperï¿½ë¿‰ï¿½ê½Œ ï§žï¿½ï¿½ì ™ï¿½ë¸³ id ï¿½ê½”ï¿½ë¼±äºŒì‡¨ë¦?
-	//System.out.println("Listvalue: "+"title="+list.title+"pw="+list.contents);
+	sqlSession.update("updateDB",list);
+	//mapper.xml ¿¡¼­ updateDB ¸¦ id·Î»ç¿ëÇÏ´Â update ±¸¹®¿¡ º¯¼ö¸¦ º¸³»ÁÖ¸é¼­ È£Ãâ("id",º¯¼ö) 
+	
 	sqlSession.commit();
 	sqlSession.close();
+	
 	}
 }

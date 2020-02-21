@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="vo.boardDto"%>
-<%@ page import="dao.boardDao"%>
+<%@ page import="vo.BoardDto"%>
+<%@ page import="dao.BoardDao"%>
 <%
 	request.setCharacterEncoding("UTF-8");
 %>
@@ -11,7 +11,7 @@
 <title>HugiWriteDBUpdate</title>
 </head>
 <body>
-<jsp:useBean id="board" class="dao.boardDao"/>
+<jsp:useBean id="board" class="dao.BoardDao"/>
 <%
 String number=request.getParameter("number");
 String category=request.getParameter("category");

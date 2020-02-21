@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="vo.boardDto"%>
-<%@ page import="dao.boardDao"%>
+<%@ page import="vo.BoardDto"%>
+<%@ page import="dao.BoardDao"%>
 <%@ page import="java.util.ArrayList" %>
 <%
 	request.setCharacterEncoding("UTF-8");
@@ -25,8 +25,8 @@
 
   <%
   	String ses=null;
-             ses=(String)session.getAttribute("ID");
-             if(ses==null){
+               ses=(String)session.getAttribute("ID");
+               if(ses==null){
   %>
  <jsp:include page="header.jsp"/>
  <%
@@ -38,7 +38,7 @@
  %>
  
 <section>
-<jsp:useBean id="board" class="dao.boardDao"/>
+<jsp:useBean id="board" class="dao.BoardDao"/>
 <%
 	String no=request.getParameter("NO");//파라미터로 게시글번호 가지고옴
 String hits=request.getParameter("hits");//조회수를 가지고옴
@@ -54,7 +54,7 @@ board.hitsUpdate(hits,no);//게시글번호로 해당 조회수 체크후 값+1 
 <form action="HugiWriteDBUpdate.jsp" name="view" id="view" method="post">
 <tr>
 <%
-	ArrayList<boardDto> list=board.BoardContentsView(no);//게시글번호로 해당하는 내용들 출력<th width=250px>카테고리</th>
+	ArrayList<BoardDto> list=board.BoardContentsView(no);//게시글번호로 해당하는 내용들 출력<th width=250px>카테고리</th>
 out.print("<input type='hidden' name='number' value='"+list.get(0).getNum()+"'>");//게시글번호 hidden으로 값저장
 out.print("<th>카테고리</th><td><input class='form-control' name='category' id='category' readonly placeholder='카테고리를 선택해주세요' value='"+list.get(0).getCategory()+"'/></td></tr><tr>");//카테고리
 out.print("<th>작성일</th><td><input type='text' name='date' id='date' value='"+list.get(0).getDate()+"' readonly class='form-control'/></td></tr><tr>");//작성일

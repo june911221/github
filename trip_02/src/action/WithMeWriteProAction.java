@@ -32,8 +32,8 @@ public class WithMeWriteProAction implements Action {
 				fileSize,
 				"UTF-8",
 				new DefaultFileRenamePolicy());
-		System.out.println("realFolder="+realFolder);
-		System.out.println("savefolder="+saveFolder);
+		//System.out.println("realFolder="+realFolder);
+		//System.out.println("savefolder="+saveFolder);
 		
 		withmeBean = new WithMeBean();
 		withmeBean.setTitle(multi.getParameter("title"));
@@ -43,8 +43,7 @@ public class WithMeWriteProAction implements Action {
 		withmeBean.setLimitdate(Date.valueOf(multi.getParameter("limitdate")));//예약최종마감일
 		withmeBean.setWriter(multi.getParameter("writer"));//작성자
 		withmeBean.setLocalcontect(multi.getParameter("localcontect"));//현지연락처
-		withmeBean.setContents(multi.getParameter("contents"));//내용	
-		withmeBean.setWritedate(Date.valueOf(multi.getParameter("wirtedate")));
+		withmeBean.setContents(multi.getParameter("contents"));//내용		
 		
 		withmeBean.setPhoto(multi.getFilesystemName("filedata0"));//메인사진
 		withmeBean.setPic1(multi.getFilesystemName("filedata1"));//추가사진1
@@ -66,7 +65,7 @@ public class WithMeWriteProAction implements Action {
 		else{
 			forward = new ActionForward();
 			forward.setRedirect(true);
-			forward.setPath("WithMe.bo");
+			forward.setPath("WithMe.do");
 		}
 
 		return forward;

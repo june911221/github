@@ -8,29 +8,32 @@ import static db.JdbcUtil.rollback;
 import java.sql.Connection;
 
 import dao.WithMeDao;
+import vo.WithMeBean;
+import vo.With_UserBean;
 
 public class WithMePeopleCountService {
 	
-/*	public boolean peoplecount(int num){
+	public boolean peoplecount(With_UserBean user) throws Exception{
 		
-	boolean isModifySuccess = false;
+		boolean isWriteSuccess = false;
 		Connection con = getConnection();
-		WithMeDao withmedao = WithMeDao.getInstance();
-		withmedao.setConnection(con);
-		int updateCount = withmedao.peopleCount(num);
+		WithMeDao withmeDAO = WithMeDao.getInstance();
+		withmeDAO.setConnection(con);
 		
-		if(updateCount > 0){
+		int insertCount = withmeDAO.peopleCount(user);
+		
+		if(insertCount > 0){
 			commit(con);
-			isModifySuccess=true;
+			isWriteSuccess = true;
 		}
 		else{
 			rollback(con);
 		}
 		
 		close(con);
-		return isModifySuccess;
+		return isWriteSuccess;
 		
-	}*/
+	}
 
 }
 

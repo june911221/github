@@ -32,7 +32,7 @@ width:100%;
 <!-- partial:index.partial.html -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 
-<form action="WithMeWrite.bo" method="post" id="WithMeform" onsubmit="return insertcheck()" enctype="multipart/form-data">
+<form action="WithMeWrite.do" method="post" id="WithMeform" onsubmit="return insertcheck()" enctype="multipart/form-data">
 <!-- 이미지 미리보기 컨테이너  -->
 <div class="image-viewer">
 <!-- 파일첨부 버튼  -->
@@ -110,7 +110,7 @@ width:100%;
 </div>
  <div class="btnwich">
 <input type="submit" id="update"  value="등록">
-<input type="button" id="listpage" value="목록으로" onclick="history.back(-1)">
+<input type="button" id="listpage" value="목록으로" onclick="">
 </div>
 
 </form>

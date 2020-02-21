@@ -40,15 +40,13 @@
  <section>
  <link rel="stylesheet" href="css/withme.css">
 <script>
-function writepage(){//글쓰기누를시 페이지이동
-	var sessioncheck=$("#sessioncheck").val();
-	var check="null";
-	if(sessioncheck==check){
+function writepage(id){//글쓰기누를시 페이지이동
+	if(id==null){
 		alert("로그인이 필요합니다.");
+		return false;
 	} 
-	else{
-		location.href='WithMeWrite.jsp';
-	}
+	location.href='WithMeWrite.jsp';
+	return true;
 }
 </script>
 
@@ -61,54 +59,61 @@ function writepage(){//글쓰기누를시 페이지이동
 request.setCharacterEncoding("UTF-8");
 ArrayList<WithMeBean> list=(ArrayList<WithMeBean>)request.getAttribute("articleList");
 out.print("<input type='hidden' id=size value="+list.size()+">");
-out.print(list.size());
 String path="./upload/";
 if(articleList != null && listCount > 0){
 for(int i=0; i<list.size(); i++){
 	String st="모집중";
 //out.print(path+list.get(i).getPhoto());
-/* if(list.get(i).getPeoplecount()==list.get(i).getPeople()){
+if(list.get(i).getPeoplecount()==list.get(i).getPeople()){
 	st="마감";
-}*/
+}
 %>
  <div class="card card--1">
   <div class="card__img"></div>
-  <a href=boardDetail.bo?num=<%=list.get(i).getNum()%>&page=<%=nowPage%> class="card_link">
+  <a href="WithMeDetail.do?num=<%=list.get(i).getNum()%>&page=<%=nowPage%>" onclick="return sessionIDcheck(<%=ses%>)" class="card_link">
   <div class="card__img--hover" style=background-image:url("<%=path%><%=list.get(i).getPhoto()%>");></div>
   </a>
   <div class="card__info">
     <span class="card__category"><%=list.get(i).getTitle()%></span>
-    <h5 class="card__title">모집인원 : 0 / <%=list.get(i).getPeople() %></h5>    
+    <h5 class="card__title">모집인원 :<%=list.get(i).getPeoplecount() %> / <%=list.get(i).getPeople() %></h5>    
 	<h5 class="card__title">만남일 : <%=list.get(i).getDate()%></h5>
 	<h5 class="card__title">마감일 : <%=list.get(i).getLimitdate()%></h5>
     <span class="card__by">by <label class="card__author" title="author"><%=list.get(i).getWriter()%></label></span>
-	<label class="setting" title="author" i><%=st%></label>
+	<label class="setting" title="author"><%=st%></label>
   </div>
 </div>
 <%} %>
+<script>
+function sessionIDcheck(id){
+	if(id==null){
+		alert("로그인이 필요합니다");
+		return false;
+	}
+	return true;
+}
+</script>
 </div>
-<input type="hidden" name="sessioncheck" id="sessioncheck" value=<%=ses%>>
-<input type=button onclick="writepage()" name="write" id="btnwrite" value="글쓰기"/>
+<input type=button onclick="return writepage(<%=ses%>)" name="write" id="btnwrite" value="글쓰기"/>
 <div id="pageList">
 		<%if(nowPage<=1){ %>
-		[이전]&nbsp;
+		
 		<%}else{ %>
-		<a href="WithMe.bo?page=<%=nowPage-1 %>">[이전]</a>&nbsp;
+		<a href="WithMe.do?page=<%=nowPage-1 %>">[이전]</a>&nbsp;
 		<%} %>
 
 		<%for(int a=startPage;a<=endPage;a++){
 				if(a==nowPage){%>
 		[<%=a %>]
 		<%}else{ %>
-		<a href="WithMe.bo?page=<%=a %>">[<%=a %>]
+		<a href="WithMe.do?page=<%=a %>">[<%=a %>]
 		</a>&nbsp;
 		<%} %>
 		<%} %>
 
 		<%if(nowPage>=maxPage){ %>
-		[다음]
+		
 		<%}else{ %>
-		<a href="WithMe.bo?page=<%=nowPage+1 %>">[다음]</a>
+		<a href="WithMe.do?page=<%=nowPage+1 %>">[다음]</a>
 		<%} %>
 	</div>
 	<%

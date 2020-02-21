@@ -5,14 +5,11 @@
 <%@ page import="java.sql.Date" %>
 <%
 request.setCharacterEncoding("UTF-8");
-//String hits=request.getParameter("hits");//조회수를 가지고옴
-//board.hitsUpdate(hits,no);//게시글번호로 해당 조회수 체크후 값+1 증가시켜서 저장(조회수증가처리)
-%>
-<%
 WithMeBean view = (WithMeBean)request.getAttribute("article");
 String title=view.getTitle();
 Date date=view.getDate();
 int people=view.getPeople();
+int peoplecount=view.getPeoplecount();
 String lim=view.getLim();
 String photo=view.getPhoto();
 String pic1=view.getPic1();
@@ -27,6 +24,7 @@ String contents=view.getContents();
 int num=view.getNum();
 String Page = (String)request.getParameter("page");
 String path="./upload/";
+int check = (int)request.getAttribute("check");
 %>
 <!DOCTYPE html>
 <html lang="en" >
@@ -118,6 +116,10 @@ String path="./upload/";
           <label>모집인원</label>
         </div>        
         <div class="inputContainer">
+          <input type="text" class="taskName" placeholder="숫자만 입력해주세요" name="peoplecount" id="peoplecount" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" value="<%=peoplecount%>" readonly>
+          <label>신청인원</label>
+        </div>
+        <div class="inputContainer">
           <input type="text" class="taskName" placeholder="연락가능한 연락처를 적어주세요" name="localcontect" id="localcontect" readonly value="<%=localcontect%>">
           <label>현지연락처</label>
         </div>				
@@ -135,13 +137,51 @@ String path="./upload/";
         </div>
 </div>
  <div class="btnwich">
+<input type="hidden" id="checkcountpeople" value="<%=check%>">
 <input type="hidden" id="update" onclick="return updata()" value="수정">
-<input type="hidden" id="delete" value="삭제" onclick="boarddel()">
-<input type="button" id="sin" value="신청" onclick="sinchung()">
-<input type="button" id="listpage" value="목록으로" onclick="location.href='WithMe.bo?page=<%=Page%>'">
+<input type="hidden" id="delete" value="삭제" onclick="boarddel(<%=Page%>)">
+<input type="button" id="sin" value="신청" onclick="return sinchung1(<%=num%>,<%=Page%>,<%=people%>,<%=peoplecount%>)">
+<input type="hidden" id="sindel" value="신청취소" onclick="return countdel(<%=num%>,<%=Page%>)">
+<input type="hidden" id="sininfo" value="신청자현황" onclick="countlist(<%=num%>)">
+<input type="button" id="listpage" value="목록으로" onclick="location.href='WithMe.do?page=<%=Page%>'">
 </div>
 <input type="hidden" name="sessionID" id="sessionID" value=${ID}>
 </form>
+<script>
+
+function sinchung1(boardnum,page,people,count){//신청버튼 이벤트
+	
+	if($("#sessionID").val()==null||$("#sessionID").val()==""){//로그인 아이디를 체크해서 로그인안되었으면 로그인 필요 경고창
+		alert("로그인이 필요합니다");
+		return false;
+	}
+	var url = "WithMePeopleCountPage.do?boardnum="+boardnum+"&page="+page+"&limitpeople="+people+"&count="+count; //팝업창에 나올 url주소셋팅
+    window.name="withmeform";//부모창에 이름지정	
+	window.open(url, "", "width=570,height=300");//셋팅한 url주소를 입력하고 팝업창을띄운다
+	return true;
+}
+
+function countdel(boardnum,page){
+	
+	var id=$("#sessionID").val();
+	if($("#sessionID").val()==null||$("#sessionID").val()==""){//로그인 아이디를 체크해서 로그인안되었으면 로그인 필요 경고창
+		alert("로그인이 필요합니다");
+		return false;
+	}
+	
+	var result =confirm("신청을 취소 하시겠습니까?");	
+	if(result){
+		location.href="With_userDel.do?boardnum="+boardnum+"&page="+page;
+		return true;
+	}
+	return false;
+}
+
+function countlist(boardnum){
+	var url = "With_UserPeopleCountInfo.do?boardnum="+boardnum; //팝업창에 나올 url주소셋팅
+	window.open(url, "", "width=570,height=300");//셋팅한 url주소를 입력하고 팝업창을띄운다
+}
+</script>
 <!-- include libraries(jQuery, bootstrap) 썸머노트 여기서부터-->
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 

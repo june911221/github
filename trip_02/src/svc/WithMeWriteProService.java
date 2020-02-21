@@ -15,7 +15,7 @@ public class WithMeWriteProService {
 		WithMeDao withmeDAO = WithMeDao.getInstance();
 		withmeDAO.setConnection(con);
 		int insertCount = withmeDAO.insertArticle(withmeBean);
-		System.out.println(insertCount+"..");
+		
 		if(insertCount > 0){
 			commit(con);
 			isWriteSuccess = true;

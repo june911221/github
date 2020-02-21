@@ -7,7 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import vo.boardDto;
+import vo.BoardDto;
 import vo.UserDto;
 
 public class UserDao {

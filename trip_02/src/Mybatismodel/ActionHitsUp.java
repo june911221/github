@@ -4,23 +4,21 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import Mybatis.Map;
+import vo.BoardDto;
 
 public class ActionHitsUp {
 	static ActionHitsUp model = new ActionHitsUp();
 	public static ActionHitsUp instance(){
 		return model;
 	}
-private SqlSessionFactory factory = Map.getSqlSession(); //Map.java ï¿½ë™†ï¿½ì”ªï¿½ì“£ ï§¡ì– ë¸˜ï¿½?ƒ‚
+private SqlSessionFactory factory = Map.getSqlSession();
 	
-	public void HitsUp(int num,int hits) {
-	InfoandTipDto list=new InfoandTipDto();
-	list.setNum(num);
-	list.setHits(hits);	
+	public void HitsUp(BoardDto list) {
 	
-	//System.out.println("MODEL HitsUp(): num="+num+",hits="+hits);	
 	SqlSession sqlSession = factory.openSession();
-	sqlSession.delete("hitsupdate",list);//mapperï¿½ë¿‰ï¿½ê½Œ ï§žï¿½ï¿½ì ™ï¿½ë¸³ id ï¿½ê½”ï¿½ë¼±äºŒì‡¨ë¦?
-	//System.out.println("Listvalue: "+"num="+list.num+",hits="+list.hits);
+	sqlSession.update("hitsupdate",list);
+	//mapper.xml ¿¡¼­ hitsupdate ¸¦ id·Î»ç¿ëÇÏ´Â update ±¸¹®¿¡ º¯¼ö¸¦ º¸³»ÁÖ¸é¼­ È£Ãâ("id",º¯¼ö)
+	
 	sqlSession.commit();
 	sqlSession.close();
 	}

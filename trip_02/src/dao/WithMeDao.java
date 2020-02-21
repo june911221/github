@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import javax.sql.DataSource;
 
 import vo.WithMeBean;
+import vo.With_UserBean;
 
 public class WithMeDao {
 
@@ -58,13 +59,39 @@ public class WithMeDao {
 		return listCount;
 
 	}
+	
+	//글의 개수 구하기.
+		public int selectcateListCount() {
+
+			int listCount= 0;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+
+			try{
+				System.out.println("getConnection");
+				pstmt=con.prepareStatement("select count(*) from withme");
+				rs = pstmt.executeQuery();
+
+				if(rs.next()){
+					listCount=rs.getInt(1);
+				}
+			}catch(Exception ex){
+
+			}finally{
+				close(rs);
+				close(pstmt);
+			}
+
+			return listCount;
+
+		}
 
 	//글 목록 보기.	
 	public ArrayList<WithMeBean> selectArticleList(int page,int limit){
 
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String board_list_sql="select * from withme order by num desc limit ?,8";
+		String board_list_sql="select withme.*,(select sum(count) from with_user where num=withme.num) as peoplecount from withme,with_user group by withme.num order by withme.num desc limit ?,8";
 		ArrayList<WithMeBean> articleList = new ArrayList<WithMeBean>();
 		WithMeBean board = null;
 		int startrow=(page-1)*8; //읽기 시작할 row 번호..	
@@ -72,8 +99,10 @@ public class WithMeDao {
 		try{
 			pstmt = con.prepareStatement(board_list_sql);
 			pstmt.setInt(1, startrow);
+			//System.out.println(pstmt);
 			rs = pstmt.executeQuery();
-
+			
+			if(rs.next()) {
 			while(rs.next()){
 				board = new WithMeBean();
 				board.setNum(rs.getInt("num"));
@@ -91,7 +120,34 @@ public class WithMeDao {
 				board.setWriter(rs.getString("writer"));
 				board.setLocalcontect(rs.getString("localcontect"));
 				board.setContents(rs.getString("contents"));
+				board.setPeoplecount(rs.getInt("peoplecount"));
 				articleList.add(board);
+			}
+			}else {
+				board_list_sql="select *,concat(0) as peoplecount from withme order by num desc";
+				pstmt = con.prepareStatement(board_list_sql);
+				//System.out.println("else 쿼리문="+pstmt);
+				rs = pstmt.executeQuery();
+				while(rs.next()){
+					board = new WithMeBean();
+					board.setNum(rs.getInt("num"));
+					board.setTitle(rs.getString("title"));
+					board.setDate(rs.getDate("date"));
+					board.setPeople(rs.getInt("people"));
+					board.setLim(rs.getString("lim"));
+					board.setPhoto(rs.getString("photo"));
+					board.setPic1(rs.getString("pic1"));
+					board.setPic2(rs.getString("pic2"));
+					board.setPic3(rs.getString("pic3"));
+					board.setPic4(rs.getString("pic4"));
+					board.setWritedate(rs.getDate("writedate"));
+					board.setLimitdate(rs.getDate("limitdate"));
+					board.setWriter(rs.getString("writer"));
+					board.setLocalcontect(rs.getString("localcontect"));
+					board.setContents(rs.getString("contents"));
+					board.setPeoplecount(rs.getInt("peoplecount"));
+					articleList.add(board);
+				}
 			}
 
 		}catch(Exception ex){
@@ -99,10 +155,7 @@ public class WithMeDao {
 			close(rs);
 			close(pstmt);
 		}
-
-		//System.out.println(articleList.size());
 		return articleList;
-
 	}
 
 	//글 내용 보기.
@@ -114,8 +167,9 @@ public class WithMeDao {
 
 			try{
 				pstmt = con.prepareStatement(
-						"select * from withme where num = ?");
+						"select withme.*,ifnull(sum(count),0) as peoplecount from withme,with_user where withme.num = ? and with_user.num=?");
 				pstmt.setInt(1, num);
+				pstmt.setInt(2, num);
 				rs= pstmt.executeQuery();
 
 				if(rs.next()){
@@ -135,16 +189,13 @@ public class WithMeDao {
 					board.setWriter(rs.getString("writer"));
 					board.setLocalcontect(rs.getString("localcontect"));
 					board.setContents(rs.getString("contents"));
-					//System.out.println(rs.getString("Writer"));
-					//System.out.println(rs.getDate("date"));
-					
+					board.setPeoplecount(rs.getInt("peoplecount"));
 				}
 			}catch(Exception ex){
 			}finally{
 				close(rs);
 				close(pstmt);
 			}
-           //System.out.println(board.getWriter());
 			return board;
 
 		}
@@ -158,12 +209,8 @@ public class WithMeDao {
 		int insertCount=0;
 
 		try{
-			
-			System.out.println(article.getLocalcontect());
-
-			sql="insert into withme (num,title,date,people,lim,photo,pic1,pic2,pic3,pic4,limitdate,writer,contents,localcontect,writedate) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,curdate())";//pic1,pic2,pic3,pic4,writedate,limitdate,writer,localcontent,contents) values(?,?,?,?,?,?,?,?,?,?,now(),?,?,?,?)";
+			sql="insert into withme (title,date,people,lim,photo,pic1,pic2,pic3,pic4,limitdate,writer,contents,localcontect,writedate) values(?,?,?,?,?,?,?,?,?,?,?,?,?,now())";//pic1,pic2,pic3,pic4,writedate,limitdate,writer,localcontent,contents) values(?,?,?,?,?,?,?,?,?,?,now(),?,?,?,?)";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(0, article.getNum());
 		    pstmt.setString(1, article.getTitle());
 			pstmt.setDate(2, article.getDate());
 			pstmt.setInt(3, article.getPeople());
@@ -177,14 +224,9 @@ public class WithMeDao {
 			pstmt.setString(11, article.getWriter());
 			pstmt.setString(12, article.getContents());
 			pstmt.setString(13, article.getLocalcontect());
-			pstmt.setDate(14, article.getWritedate());
-			
-			System.out.println("Query="+pstmt);
 
 			insertCount=pstmt.executeUpdate();
 			
-			//System.out.println("insertCount="+insertCount);
-
 		}catch(Exception ex){
 		}finally{
 			close(rs);
@@ -215,28 +257,32 @@ public class WithMeDao {
 			
 		}
 		
-		/*//신청인원 업데이트
-		public int peopleCount(int num) {
-			int updateCount = 0;
+		//신청인원 업데이트
+		public int peopleCount(With_UserBean user) {
+			int insertCount = 0;
 			PreparedStatement pstmt = null;
-			String sql="update withme set peoplecount=peoplecount+1 where num=?";
+			String sql="insert into with_user values(?,?,?,?)";
 			
 			try{
 				pstmt = con.prepareStatement(sql);
-				pstmt.setInt(1, num);
-				System.out.println(pstmt);
+			    pstmt.setString(1, user.getId());
+			    pstmt.setInt(2, user.getNum());
+			    pstmt.setString(3, user.getTel());
+			    pstmt.setInt(4, user.getCount());
+			    
+			    System.out.println("Query="+pstmt);
 				
-				updateCount = pstmt.executeUpdate();
+				insertCount=pstmt.executeUpdate();
 				
 			}catch(Exception ex){
 			}finally{
 				close(pstmt);
 			}
 
-			return updateCount;
+			return insertCount;
 
 		}
-*/
+
 		//글 수정.
 		public int updateArticle(WithMeBean article){
 
@@ -259,10 +305,10 @@ public class WithMeDao {
 				pstmt.setString(11, article.getLocalcontect());
 				pstmt.setString(12, article.getContents());
 				pstmt.setInt(13, article.getNum());
-				pstmt.setDate(14, article.getWritedate());
 				//System.out.println(pstmt);
 				updateCount = pstmt.executeUpdate();
 			}catch(Exception ex){
+				
 			}finally{
 				close(pstmt);
 			}
@@ -271,9 +317,79 @@ public class WithMeDao {
 
 		}
 		
-		
+		//함께해요 신청취소
+		public int countDel(With_UserBean user){
 
+			PreparedStatement pstmt = null;
+			String board_delete_sql="delete from with_user where num=? and id=?";
+			int deleteCount=0;
+
+			try{
+				pstmt=con.prepareStatement(board_delete_sql);
+				pstmt.setInt(1, user.getNum());
+				pstmt.setString(2, user.getId());
+				System.out.println(pstmt);
+				deleteCount=pstmt.executeUpdate();
+			}catch(Exception ex){
+			}	finally{
+				close(pstmt);
+			}
+
+			return deleteCount;
+			
+		}
+		
+		public int cinchugcheck(int num,String id) {//해당게시글을 볼때 그게시물을 보는 유저가 신청을 했었는지 안했는지 체크
+			PreparedStatement pstmt = null;
+			String sql="select id from with_user where num=? and id=?";
+			int check=0;
+			ResultSet rs=null;
+			try{
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, num);
+				pstmt.setString(2, id);	
+			    rs=pstmt.executeQuery();
+					
+				if(rs.next()) {
+					check=1;
+				}
+          
+		}catch(Exception ex){
+			
+		}finally{
+			close(pstmt);
+		}
+
+		return check;
 	}
+		public ArrayList<With_UserBean> cinchugList(int boardnum) {//해당게시글 신청인원 보기
+			PreparedStatement pstmt = null;
+			String sql="select * from with_user where num=?";
+			ResultSet rs=null;
+			ArrayList<With_UserBean> articleList = new ArrayList<With_UserBean>();
+			try{
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, boardnum);
+			    rs=pstmt.executeQuery();
+					
+				if(rs.next()) {
+					With_UserBean list = new With_UserBean();
+					list.setId(rs.getString("id"));
+					list.setTel(rs.getString("tel"));
+					list.setCount(rs.getInt("count"));
+					articleList.add(list);
+				}
+          
+		}catch(Exception ex){
+			
+		}finally{
+			close(pstmt);
+		}
+
+		return articleList;
+	}
+
+}
 
 
 	

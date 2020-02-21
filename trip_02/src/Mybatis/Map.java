@@ -14,9 +14,9 @@ public class Map {
 
 	static{
 		try {
-			String resource = "Mybatis/conn.xml"; //DBï¿½ë¿°å¯ƒê³ ë¸?ï¿½ë’— xml å¯ƒìˆì¤ˆï¿½?—¯ï¿½ì ° >>connï¿½ì“½ ï¿½ì˜„?Œ·?š­ï¿? ï¿½ë¿¬æ¹²ê³—ë¿? ï¿½ë–æ¹²ë‹¿ì¾?
+			String resource = "Mybatis/conn.xml"; //DB ¿¬°á ³»¿ëÀ» °¡Áö°íÀÖ´Â conn.xml °æ·Î
 			Reader reader = Resources.getResourceAsReader(resource);
-			//System.out.println("?œ„?—="+reader);
+			//System.out.println("µ¶ÀÚ="+reader);
 			//System.out.println("sqlSession="+sqlSession);
 			SqlSessionFactoryBuilder factory = new SqlSessionFactoryBuilder();
 			sqlSession = factory.build(reader);

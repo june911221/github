@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import Mybatis.Map;
+import vo.BoardDto;
 
 public class ActionInsert {
 	static ActionInsert model = new ActionInsert();
@@ -16,20 +17,12 @@ public class ActionInsert {
 
 	private SqlSessionFactory factory = Map.getSqlSession(); //Map.java ï¿½ë™†ï¿½ì”ªï¿½ì“£ ï§¡ì– ë¸˜ï¿½?ƒ‚
 
-	public void boardInsert(int num,String category,String title,String writer,String contents){
-
-		InfoandTipDto list=new InfoandTipDto();
-		list.setCategory(category);
-		list.setTitle(title);
-		list.setWriter(writer);
-		list.setContents(contents);
-		
-		
-		//System.out.println("MODEL Insert(): num="+num+"category="+category+"title="+title+"writer="+writer+"contents="+contents);
-		
+	public void boardInsert(BoardDto list) {
+				
 		SqlSession sqlSession = factory.openSession();
-		sqlSession.insert("insertDB",list);//mapperï¿½ë¿‰ï¿½ê½Œ ï§žï¿½ï¿½ì ™ï¿½ë¸³ id ï¿½ê½”ï¿½ë¼±äºŒì‡¨ë¦?
-		//System.out.println("Listvalue: "+"num="+list.num+"category="+list.category+"title="+list.title+"writer="+list.writer+"contents="+list.contents);
+		sqlSession.insert("insertDB",list);
+		//mapper.xml ¿¡¼­ insertDB ¸¦ id·Î»ç¿ëÇÏ´Â insert ±¸¹®¿¡ º¯¼ö¸¦ º¸³»ÁÖ¸é¼­ È£Ãâ("id",º¯¼ö)
+		
 		sqlSession.commit();
 		sqlSession.close();
 	}

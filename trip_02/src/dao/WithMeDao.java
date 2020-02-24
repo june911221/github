@@ -34,7 +34,7 @@ public class WithMeDao {
 		this.con = con;
 	}
 
-	//±ÛÀÇ °³¼ö ±¸ÇÏ±â.
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï±ï¿½.
 	public int selectListCount() {
 
 		int listCount= 0;
@@ -60,7 +60,7 @@ public class WithMeDao {
 
 	}
 	
-	//±ÛÀÇ °³¼ö ±¸ÇÏ±â.
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï±ï¿½.
 		public int selectcateListCount() {
 
 			int listCount= 0;
@@ -86,7 +86,7 @@ public class WithMeDao {
 
 		}
 
-	//±Û ¸ñ·Ï º¸±â.	
+	//ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.	
 	public ArrayList<WithMeBean> selectArticleList(int page,int limit){
 
 		PreparedStatement pstmt = null;
@@ -94,7 +94,7 @@ public class WithMeDao {
 		String board_list_sql="select withme.*,(select sum(count) from with_user where num=withme.num) as peoplecount from withme,with_user group by withme.num order by withme.num desc limit ?,8";
 		ArrayList<WithMeBean> articleList = new ArrayList<WithMeBean>();
 		WithMeBean board = null;
-		int startrow=(page-1)*8; //ÀÐ±â ½ÃÀÛÇÒ row ¹øÈ£..	
+		int startrow=(page-1)*limit; //ï¿½Ð±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ row ï¿½ï¿½È£..	
 
 		try{
 			pstmt = con.prepareStatement(board_list_sql);
@@ -104,6 +104,7 @@ public class WithMeDao {
 			
 			if(rs.next()) {
 			while(rs.next()){
+				System.out.println("d");
 				board = new WithMeBean();
 				board.setNum(rs.getInt("num"));
 				board.setTitle(rs.getString("title"));
@@ -118,15 +119,18 @@ public class WithMeDao {
 				board.setWritedate(rs.getDate("writedate"));
 				board.setLimitdate(rs.getDate("limitdate"));
 				board.setWriter(rs.getString("writer"));
-				board.setLocalcontect(rs.getString("localcontect"));
+				board.setLocalcontenct(rs.getString("localcontenct"));
 				board.setContents(rs.getString("contents"));
 				board.setPeoplecount(rs.getInt("peoplecount"));
+				System.out.println(board.getPeoplecount());
 				articleList.add(board);
 			}
 			}else {
-				board_list_sql="select *,concat(0) as peoplecount from withme order by num desc";
+				System.out.println("a");
+				board_list_sql="select *,concat(0) as peoplecount from withme order by num desc limit ?,8";
 				pstmt = con.prepareStatement(board_list_sql);
-				//System.out.println("else Äõ¸®¹®="+pstmt);
+				pstmt.setInt(1, startrow);
+				//System.out.println("else ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½="+pstmt);
 				rs = pstmt.executeQuery();
 				while(rs.next()){
 					board = new WithMeBean();
@@ -143,7 +147,7 @@ public class WithMeDao {
 					board.setWritedate(rs.getDate("writedate"));
 					board.setLimitdate(rs.getDate("limitdate"));
 					board.setWriter(rs.getString("writer"));
-					board.setLocalcontect(rs.getString("localcontect"));
+					board.setLocalcontenct(rs.getString("localcontenct"));
 					board.setContents(rs.getString("contents"));
 					board.setPeoplecount(rs.getInt("peoplecount"));
 					articleList.add(board);
@@ -158,7 +162,7 @@ public class WithMeDao {
 		return articleList;
 	}
 
-	//±Û ³»¿ë º¸±â.
+	//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 		public WithMeBean selectArticle(int num){
 
 			PreparedStatement pstmt = null;
@@ -187,7 +191,7 @@ public class WithMeDao {
 					board.setWritedate(rs.getDate("writedate"));
 					board.setLimitdate(rs.getDate("limitdate"));
 					board.setWriter(rs.getString("writer"));
-					board.setLocalcontect(rs.getString("localcontect"));
+					board.setLocalcontenct(rs.getString("localcontenct"));
 					board.setContents(rs.getString("contents"));
 					board.setPeoplecount(rs.getInt("peoplecount"));
 				}
@@ -201,7 +205,7 @@ public class WithMeDao {
 		}
 	
 
-	//±Û µî·Ï.
+	//ï¿½ï¿½ ï¿½ï¿½ï¿½.
 	public int insertArticle(WithMeBean article){
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -209,7 +213,7 @@ public class WithMeDao {
 		int insertCount=0;
 
 		try{
-			sql="insert into withme (title,date,people,lim,photo,pic1,pic2,pic3,pic4,limitdate,writer,contents,localcontect,writedate) values(?,?,?,?,?,?,?,?,?,?,?,?,?,now())";//pic1,pic2,pic3,pic4,writedate,limitdate,writer,localcontent,contents) values(?,?,?,?,?,?,?,?,?,?,now(),?,?,?,?)";
+			sql="insert into withme (title,date,people,lim,photo,pic1,pic2,pic3,pic4,limitdate,writer,contents,localcontenct,writedate) values(?,?,?,?,?,?,?,?,?,?,?,?,?,now())";//pic1,pic2,pic3,pic4,writedate,limitdate,writer,localcontent,contents) values(?,?,?,?,?,?,?,?,?,?,now(),?,?,?,?)";
 			pstmt = con.prepareStatement(sql);
 		    pstmt.setString(1, article.getTitle());
 			pstmt.setDate(2, article.getDate());
@@ -223,7 +227,7 @@ public class WithMeDao {
 			pstmt.setDate(10, article.getLimitdate());
 			pstmt.setString(11, article.getWriter());
 			pstmt.setString(12, article.getContents());
-			pstmt.setString(13, article.getLocalcontect());
+			pstmt.setString(13, article.getLocalcontenct());
 
 			insertCount=pstmt.executeUpdate();
 			
@@ -237,7 +241,7 @@ public class WithMeDao {
 
 	}
 
-	//±Û »èÁ¦.
+	//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 		public int deleteArticle(int num){
 
 			PreparedStatement pstmt = null;
@@ -257,7 +261,7 @@ public class WithMeDao {
 			
 		}
 		
-		//½ÅÃ»ÀÎ¿ø ¾÷µ¥ÀÌÆ®
+		//ï¿½ï¿½Ã»ï¿½Î¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
 		public int peopleCount(With_UserBean user) {
 			int insertCount = 0;
 			PreparedStatement pstmt = null;
@@ -283,12 +287,12 @@ public class WithMeDao {
 
 		}
 
-		//±Û ¼öÁ¤.
+		//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 		public int updateArticle(WithMeBean article){
 
 			int updateCount = 0;
 			PreparedStatement pstmt = null;
-			String sql="update withme set title=?,date=?,people=?,lim=?,photo=?,pic1=?,pic2=?,pic3=?,pic4=?,limitdate=?,localcontect=?,contents=? where num=?";
+			String sql="update withme set title=?,date=?,people=?,lim=?,photo=?,pic1=?,pic2=?,pic3=?,pic4=?,limitdate=?,localcontenct=?,contents=? where num=?";
 
 			try{
 				pstmt = con.prepareStatement(sql);
@@ -302,7 +306,7 @@ public class WithMeDao {
 				pstmt.setString(8, article.getPic3());
 				pstmt.setString(9, article.getPic4());
 				pstmt.setDate(10, article.getLimitdate());
-				pstmt.setString(11, article.getLocalcontect());
+				pstmt.setString(11, article.getLocalcontenct());
 				pstmt.setString(12, article.getContents());
 				pstmt.setInt(13, article.getNum());
 				//System.out.println(pstmt);
@@ -317,7 +321,7 @@ public class WithMeDao {
 
 		}
 		
-		//ÇÔ²²ÇØ¿ä ½ÅÃ»Ãë¼Ò
+		//ï¿½Ô²ï¿½ï¿½Ø¿ï¿½ ï¿½ï¿½Ã»ï¿½ï¿½ï¿½
 		public int countDel(With_UserBean user){
 
 			PreparedStatement pstmt = null;
@@ -339,7 +343,7 @@ public class WithMeDao {
 			
 		}
 		
-		public int cinchugcheck(int num,String id) {//ÇØ´ç°Ô½Ã±ÛÀ» º¼¶§ ±×°Ô½Ã¹°À» º¸´Â À¯Àú°¡ ½ÅÃ»À» Çß¾ú´ÂÁö ¾ÈÇß´ÂÁö Ã¼Å©
+		public int cinchugcheck(int num,String id) {//ï¿½Ø´ï¿½Ô½Ã±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½×°Ô½Ã¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»ï¿½ï¿½ ï¿½ß¾ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ß´ï¿½ï¿½ï¿½ Ã¼Å©
 			PreparedStatement pstmt = null;
 			String sql="select id from with_user where num=? and id=?";
 			int check=0;
@@ -362,7 +366,7 @@ public class WithMeDao {
 
 		return check;
 	}
-		public ArrayList<With_UserBean> cinchugList(int boardnum) {//ÇØ´ç°Ô½Ã±Û ½ÅÃ»ÀÎ¿ø º¸±â
+		public ArrayList<With_UserBean> cinchugList(int boardnum) {//ï¿½Ø´ï¿½Ô½Ã±ï¿½ ï¿½ï¿½Ã»ï¿½Î¿ï¿½ ï¿½ï¿½ï¿½ï¿½
 			PreparedStatement pstmt = null;
 			String sql="select * from with_user where num=?";
 			ResultSet rs=null;

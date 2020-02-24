@@ -7,7 +7,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import vo.BoardDto;
 import vo.UserDto;
 
 public class UserDao {
@@ -15,14 +14,14 @@ public class UserDao {
 	Statement stmt=null;
 
 	public UserDao(){
-	try{//»ı¼ºÀÚ·Î µå¶óÀÌ¹ö È£Ãâ
+	try{//å ì™ì˜™å ì™ì˜™å ìŒ˜ë¤„ì˜™ å ì™ì˜™å ì™ì˜™è­´å ï¿½ í˜¸å ì™ì˜™
 		Class.forName("com.mysql.jdbc.Driver");
 	}catch(Exception e){
 	}
 }
 	
 	public Connection Drive(){
-	try{//DB¿¬°á
+	try{//DBå ì™ì˜™å ì™ì˜™
 	conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/data?useSSL=false&useUnicode=true&characterEncoding=utf8","root","911221");
 	}catch(Exception e){
 		
@@ -30,7 +29,7 @@ public class UserDao {
 	return conn;
 }
 	
-	public void close() {//DB´İ´Â ÇÔ¼ö
+	public void close() {//DBå ìŒ¥ëŒì˜™ å ìŒ‰ì‡½ì˜™
 		try{
 		
 			
@@ -48,7 +47,7 @@ public class UserDao {
 			
 	}
 	
-	public void Signup(String name,String id,String password,String email,String phone,String birth,String postcode,String addr1,String addr2){//DB¿¡ È¸¿ø°¡ÀÔÁ¤º¸ ÀÔ·Â
+	public void Signup(String name,String id,String password,String email,String phone,String birth,String postcode,String addr1,String addr2){//DBå ì™ì˜™ íšŒå ì™ì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ìŒ‰ë¤„ì˜™
 	try {
 		conn=Drive();
 		stmt = conn.createStatement();
@@ -56,7 +55,7 @@ public class UserDao {
 		//System.out.print(command);
 		int rowNum = stmt.executeUpdate(command);
 		if(rowNum<1)
-		throw new Exception("µ¥ÀÌÅÍ¸¦ DB¿¡ ÀÔ·ÂÇÒ ¼ö ¾ø½À´Ï´Ù."); 
+		throw new Exception("å ì™ì˜™å ì™ì˜™å ì‹¶ëªŒì˜™ DBå ì™ì˜™ å ìŒ‰ë¤„ì˜™å ì™ì˜™ å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì‹¹ëŒì˜™."); 
 		
 		stmt.close();
 } catch (Exception e) {
@@ -66,7 +65,7 @@ public class UserDao {
 close();
 }
 
-public void UserDelete(String id) {//È¸¿øÅ»Åğ
+public void UserDelete(String id) {//íšŒå ì™ì˜™íƒˆå ì™ì˜™
 	try {
 		conn=Drive();
 		stmt = conn.createStatement();
@@ -74,7 +73,7 @@ public void UserDelete(String id) {//È¸¿øÅ»Åğ
 		//System.out.println(command);
 		int rowNum = stmt.executeUpdate(command);
 		if(rowNum<1) 
-		throw new Exception("µ¥ÀÌÅÍ¸¦ DB¿¡ ÀÔ·ÂÇÒ ¼ö ¾ø½À´Ï´Ù."); 
+		throw new Exception("å ì™ì˜™å ì™ì˜™å ì‹¶ëªŒì˜™ DBå ì™ì˜™ å ìŒ‰ë¤„ì˜™å ì™ì˜™ å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì‹¹ëŒì˜™."); 
 		
 		stmt.close();
 } catch (Exception e) {
@@ -84,7 +83,7 @@ public void UserDelete(String id) {//È¸¿øÅ»Åğ
 close();
 }
 
-public int Login(String id,String password) {//·Î±×ÀÎ
+public int Login(String id,String password) {//å ì‹¸ê¹ì˜™å ì™ì˜™
 	int s = 0;
 	try{
 		conn=Drive();
@@ -97,15 +96,15 @@ public int Login(String id,String password) {//·Î±×ÀÎ
 			String PW = rs.getString("password");
 
 			if(ID.equals(id)&&PW.equals(password)){
-			s=3;//ID¿Í PW°¡ ÀÏÄ¡ÇÏ¸é 3À» ¸®ÅÏ
+			s=3;//IDå ì™ì˜™ PWå ì™ì˜™ å ì™ì˜™ì¹˜å ì‹¹ëªŒì˜™ 3å ì™ì˜™ å ì™ì˜™å ì™ì˜™
 		    }
 
 			else{
-			 s=2;//ID´Â ÀÏÄ¡ÇÏ°í PW°¡ ´Ù¸£¸é1À» ¸®ÅÏ
+			 s=2;//IDå ì™ì˜™ å ì™ì˜™ì¹˜å ì‹¹ê³¤ì˜™ PWå ì™ì˜™ å ìŒ•ëªŒì˜™å ì™ì˜™1å ì™ì˜™ å ì™ì˜™å ì™ì˜™
 			}
 }
 		else {
-			s=1;//ID°¡ ¾øÀ»°æ¿ì 2¸¦ ¸®ÅÏ
+			s=1;//IDå ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™å ï¿½ 2å ì™ì˜™ å ì™ì˜™å ì™ì˜™
 		}
 
 		stmt.close();
@@ -117,7 +116,7 @@ public int Login(String id,String password) {//·Î±×ÀÎ
 }
 
 
-public int ConfirmID(String id) {//ID Áßº¹ Ã¼Å©
+public int ConfirmID(String id) {//ID å ìŒ©ë¸ì˜™ ì²´í¬
 	int s = 0;
 	try{
 		conn=Drive();
@@ -126,9 +125,9 @@ public int ConfirmID(String id) {//ID Áßº¹ Ã¼Å©
 		ResultSet rs=stmt.executeQuery(command);
 		//System.out.println(command);
 		if(rs.next()){   
-			  s=1;	//id°¡ÀÖÀ¸¸é 1À» ¹İÈ¯	  
+			  s=1;	//idå ì™ì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™ 1å ì™ì˜™ å ì™ì˜™í™˜	  
 		  }else{
-			  s=0; //id°¡¾øÀ¸¸é 0À»¹İÈ¯
+			  s=0; //idå ì™ì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™ 0å ì™ì˜™å ì™ì˜™í™˜
 		  }
 		stmt.close();
 } catch (Exception e) {
@@ -138,7 +137,7 @@ public int ConfirmID(String id) {//ID Áßº¹ Ã¼Å©
 }
 
 
-public int ConfirmMail(String email) {//ÀÌ¸ŞÀÏ Áßº¹ Ã¼Å©
+public int ConfirmMail(String email) {//å ì‹±ëªŒì˜™å ì™ì˜™ å ìŒ©ë¸ì˜™ ì²´í¬
 	int s = 0;
 	try{
 		conn=Drive();
@@ -147,9 +146,9 @@ public int ConfirmMail(String email) {//ÀÌ¸ŞÀÏ Áßº¹ Ã¼Å©
 		ResultSet rs=stmt.executeQuery(command);
 		//System.out.println(command);
 		if(rs.next()){   
-			  s=1;	//emailÀÖÀ¸¸é 1¤¤À»¹İÈ¯  
+			  s=1;	//emailå ì™ì˜™å ì™ì˜™å ì™ì˜™ 1å ì™ì˜™å ì™ì˜™å ì™ì˜™í™˜  
 		  }else{
-			  s=0; //email°¡¾øÀ¸¸é 0À»¹İÈ¯
+			  s=0; //emailå ì™ì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™ 0å ì™ì˜™å ì™ì˜™í™˜
 		  }
 		stmt.close();
 } catch (Exception e) {
@@ -160,7 +159,7 @@ public int ConfirmMail(String email) {//ÀÌ¸ŞÀÏ Áßº¹ Ã¼Å©
 }
 
 
-public String FindID(String name,String email) {//IDÃ£±â
+public String FindID(String name,String email) {//IDì°¾å ì™ì˜™
 	String str=null;
 	try{
 	conn=Drive();
@@ -184,11 +183,11 @@ return str;
 }
 
 
-public ArrayList<UserDto> UserList(String id) {//ID·Î ÀÏÄ¡ÇÏ´ÂÈ¸¿ø Á¤º¸ Ãâ·Â
+public ArrayList<UserDto> UserList(String id) {//IDå ì™ì˜™ å ì™ì˜™ì¹˜å ì‹¹ëŒì˜™íšŒå ì™ì˜™ å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ï¿½
 	ArrayList<UserDto> UserList=new ArrayList<UserDto>(); 
 	try{
 		conn=Drive();
-	stmt=conn.createStatement();//°Ô½Ç±Û ÀüÃ¼Ãâ·ÂÀ¸·Î order by number desc °Ô½Ã¹°¹øÈ£·Î ³»¸²Â÷¼øÀ¸·Î Á¤·Ä
+	stmt=conn.createStatement();//å ìŒ‰ì‹¤ê¹ì˜™ å ì™ì˜™ì²´å ì™ì˜™å ì™ì˜™å ì™ì˜™å ï¿½ order by number desc å ìŒ‰ì‹œë±„ì˜™å ì™ì˜™í˜¸å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™
 	String command = "select * from user where id='"+id+"';";
 	ResultSet rs=stmt.executeQuery(command);
 	while(rs.next()) {	
@@ -213,7 +212,7 @@ public ArrayList<UserDto> UserList(String id) {//ID·Î ÀÏÄ¡ÇÏ´ÂÈ¸¿ø Á¤º¸ Ãâ·Â
 	return UserList;
 }
 
-public int Userupdate(String id,String pw,String email,String phone,String post,String addr1,String addr2) {//È¸¿øÁ¤º¸¼öÁ¤
+public int Userupdate(String id,String pw,String email,String phone,String post,String addr1,String addr2) {//íšŒå ì™ì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™
 	int rowNum=0;
 	try{
 		conn=Drive();
@@ -227,7 +226,7 @@ public int Userupdate(String id,String pw,String email,String phone,String post,
 		//System.out.println(command);
 		rowNum = stmt.executeUpdate(command);
 		if(rowNum<1)
-		throw new Exception("µ¥ÀÌÅÍ¸¦ DB¿¡ ÀÔ·ÂÇÒ ¼ö ¾ø½À´Ï´Ù."); 
+		throw new Exception("å ì™ì˜™å ì™ì˜™å ì‹¶ëªŒì˜™ DBå ì™ì˜™ å ìŒ‰ë¤„ì˜™å ì™ì˜™ å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì‹¹ëŒì˜™."); 
 		
 		stmt.close();
 	}

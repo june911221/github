@@ -38,7 +38,7 @@ function validation(fileName) {
 			alert("모집인원을 적어주세요");
 			return false;
 		}
-		if($("#localcontect").val()==null||$("#localcontect").val()==""){
+		if($("#localcontenct").val()==null||$("#localcontenct").val()==""){
 			alert("연락가능한 연락처를 적어주세요");
 			return false;
 		}

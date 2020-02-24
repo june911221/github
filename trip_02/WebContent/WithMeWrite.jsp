@@ -93,7 +93,7 @@ width:100%;
           <label>모집인원</label>
         </div>
         <div class="inputContainer">
-          <input type="text" class="taskName" placeholder="연락가능한 연락처를 적어주세요" name="localcontect" id="localcontect" value="">
+          <input type="text" class="taskName" placeholder="연락가능한 연락처를 적어주세요" name="localcontenct" id="localcontenct" value="">
           <label>현지연락처</label>
         </div>		
 	    <div class="inputContainer half last right">

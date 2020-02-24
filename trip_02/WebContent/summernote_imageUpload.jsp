@@ -5,7 +5,7 @@
 <%@page import="com.oreilly.servlet.MultipartRequest"%>
 <%
     // 이미지 업로드할 경로
-	String uploadPath = "D:/project/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/trip_02/upload";
+	String uploadPath = "D:/eclipse/.metadata/.plugins/org.eclipse.wst.server.core/tmp1/wtpwebapps/last2/upload";
     int size = 10 * 1024 * 1024;  // 업로드 사이즈 제한 10M 이하
 	
 	String fileName = ""; // 파일명

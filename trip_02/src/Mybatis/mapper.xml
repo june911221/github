@@ -57,26 +57,5 @@ delete from board where num=#{num};
 delete from comment where c_number=#{c_number};
 <!-- 댓글삭제 where 변수는 댓글번호 -->
 </delete>
-<!-- 	<select id="infoANDtip" resultType="Dto" parameterType="list"> 형태를 남긴다 List를써서 여러줄 받을수있음
-		select * from board where category=#{category} order by num desc;
-		카테고리를 구별해서 리스트를 뽑아주고 게시글 번호를 내림차순으로 정렬
-	</select>
-	
-	<select id="infoANDtipView" resultType="Dto"
-		parameterType="list"> 형태를 남긴다 List를써서 여러줄 받을수있음
-		select * from board where num=#{num};
-	</select>
-	<insert id="insertDB" parameterType="list">
-		insert into board (category,title,writer,date,hits,contents)
-		values(#{category},#{title},#{writer},now(),0,#{contents});
-	</insert>
-	<update id="updateDB" parameterType="list">
-		update board set title=#{title},contents=#{contents} where num=#{num};
-	</update>
-	<update id="hitsupdate" parameterType="list">
-		update board set hits=#{hits} where num=#{num};
-	</update>
-	<delete id="deleteDB" parameterType="list">
-		delete from board where num=#{num};
-	</delete> -->
+
 </mapper>

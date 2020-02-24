@@ -31,7 +31,7 @@ public class Food_placeDao {
 	}
 
 	
-	public void close() {//DB´Ý´Â ÇÔ¼ö
+	public void close() {//DBï¿½Ý´ï¿½ ï¿½Ô¼ï¿½
 		try{
 		
 			

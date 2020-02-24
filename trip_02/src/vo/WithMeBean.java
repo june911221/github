@@ -3,46 +3,27 @@ package vo;
 import java.sql.Date;
 
 public class WithMeBean {
-	
+	String title,lim,photo,pic1,pic2,pic3,pic4,writer,localcontenct,contents;
 	int num,people,peoplecount;
-	String title,lim,photo,pic1,pic2,pic3,pic4,writer,localcontect,contents;
 	Date date,writedate,limitdate;
 	
-	public int getNum() {
-		return num;
-	}
-	public void setNum(int num) {
-		this.num = num;
-	}
 	public int getPeoplecount() {
 		return peoplecount;
 	}
 	public void setPeoplecount(int peoplecount) {
 		this.peoplecount = peoplecount;
 	}
-	public int getPeople() {
-		return people;
+	public String getLocalcontenct() {
+		return localcontenct;
 	}
-	public void setPeople(int people) {
-		this.people = people;
-	}
-	public String getTitle() {
-		return title;
-	}
-	public void setTitle(String title) {
-		this.title = title;
+	public void setLocalcontenct(String localcontenct) {
+		this.localcontenct = localcontenct;
 	}
 	public String getLim() {
 		return lim;
 	}
 	public void setLim(String lim) {
 		this.lim = lim;
-	}
-	public String getPhoto() {
-		return photo;
-	}
-	public void setPhoto(String photo) {
-		this.photo = photo;
 	}
 	public String getPic1() {
 		return pic1;
@@ -68,17 +49,42 @@ public class WithMeBean {
 	public void setPic4(String pic4) {
 		this.pic4 = pic4;
 	}
+		
+	public Date getLimitdate() {
+		return limitdate;
+	}
+	public void setLimitdate(Date limitdate) {
+		this.limitdate = limitdate;
+	}
+	public int getNum() {
+		return num;
+	}
+	public void setNum(int num) {
+		this.num = num;
+	}
+	public int getPeople() {
+		return people;
+	}
+	public void setPeople(int people) {
+		this.people = people;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getPhoto() {
+		return photo;
+	}
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
 	public String getWriter() {
 		return writer;
 	}
 	public void setWriter(String writer) {
 		this.writer = writer;
-	}
-	public String getLocalcontect() {
-		return localcontect;
-	}
-	public void setLocalcontect(String localcontect) {
-		this.localcontect = localcontect;
 	}
 	public String getContents() {
 		return contents;
@@ -97,12 +103,6 @@ public class WithMeBean {
 	}
 	public void setWritedate(Date writedate) {
 		this.writedate = writedate;
-	}
-	public Date getLimitdate() {
-		return limitdate;
-	}
-	public void setLimitdate(Date limitdate) {
-		this.limitdate = limitdate;
 	}
 	
 }

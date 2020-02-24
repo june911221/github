@@ -5,7 +5,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Signup</title>
-<link rel="stylesheet" href="css/signup.css">
+<link rel="stylesheet" href="css/signup.css?ver=1.2">
 <!-- partial -->
 <script src="js/Signup.js"></script>
 <script src="js/address.js"></script>
@@ -26,10 +26,13 @@
  
 <section>
 <!-- 메인배너   -->
+
+<img src="img/user_banner1.jpg"width="100%" height="500"/>
+<img src="img/new_user2.jpg" id="new_user2" width="40%" height="480"/>
+
 <div class="mainbox" >
-<img src="img/08.jpg"width="100%" height="500"/>
-</div>
 <div id="in"><h1>회원가입</h1></div>
+<hr>
 <div id='userinfo'>
   <div class='info'>
     <form  method="post" action="SignupDB.jsp" onsubmit="return check()" name="signup">
@@ -57,6 +60,7 @@
 	<input type='button' class="modi" onclick="location.href='index.jsp'" value="취소" />
     </form>
   </div>
+</div>
 </div>
  </section>
 </body>

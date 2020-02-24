@@ -1,31 +1,13 @@
 @charset "UTF-8";
 
-/* 게시판 리스트 목록 */
-.sub_news{position:relative;
-top:50px;
-left:100px;}
+section {
 
-.sub_news,.sub_news th,.sub_news td{border:0}
-.sub_news a{color:#383838;text-decoration:none}
-.sub_news{width:80%;border-bottom:1px solid #999;color:#666;font-size:13px;table-layout:fixed}
-.sub_news caption{display:none}
-.sub_news th{padding:5px 0 6px;border-top:solid 1px #999;border-bottom:solid 1px #b2b2b2;background-color:#f1f1f4;color:#333;font-weight:bold;line-height:20px;vertical-align:top}
-.sub_news td{padding:10px 0 9px;border-bottom:solid 1px #d2d2d2;text-align:center;line-height:18px;}
-.sub_news .date,.sub_news .hit.num{padding:0;font-family:Tahoma;font-size:11px;line-height:normal}
-.sub_news .title{text-align:left; padding-left:15px; font-size:13px;}
-.sub_news .title .pic,.sub_news .title .new{margin:0 0 2px;vertical-align:middle}
-.sub_news .title a.comment{padding:0;background:none;color:#f00;font-size:12px;font-weight:bold}
-.sub_news tr.reply .title a{padding-left:16px;background:url(첨부파일/ic_reply.png) 0 1px no-repeat}
-/* //게시판 리스트 목록 */
-
-/* 마우스오버 */
-#tr_hover:hover {
-    background-color:#D6F0FF;}
-    
-
-th{
-background:yellow;
+margin: auto;
+width: 100%;
+height: 1200%;
+padding: 0;
 }
+
 .newimg{
 width:30px;
 height:20px;
@@ -33,13 +15,144 @@ float:left;
 display:none;
 color:red;
 }
-#btnwrite{
-position:relative;
-top:60px;
-left:100px;
+
+/* SIDE CSS */
+.sideArea {
+	width: 200px;
+	min-width: 200px;
+	background: /* #c0c0c0 */ /* #ADCDED */ rgba( 173, 205, 237, 0.2);
+	position: absolute;
+	top: 200px;
+	bottom: 0;
+	left: 0;
+	transition: 0.5s;
+	height: 1370px;
 }
-#scbox{
-position:absolute;
-top:230px;
-left:300px;
+
+.container.is-click .sideArea {
+	left: -200px;
+}
+
+.sideArea li>a {
+	display: block;
+	color: black;
+	font-weight: bold;
+	font-size: 15pt;
+	padding: 1em;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+	margin-bottom: 40px;
+	opacity: 1.0;
+	list-style:none;
+}
+
+.sideArea li>a:hover {
+	background: rgba(255, 255, 255, 0.1);
+}
+
+.sideArea li>a>.fa {
+	width: 1em;
+	text-align: center;
+	margin-right: 10px;
+}
+
+.submenu {
+	display: none;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+	margin-top: 170px;
+}
+
+.submenu li>a {
+	padding-left: 2em;
+	border-bottom: none;
+	
+}
+
+.sideMenu {
+	border-top: 1px solid rgba(255, 255, 255, 0.2);
+	margin-top: 500px;
+	list-style:none;
+}
+
+
+hr {
+	position: relative;
+	top:-240px;
+	left: 200px;
+	width: 100%;
+}
+
+#id {
+	font-size: 24pt;
+	position: relative;
+	top:-270px;
+	left: 430px;
+}
+
+.sub_news{position:relative;
+top: -100px;
+left: 22%;}
+
+.sub_news,.sub_news th,.sub_news td{border:0}
+.sub_news a{color:#383838;text-decoration:none}
+.sub_news{width:60%;border-bottom:1px solid #999;color:#666;font-size:13px;table-layout:fixed}
+.sub_news caption{display:none}
+.sub_news th{padding:12px 10px 12px;border-top:solid 1px #999;border-bottom:solid 1px #b2b2b2;background-color:#f1f1f4;color:#333;font-weight:bold;line-height:20px;vertical-align:top; font-size:12pt;}
+.sub_news td{padding: 15px 10px 13px;border-bottom:solid 1px #d2d2d2;text-align:center;line-height:18px;font-size:12pt;}
+.sub_news .date,.sub_news .hit.num{padding:0;font-family:Tahoma;font-size:11px;line-height:normal}
+.sub_news .title{text-align:left; padding-left:15px; font-size:13px;}
+.sub_news .title .pic,.sub_news .title .new{margin:0 0 2px;vertical-align:middle}
+.sub_news .title a.comment{padding:0;background:none;color:#f00;font-size:12px;font-weight:bold}
+
+#hugi_banner{position:relative;
+}
+
+#hugi_banner2{position:relative;
+top:-305px;
+left:25%;}
+
+#btnwrite{position:relative;
+float:right;
+right:350px;
+top:-155px;
+box-shadow:inset 0px 1px 0px 0px #ffffff;
+	background:linear-gradient(to bottom, #f9f9f9 5%, #e9e9e9 100%);
+	background-color:#f9f9f9;
+	border-radius:9px;
+	border:2px solid #dcdcdc;
+	display:inline-block;
+	cursor:pointer;
+	color:#666666;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:7px 20px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffffff;}
+
+#btnwrite:hover {
+	background:linear-gradient(to bottom, #e9e9e9 5%, #f9f9f9 100%);
+	background-color:#e9e9e9;
+}
+
+#scbox{position:relative;
+left:450px;
+width:500px;
+top:-150px;}
+
+.sel{width:100px;
+height:35px;
+font-size:12pt;
+}
+
+#op{font-size:12pt;
+}  
+
+#searchinfo{position:relative;
+top:-1.5px;
+width:250px;
+height:30px;}
+
+#search{font-size:13pt;
+width:80px;
+height:35px;
 }

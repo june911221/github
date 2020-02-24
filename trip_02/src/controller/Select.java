@@ -17,30 +17,30 @@ public class Select implements Cominterface{
 	}
 	@Override
 	public String showData(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		ActionList model = ActionList.instance(); //ActionList °´Ã¼ »ı¼º
+		ActionList model = ActionList.instance(); //ActionList å ì™ì˜™ì²´ å ì™ì˜™å ì™ì˜™
 		
-		String category=request.getParameter("category");//Ä«Å×°í¸®¸¦ º¯¼ö·Î ÁöÁ¤
+		String category=request.getParameter("category");//ì¹´å ìŒ“ê³¤ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™
 						
-		if(category.equals("hugi")) {//º¯¼ö category °ªÀ» ºñ±³ÇØ¼­ °ª¿¡ µû¸¥ Ä«Å×°í¸®°ªÀ» º¯°æÇØÁØ´Ù
-			category="¿©ÇàÈÄ±â";
+		if(category.equals("hugi")) {//å ì™ì˜™å ì™ì˜™ category å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ìŒ”ì‡½ì˜™ å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™ ì¹´å ìŒ“ê³¤ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™å ìŒ”ëŒì˜™
+			category="ì—¬í–‰í›„ê¸°";
 		}else if(category.equals("infoandtip")) {
-			category="Á¤º¸&ÆÁ";
+			category="ì •ë³´&íŒ";
 		}else {
 			category="Q&A";
 		}
 		
-		BoardDto li=new BoardDto();//BoardDto °´Ã¼ »ı¼º
-		li.setCategory(category);//Ä«Å×°í¸® ¼ÂÆÃ
+		BoardDto li=new BoardDto();//BoardDto å ì™ì˜™ì²´ å ì™ì˜™å ì™ì˜™
+		li.setCategory(category);//ì¹´å ìŒ“ê³¤ì˜™ å ì™ì˜™å ì™ì˜™
 		
-		ArrayList<BoardDto> list = (ArrayList<BoardDto>)model.boardlist(li);//º¯¼ö Ä«Å×°í¸®´Â °Ô½ÃÆÇ Ä«Å×°í¸®¸¦ ±¸º°ÇØ¼­ Ãâ·ÂÇÏ±âÀ§ÇØ »ç¿ë
-		//ActionÆäÀÌÁö ¿¡ category º¯¼ö¸¦ º¸³»ÁÖ°í  ArrayList<BoardDto> º¯¼ö list¿¡  ¸®ÅÏ°ªÀ» ´ã¾ÆÁØ´Ù
+		ArrayList<BoardDto> list = (ArrayList<BoardDto>)model.boardlist(li);//å ì™ì˜™å ì™ì˜™ ì¹´å ìŒ“ê³¤ì˜™å ì™ì˜™ å ìŒ‰ì™ì˜™å ì™ì˜™ ì¹´å ìŒ“ê³¤ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ìŒ”ì‡½ì˜™ å ì™ì˜™å ì™ì˜™æ­å ì™ì˜™å ì™ì˜™å ï¿½ å ì™ì˜™å ï¿½
+		//Actionå ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™ category å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ìŒê³¤ì˜™  ArrayList<BoardDto> å ì™ì˜™å ì™ì˜™ listå ì™ì˜™  å ì™ì˜™å ì‹¹ê³¤ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å¨©å ï¿½
 		
 		request.setAttribute("data", list);//data=list
 		
-		if(category.equals("¿©ÇàÈÄ±â")) {//category °ªÀ» ºñ±³ÇÏ¿© ÇØ´ç Ä«Å×°í¸®¿¡ ¸Â´Â ÆäÀÌÁö¸¦ ¸®ÅÏÇØÁÜ
+		if(category.equals("ì—¬í–‰í›„ê¸°")) {//category å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì‹¹ìš¸ì˜™ å ìŒ”ëŒì˜™ ì¹´å ìŒ“ê³¤ì˜™å ì™ì˜™ å ìŠ¹ëŒì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™
 			return "Hugi.jsp";
 		}
-		else if(category.equals("Á¤º¸&ÆÁ")) {
+		else if(category.equals("ì •ë³´&íŒ")) {
 			return "InfoandTip.jsp";
 		}
 		else {

@@ -20,29 +20,29 @@ public class Insert implements Cominterface {
 	@Override
 	public String showData(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
-		ActionInsert model = ActionInsert.instance(); //°Ô½Ã±Û ÀÔ·ÂAction °´Ã¼Çü¼º
+		ActionInsert model = ActionInsert.instance(); //å ìŒ‰ì‹œê¹ì˜™ å ìŒ‰ë¤„ì˜™Action å ì™ì˜™ì²´å ì™ì˜™å ì™ì˜™
 		
 		String category=new String(request.getParameter("category").getBytes("8859_1"),"UTF-8");
-		//Ä«Å×°í¸® °ªÀ» º¯¼ö¿¡ ´ã¾ÆÁØ´Ù(new String(request.getParameter("ÆÄ¶ó¹ÌÅÍ°ª").getBytes("8859_1"),"UTF-8")ÆÄ¶ó¹ÌÅÍ·Î ³Ñ¾î¿Â °ªÀÌ ÇÑ±ÛÀÌ ±úÁöÁö¾Ê°Ô Àâ¾ÆÁØ´Ù)
+		//ì¹´å ìŒ“ê³¤ì˜™ å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å¨©å ï¿½(new String(request.getParameter("å ì‹ë°ì˜™å ì™ì˜™å©å ï¿½").getBytes("8859_1"),"UTF-8")å ì‹ë°ì˜™å ì™ì˜™åº«å ï¿½ å ì‹¼ì–µì˜™å ï¿½ å ì™ì˜™å ì™ì˜™ å ì‹¼ê¹ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™å ì‹­ê³¤ì˜™ å ì™ì˜™å ì™ì˜™å¨©å ï¿½)
 		String title=new String(request.getParameter("title").getBytes("8859_1"),"UTF-8");
-		//±ÛÁ¦¸ñÀ» º¯¼ö¿¡ ´ã¾ÆÁØ´Ù
+		//å ì™ì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å¨©å ï¿½
 		String writer=request.getParameter("writer");
-		//±Û¾´ÀÌ¸¦ º¯¼ö¿¡ ´ã¾ÆÁØ´Ù
+		//å ìŒœì–µì˜™å ì‹±ëªŒì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å¨©å ï¿½
 		String contents=new String(request.getParameter("contents").getBytes("8859_1"),"UTF-8");
-		//±Û³»¿ëÀ» º¯¼ö¿¡ ´ã¾ÆÁØ´Ù		
+		//å ìŒœë†‚ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å¨©å ï¿½		
 		
-		BoardDto list=new BoardDto();//BoardDto °´Ã¼Çü¼ºÈÄ  °ªÀ» ¼ÂÆÃÇØÁØ´Ù
-		list.setCategory(category);//Ä«Å×°í¸® ¼ÂÆÃ
-		list.setTitle(title);//±ÛÁ¦¸ñ ¼ÂÆÃ
-		list.setWriter(writer);//ÀÛ¼ºÀÚ ¼ÂÆÃ
-		list.setContents(contents);//°Ô½Ã±Û³»¿ë ¼ÂÆÃ
+		BoardDto list=new BoardDto();//BoardDto å ì™ì˜™ì²´å ì™ì˜™å ì™ì˜™å ì™ì˜™  å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™å ìŒ”ëŒì˜™
+		list.setCategory(category);//ì¹´å ìŒ“ê³¤ì˜™ å ì™ì˜™å ì™ì˜™
+		list.setTitle(title);//å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™
+		list.setWriter(writer);//å ìŒœì‡½ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™
+		list.setContents(contents);//å ìŒ‰ì‹œê¸€ë†‚ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™
 		
-		model.boardInsert(list);//¾×¼ÇÆäÀÌÁöÈ£ÃâÇÏ¸é¼­ º¯¼ö list¸¦ º¸³»ÁØ´Ù
+		model.boardInsert(list);//å ìŒ“ì‡½ì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™í˜¸å ì™ì˜™å ì‹¹ë©´ì„œ å ì™ì˜™å ì™ì˜™ listå ì™ì˜™ å ì™ì˜™å ì™ì˜™å ìŒ”ëŒì˜™
 		
-		if(category.equals("¿©ÇàÈÄ±â")) {//category °ªÀ» ºñ±³ÇÏ¿© ÇØ´ç Ä«Å×°í¸®¿¡ ¸Â´Â ÆäÀÌÁö¸¦ ¸®ÅÏÇØÁÜ
+		if(category.equals("ì—¬í–‰í›„ê¸°")) {//category å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì‹¹ìš¸ì˜™ å ìŒ”ëŒì˜™ ì¹´å ìŒ“ê³¤ì˜™å ì™ì˜™ å ìŠ¹ëŒì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™
 			return ".my?command=list&category=hugi";
 		}
-		else if(category.equals("Á¤º¸&ÆÁ")) {
+		else if(category.equals("ì •ë³´&íŒ")) {
 			return ".my?command=list&category=infoandtip";
 		}
 		else {

@@ -14,10 +14,10 @@ public class ActionCommentInsert {
 	
 	private SqlSessionFactory factory = Map.getSqlSession();
 	public void commentInsert(CommentDto comment){
-		
+		System.out.print("b");
 		SqlSession sqlSession = factory.openSession();
 		sqlSession.insert("commentInsert",comment);
-		//mapper.xml ¿¡¼­ commentInsert¸¦ id·Î »ç¿ëÇÏ´Â insert ±¸¹®¿¡ º¯¼ö¸¦ º¸³»ÁÖ¸é¼­ È£Ãâ("id",º¯¼ö)
+		//mapper.xml ï¿½ï¿½ï¿½ï¿½ commentInsertï¿½ï¿½ idï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ insert ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö¸é¼­ È£ï¿½ï¿½("id",ï¿½ï¿½ï¿½ï¿½)
 		
 		sqlSession.commit();
 		sqlSession.close();

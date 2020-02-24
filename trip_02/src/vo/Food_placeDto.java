@@ -1,9 +1,9 @@
 package vo;
 
 public class Food_placeDto {
-
 	int num;
-	String title, contents, pic, place, tel, time, category, cityname;
+	
+	String title,contents,pic,place,tel,time,category,cityname;
 	
 	public int getNum() {
 		return num;
@@ -59,5 +59,5 @@ public class Food_placeDto {
 	public void setCityname(String cityname) {
 		this.cityname = cityname;
 	}
-	
+
 }

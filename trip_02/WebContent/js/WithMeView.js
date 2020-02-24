@@ -316,7 +316,12 @@ $(document).ready(function() {//이미지가 없는건 블라인드처리
 	if($("#checkimg5").val()=="null"){
 		$("#img6").css("display","none");
 	}
+	if($("#checkcountpeople").val()==1){
+		$("#sin").attr("type","hidden");
+		$("#sindel").attr("type","button");		
+	}
 });
+
 function updata(){//수정버튼 누를시이벤트
 		$('#contents').summernote({
 			width:710,
@@ -343,7 +348,7 @@ function updata(){//수정버튼 누를시이벤트
 	$("#update").attr("value","등록");
 	$("#update").removeAttr("onclick");
 	$("#sin").attr("type","hidden");
-    $("#WithMeform").attr("action","boardModifyPro.bo");
+    $("#WithMeform").attr("action","WithMeModifyPro.do");
 	$("#WithMeform").attr("onsubmit","return insertcheck()");
 	$("#update").attr("type","submit");
 	return false;
@@ -396,40 +401,27 @@ function validation(fileName) {//파일 체크
 	}
 }
 
-function boarddel(){//삭제버튼 이벤트
+function boarddel(page){//삭제버튼 이벤트
 	var result =confirm("정말로 삭제 하시겠습니까?");
 	var number = $("#num").val();
-	var del = "boardDeletePro.bo?num="+number;
+	var del = "WithMeDeletePro.do?num="+number+"&page="+page;
 	
 	if(result){
 		location.href=del;
 	}
 }
 
-function sinchung(){//신청버튼 이벤트
-	var people = $("#people").val();
-	var peoplecount = $("#peoplecount").val();
-	if(people==peoplecount){
-		alert("모집인원이 마감되었습니다");
-	}
-	else{
-	var result =confirm("신청 하시겠습니까?");
-	var num = $("#num").val();
-	var sin = "WithMePeopleCount.bo?num="+num;
-	
-	if(result){
-		location.href=sin;
-	}
-	}
-}
 
-$(document).ready(function() {//게시글 상세보기를 했을때 세션ID값과 작성자ID가 동일하면 히든버튼 활성화 수정 삭제 가능하게 함
+$(document).ready(function() {//게시글 상세보기를 했을때 세션ID값과 작성자ID가 동일하면 히든버튼 활성화 수정 삭제 가능하게 함 함께해요 신청은 블라인드 처리
 	var writer=$("#writer").val();
 	var sessionID=$("#sessionID").val();
 	
 	if(writer==sessionID){
-		//alert("d");
+		alert("d");
+		$("#sin").attr("type","hidden");
+		$("#sindel").attr("type","hidden");
 		$("#update").attr("type","button");
-		$("#delete").attr("type","button");		
+		$("#delete").attr("type","button");	
+		$("#sininfo").attr("type","button");	
 	}
 });

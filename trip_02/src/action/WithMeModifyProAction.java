@@ -37,7 +37,7 @@ public class WithMeModifyProAction implements Action {
 		withmeBean.setLim(multi.getParameter("limit"));// 제한조건
 		withmeBean.setLimitdate(Date.valueOf(multi.getParameter("limitdate")));// 예약최종마감일
 		withmeBean.setWriter(multi.getParameter("writer"));// 작성자
-		withmeBean.setLocalcontect(multi.getParameter("localcontect"));// 현지연락처
+		withmeBean.setLocalcontenct(multi.getParameter("localcontenct"));// 현지연락처
 		withmeBean.setContents(multi.getParameter("contents"));// 내용
 
 		if (multi.getFilesystemName("filedata0") == null || multi.getFilesystemName("filedata0") == "") {

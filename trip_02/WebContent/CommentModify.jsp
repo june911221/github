@@ -6,8 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>CommentModify</title>
+<link rel="stylesheet" href="css/commentmodify.css">
 </head>
 <body>
+
 <%
 ArrayList<CommentDto> commentlist = (ArrayList<CommentDto>)request.getAttribute("commentdata");
 String comment=commentlist.get(0).getComment_box();
@@ -16,7 +18,7 @@ int boardnum=commentlist.get(0).getB_number();
 %>
 <form action=".my?command=commentupdate&commnetnum=<%=commentnum%>&bnum=<%=boardnum%>" onsubmit="return Modify()" target="commentModifyform" method="post">
 <textarea rows="7" cols="70" name="comment_box" id="comment_box"><%=comment%></textarea>
-<input type="submit" value="수정">
+<input id="update" type="submit" value="수정">
 </form>
 <script>
 function Modify(){ //댓글 수정 컨펌 

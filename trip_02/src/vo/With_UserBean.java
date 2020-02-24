@@ -3,8 +3,8 @@ package vo;
 public class With_UserBean {
 
 	String id,tel;
-	int num, count;
-
+	int num,count;
+	
 	public String getId() {
 		return id;
 	}
@@ -29,6 +29,4 @@ public class With_UserBean {
 	public void setCount(int count) {
 		this.count = count;
 	}
-	
-	
 }

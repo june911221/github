@@ -1,9 +1,9 @@
 package vo;
 
 public class ReservationDto {
-
-	String airnum, id;
-
+	
+	String airnum,id;
+	
 	public String getAirnum() {
 		return airnum;
 	}

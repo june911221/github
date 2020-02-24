@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.lang.ProcessBuilder.Redirect;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -19,38 +20,68 @@ public class Connection extends HttpServlet{
 
 		
 		try {
-			if(command.equals("list")){
+			if(command.equals("list")){//�Խñ� ����Ʈ
 				inter = Select.instance();
 				viewName = inter.showData(request, response);
 				viewName = viewName;
 				request.getRequestDispatcher(viewName).forward(request, response);
 			}
-			else if(command.equals("view")){
+			else if(command.equals("view")){//�Խñ� �󼼺���
 				inter = SelectView.instance();
 				viewName = inter.showData(request, response);
 				viewName = viewName;
 				request.getRequestDispatcher(viewName).forward(request, response);
 			}
-			else if(command.equals("insert")) {
+			else if(command.equals("insert")) {//�Խñ۾���
 				inter = Insert.instance();
 				viewName = inter.showData(request, response);
 				viewName = viewName;
-				request.getRequestDispatcher(viewName).forward(request, response);
+				//request.getRequestDispatcher(viewName).forward(request, response);
+				response.sendRedirect(viewName);
 			}
-			else if(command.equals("del")) {
-				//System.out.print(ID);
+			else if(command.equals("del")) {//�Խñۻ���
 				inter = Delete.instance();
 				viewName = inter.showData(request, response);
 				viewName = viewName;
 				request.getRequestDispatcher(viewName).forward(request, response);
+				//response.sendRedirect(viewName);
 			}
-			else if(command.equals("update")) {
-				//System.out.print("comand="+ID);
+			else if(command.equals("update")) {//�Խñ� ����
 				inter = Update.instance();
 				viewName = inter.showData(request, response);
 				viewName = viewName;
-				request.getRequestDispatcher(viewName).forward(request, response);
-			} else {
+				//request.getRequestDispatcher(viewName).forward(request, response);
+				response.sendRedirect(viewName);
+			}
+			else if(command.equals("commentModify")) {//��� ���� �˾�â�� ������ ��۳��� ����
+				inter = CommentModify.instance();
+				viewName = inter.showData(request, response);
+				viewName = viewName;				
+			    request.getRequestDispatcher(viewName).forward(request, response);
+			    //response.sendRedirect(viewName);
+			}
+			else if(command.equals("commentupdate")) {//��� ����
+				inter = CommentUpdate.instance();
+				viewName = inter.showData(request, response);
+				viewName = viewName;
+				//request.getRequestDispatcher(viewName).forward(request, response);
+				response.sendRedirect(viewName);
+			}
+			else if(command.equals("commentdel")) {//��� ����
+				inter = CommentDelete.instance();
+				viewName = inter.showData(request, response);
+				viewName = viewName;
+				//request.getRequestDispatcher(viewName).forward(request, response);
+				response.sendRedirect(viewName);
+			}
+			else if(command.equals("commentinsert")) {//��� ����
+				System.out.print("d");
+				inter = CommentInsert.instance();
+				viewName = inter.showData(request, response);
+				viewName = viewName;
+				//request.getRequestDispatcher(viewName).forward(request, response);
+				response.sendRedirect(viewName);
+			}else {
 				viewName = "error.html";
 				response.sendRedirect(viewName);
 			}

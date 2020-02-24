@@ -7,7 +7,9 @@
 <title>UserDelete</title>
 </head>
 <body>
-
+<link rel="stylesheet" href="css/signin.css">
+<link rel="stylesheet" href="css/userdel.css">
+<script src="js/UserDel.js"></script>
   <% 
  String ses=null;
  ses=(String)session.getAttribute("ID");
@@ -16,55 +18,21 @@
  <%} else{%>
  <jsp:include page="Loginheader.jsp"/>
  <%} %>
- 
- 
-<script>
-function del(){
-	if($("#password").val()==null||$("#password").val()==""){
-		$("#password").focus();
-		alert("비밀번호를 입력해주세요");
-	}
-	else{
-		$.ajax({
-			type : "post",
-			url : "./UserDeleteDB.jsp",
-			data : {				
-				id : $('#userid').val(),
-				password : $('#password').val()
-				},
-				success : function Success(resdata) {					
-						if(resdata==3){
-							var result =confirm("정말로 탈퇴 하시겠습니까?");
-							if(result){
-							$("#x").val(0);
-							$("#userDel").attr("action","UserDeleteDB.jsp");
-							$("#userDel").submit();
-							}else{}
-						}
-						else{
-							alert(resdata);
-							$('#password').val("");
-							$('#password').focus();
-							alert("비밀번호가 다릅니다");
-						}
-					  },
-					error : Error
-					});
-			}
-}	
 
-function Error(request,status,error) {
-	alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-}
-		
-</script>
 <section>
 <form  method="post" id="userDel">
-<input type="hidden" id="x" name="x" value="">
-<input type="text" id="userid" name="userid" value=${ID}>
-<input type="password" id="password" name="password">
-<input type="button" id="Delbtn" name="Delbtn" value="탈퇴" onclick="del()">
+<div class="box">
+  <h1>회 원 탈 퇴</h1>
+  <div class="info_text">한번 회원탈퇴가 이루어지면 계정을 복구할 수 없습니다.<br><br>회원탈퇴를 진행하시려면 회원아이디와 비밀번호를 입력해주세요.</div>
+  <input type="hidden" id="x" name="x" value="">
+  <input type="text" id="userid" name="userid" value="${ID}" readonly>
+  <br>
+  <input type="password" placeholder="비밀번호를 입력하세요." id="password" name="password">
+<input type="button" id="Delbtn" name="Delbtn" value="회 원 탈 퇴" onclick="del()">
+<input type="button" id="mainbtn" name="mainbtn" value="메 인 으 로" onclick="location='index.jsp'">
 </form>
+  
+</div>
 </section>
 </body>
 </html>

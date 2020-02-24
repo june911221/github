@@ -4,7 +4,9 @@
 <%@page import="vo.BoardDto"%>
 <%@page import="vo.CommentDto"%>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script src="js/BoardView.js"></script>
+<script src="js/BoardView2.js"></script>
+<link rel="stylesheet" href="css/BoardView.css?ver=1.5">
+
 <!doctype html>
 <html>
 <head>
@@ -34,37 +36,76 @@ Date date=list.get(0).getDate();
 int hits=list.get(0).getHits();
 String contents=list.get(0).getContents();
 %>
+
 <input type="hidden" name="sessionID" id="sessionID" value=${ID}>
 <form  method="post" id="tipView">
 <input type="hidden" id="num" name="num" value="<%=num%>">
-카테고리:<input type="text" id="category"name="category" value="<%=category%>" readonly>
-제목:<input type="text" id="title" name="title" value="<%=title%>" readonly>
-글쓴이:<input type="text" id="writer" name="writer" value="<%=writer%>" readonly>
-date:<input type="text" id="date" name="date" value="<%=date%>" readonly>
+
+<div id="cate_info"><%=category%> 게시글</div>
+
+<table class="write_table">
+<tr>
+<th>카테고리</th>
+<td><input type="text" id="category"name="category" value="<%=category%>" readonly></td>
+</tr>
+<tr>
+<th>제목</th>
+<td><input type="text" id="title" name="title" value="<%=title%>" size="100" readonly></td>
+</tr>
+<tr>
+<th>글쓴이</th>
+<td><input type="text" id="writer" name="writer" value="<%=writer%>" readonly></td>
+</tr>
+<tr>
+<th>date</th>
+<td><%=date%></td>
+</tr>
+<tr>
+
 <input type="hidden" id="hits" name="hits" value="<%=hits%>" readonly>
-내용:<div><%=contents%></div>
-<input type="text" id="contents" name="contents" value="<%=contents%>">
+</tr>
+<tr>
+<th>내용</th>
+<td><textarea id="contents" name="contents"><%=contents%></textarea><div id="view"><%=contents%></div></td>
+</tr>
+<tr>
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+</tr>
+</table>
+<input type=button id="list" onclick="history.go(-1)" value="목록으로" />
 <input type="hidden" id="update" onclick="return updata()" value="수정" >
 <input type="hidden" id="delete" onclick="delclick()" value="삭제">
+
 </form>
 
+<hr>
+
+<h1>COMMENT</h1>
+<div class="comments">
 <form method="post" id="commentwrite">
 <input type="hidden" name="bnum" value="<%=num%>">
 <input type="hidden" name="commentwriter" value="${ID}">
-댓글:<input type="text" id="comment_box" name="comment_box">
-<input type="button" onclick="return commentcheck()" value="등록">
+<input type="text" id="comment_box" name="comment_box">
+<input type="button" id="comments_btn" onclick="return commentcheck()" value="등록">
 </form>
+</div>
 
 <%
 ArrayList<CommentDto> commentlist = (ArrayList<CommentDto>)request.getAttribute("codata");
 
 for(int i=0;i<commentlist.size();i++){%>
 
-<input type="text" id="writer<%=commentlist.get(i).getC_number()%>" readonly value="<%=commentlist.get(i).getWriter()%>">
-<input type="text" id="cobox<%=commentlist.get(i).getC_number()%>" readonly value="<%=commentlist.get(i).getComment_box()%>">
-<a href="" onclick="return commentup(<%=commentlist.get(i).getC_number()%>)">수정</a>
-<a href=".my?command=commentdel&bnum=<%=commentlist.get(i).getB_number()%>&commentnum=<%=commentlist.get(i).getC_number()%>" onclick="return commentdel(<%=commentlist.get(i).getC_number()%>)">삭제</a>
+<div id="commentlist">
+<input type="text" class="com_writer" id="writer<%=commentlist.get(i).getC_number()%>" readonly value="<%=commentlist.get(i).getWriter()%>">
+<input type="text" class="com_cobox" id="cobox<%=commentlist.get(i).getC_number()%>" readonly value="<%=commentlist.get(i).getComment_box()%>">
+<a href="" id="com_update" onclick="return commentup(<%=commentlist.get(i).getC_number()%>)">수정</a>
+<a href=".my?command=commentdel&bnum=<%=commentlist.get(i).getB_number()%>&commentnum=<%=commentlist.get(i).getC_number()%>" id="com_delete" onclick="return commentdel(<%=commentlist.get(i).getC_number()%>)">삭제</a>
 
+</div>
 <%}%>
 </section>
 </body>

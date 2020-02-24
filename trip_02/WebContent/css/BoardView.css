@@ -1,0 +1,147 @@
+section{
+margin: auto;
+width: 60%;
+height: 1300px;
+left:10%;
+}
+
+.write_table{	
+position:relative;
+top:200px;
+font-size:13pt;
+border: solid 1px #cccccc;
+}
+
+.write_table th{
+	width:200px;
+	border: solid 1px #cccccc;
+	padding:20px;
+	text-align: center;
+}
+
+.write_table td{
+	width:1000px;
+	border: solid 1px #cccccc;
+	padding:20px;
+}
+
+#writer{border: solid 1px white;
+font-weight:bold;
+}
+
+#title{height:35px;}
+
+#comment_box{position:relative;
+
+width:1000px;
+height:120px;
+}
+
+#comments_btn{position:relative;
+right:40px;
+width:120px;
+height:120px;
+float:right;
+font-size:13pt;
+font-weight:bold;}
+
+h1{font-size:20pt;
+position:relative;
+top:280px;}
+
+.comments{
+position:relative;
+top:330px;
+}
+
+hr{position:relative;
+top:250px;}
+
+#commentlist{position:relative;
+top:400px;
+margin-bottom:50px;}
+
+.com_writer{
+font-weight:bold;
+font-size:14pt;
+border: solid 1px white;
+position:relative;
+left:20px;}
+
+.com_cobox{
+position:relative;
+left:-100px;
+width:800px;
+height:80px;}
+
+#com_update{
+position:relative;
+left:-60px;
+}
+
+#com_delete{
+position:relative;
+left:-50px;
+
+
+}
+
+#update{
+margin-top: 25px;
+    margin-left: 25px;
+    width: 100px;
+    border: 0;
+    background-color: #cccccc;
+    border-radius: 5px;
+    height: 40px;
+    color: white;
+    font-weight: bold;
+    font-size: 12pt;
+    cursor: pointer;
+    position:relative;
+    top:210px;
+    left:65%;}
+    
+#list{margin-top: 25px;
+    margin-left: 25px;
+    width: 100px;
+    border: 0;
+    background-color: #cccccc;
+    border-radius: 5px;
+    height: 40px;
+    color: white;
+    font-weight: bold;
+    font-size: 12pt;
+    cursor: pointer;
+    position:relative;
+    top:210px;
+    left: -1%;}
+    
+#delete{
+margin-top: 25px;
+    margin-left: 25px;
+    width: 100px;
+    border: 0;
+    background-color: #cccccc;
+    border-radius: 5px;
+    height: 40px;
+    color: white;
+    font-weight: bold;
+    font-size: 12pt;
+    cursor: pointer;
+    position:relative;
+    top:210px;
+    left:65%;}
+
+#contents{display:none;
+}
+
+#view{
+width:800px;
+height:500px;      
+}
+
+#cate_info{position:relative;
+font-size: 24pt;
+font-weight:bold;
+top: 150px;}

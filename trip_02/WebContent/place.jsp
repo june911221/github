@@ -43,9 +43,9 @@
 				<ul class="sideMenu">
 					<li><a href="CitySel.jsp" class="has-submenu"><span
 							class="fa fa-table"></span>도시</a></li>
-					<li><a href="thema.jsp"><span class="fa fa-sitemap"></span>테마</a></li>
-					<li><a href="place.jsp"><span class="fa fa-money"></span>명소</a></li>
-					<li><a href="food.jsp"><span class="fa fa-user-o"></span>맛집</a></li>
+					<li><a href="Thema.do"><span class="fa fa-sitemap"></span>테마</a></li>
+					<li><a href="place.jsp?category1=명소"><span class="fa fa-money"></span>명소</a></li>
+					<li><a href="food.jsp?category1=맛집"><span class="fa fa-user-o"></span>맛집</a></li>
 
 				</ul>
 			</div>
@@ -66,19 +66,17 @@
 			<button>검색</button>
 		</div>
 		<ul id="sub-menu">
-			<%
-				String category = request.getParameter("category1");
-				ArrayList<Food_placeDto> view = (ArrayList<Food_placeDto>) user.Food_placeDto(category);
-				/* out.println(category);*/
-				for (int i = 0; i < view.size(); i++) {
-			%>
+<%
+String category=request.getParameter("category1");
+ArrayList<Food_placeDto> view = (ArrayList<Food_placeDto>) user.Food_placeDto(category);
+for (int i = 0; i < view.size(); i++) {
+%>
 
-			<li id="list2">
-				<div class="wrapper2">
-					<div class="product-img">
-						<img src="img/<%=view.get(i).getPic()%>" height="210" width="200">
-
-						<style>
+<li id="list2">
+<div class="wrapper2">
+<div class="product-img">
+<img src="img/<%=view.get(i).getPic()%>" height="210" width="200">
+<style>
 div.ellip {
 	position: relative;
 	top: -20px;
@@ -95,7 +93,6 @@ div.ellip {
 					</div>
 					<div class="product-info">
 						<div class="product-text">
-
 							<h1><%=view.get(i).getTitle()%></h1>
 							<h2><%=view.get(i).getCityname()%></h2>
 							<div class='contentbox' style=''>
@@ -111,6 +108,7 @@ div.ellip {
 			</li>
 			<%
 				}
+			
 			%>
 		</ul>
 	</section>

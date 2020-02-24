@@ -13,7 +13,7 @@ public class JdbcUtil {
 		try {
 			Context initCtx = new InitialContext();
 			Context envCtx = (Context)initCtx.lookup("java:comp/env");
-			DataSource ds = (DataSource)envCtx.lookup("jdbc/MyS");
+			DataSource ds = (DataSource)envCtx.lookup("jdbc/MySQLDB");
 			con = ds.getConnection();
 			con.setAutoCommit(false);
 		} catch (Exception e) {

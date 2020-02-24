@@ -2,7 +2,7 @@
 <%@ page import="java.sql.*"%>
 <!DOCTYPE html>
 
-<link rel="stylesheet" href="css/signin.css">
+<link rel="stylesheet" href="css/signin.css?ver=1">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src='./js/Login.js'></script>
 
@@ -24,7 +24,7 @@
 <section>
 <form  method="post" id="Loginform" onsubmit="return login()">
 <div class="box">
-  <img class="logo" src="img/logo2.png" />
+<h1 id="login">LOGIN</h1>
   <input class="inputtext"placeholder="ID" name="userid" id="userid" type="text">
   <br/>
   <input class="inputtext" placeholder="Password" name="password" id="password" type="password">

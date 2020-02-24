@@ -13,22 +13,22 @@ public class CityDao {
 	Statement stmt=null;
 
 	public CityDao(){
-	try{//»ı¼ºÀÚ·Î µå¶óÀÌ¹ö È£Ãâ
+	try{//å ì™ì˜™å ì™ì˜™å ìŒ˜ë¤„ì˜™ å ì™ì˜™å ì™ì˜™è­´å ï¿½ í˜¸å ì™ì˜™
 		Class.forName("com.mysql.jdbc.Driver");
 	}catch(Exception e){
 	}
 }
 	
 	public Connection Drive(){
-	try{//DB¿¬°á
-	conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/dataex?useSSL=false&useUnicode=true&characterEncoding=utf8","root","123456789a");
+	try{//DBå ì™ì˜™å ì™ì˜™
+	conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/data?useSSL=false&useUnicode=true&characterEncoding=utf8","root","911221");
 	}catch(Exception e){
 		
 	}
 	return conn;
 }
 	
-	public void close() {//DB´İ´Â ÇÔ¼ö
+	public void close() {//DBå ìŒ¥ëŒì˜™ å ìŒ‰ì‡½ì˜™
 		try{
 		
 			

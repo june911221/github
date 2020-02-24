@@ -61,7 +61,7 @@ $(function(){
 		<script
 			src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 		<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
-		<script language="JavaScript" src="js/index.js" charset="UTF-8"></script>
+		<script language="JavaScript" src="js/index.js?ver=1" charset="UTF-8"></script>
 		<link rel="stylesheet" href="css/flight.css?ver=1">		
 		
 <div id="big_banner"><img src="img/bigbanner.jpg"></div>

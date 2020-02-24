@@ -7,9 +7,9 @@
 <html lang="en">
  <head>
   <meta charset="UTF-8">
-  <title>userinfo</title>
+  <title>userModify</title>
 <!-- CSS -->
-<link rel="stylesheet" href="css/usermodify.css">
+<link rel="stylesheet" href="css/userup.css">
 <!-- JS -->
 <script src="js/User.js"></script>
 <script src="js/address.js"></script>
@@ -33,7 +33,7 @@
  
  
   <section>
-  <jsp:useBean id="user" class="dao.UserDao"/>
+ <jsp:useBean id="user" class="dao.UserDao"/>
  <%
  String id=(String)session.getAttribute("ID");
  ArrayList<UserDto> us=user.UserList(id);
@@ -56,14 +56,23 @@
 	 addr2="";
  }
  %>
-<!--   사이드메뉴 -->
-
 
 <!-- 메인배너   -->
 <div class="mainbox" >
 <img src="img/08.jpg"width="100%" height="500"/>
 </div>
+<!--   사이드메뉴 -->
+<aside>
+<ul class="note-wrap note" style="list-style-type:none">
 
+ <li align="left", list style="none"><a href="User.jsp">회원정보수정</a></li>
+ <li align="left"><a href="#">스크랩</a></li>
+ <li align="left"><a href="Air.jsp">항공예약확인/취소</a></li>
+ <li align="left"><a href="#">작성 게시물 관리</a></li>
+ <li align="left"><a href="UserDelete.jsp">회원탈퇴</a></li>
+ </ul>
+ </aside> 
+ 
 <div id="in">
 <h1>회원정보 수정</h1><br><br>
 <%=name%> 님의 회원가입 정보입니다.

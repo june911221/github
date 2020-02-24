@@ -17,16 +17,16 @@ public class CommentInsert implements Cominterface {
 	@Override
 	public String showData(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
-		ActionCommentInsert mode = ActionCommentInsert.instance();//´ñ±Û¾²±â °´Ã¼»ý¼º
-		
-		String comment=new String(request.getParameter("comment_box").getBytes("8859_1"),"UTF-8");//°Ô½Ã±Û³»¿ëÀ» ºÒ·¯¿Í¼­ ÇÑ±ÛÀÌ ±úÁö´Â°É º¸¾ÈÈÄ º¯¼öÁöÁ¤
-		List<CommentDto> list = null;//List<CommentDto> °´Ã¼ »ý¼ºÈÄ   null°ªÀ¸·Î ÃÊ±âÈ­
-		CommentDto li=new CommentDto();//CommentDto °´Ã¼»ý¼º
-		li.setB_number(Integer.parseInt(request.getParameter("bnum")));//CommentDto ¿¡ °Ô½Ã±Û ¹øÈ£ ¼ÂÆÃ
-		li.setComment_box(comment);//CommentDto ¿¡ ´ñ±Û ¼ÂÆÃ
-		li.setWriter(request.getParameter("commentwriter"));//CommentDto ¿¡ ÀÛ¼ºÀÚ ¼ÂÆÃ
+		ActionCommentInsert mode = ActionCommentInsert.instance();//ï¿½ï¿½Û¾ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ï¿½ï¿½
+		System.out.print("d");
+		String comment=new String(request.getParameter("comment_box").getBytes("8859_1"),"UTF-8");//ï¿½Ô½Ã±Û³ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½Í¼ï¿½ ï¿½Ñ±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Â°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		List<CommentDto> list = null;//List<CommentDto> ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½   nullï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­
+		CommentDto li=new CommentDto();//CommentDto ï¿½ï¿½Ã¼ï¿½ï¿½ï¿½ï¿½
+		li.setB_number(Integer.parseInt(request.getParameter("bnum")));//CommentDto ï¿½ï¿½ ï¿½Ô½Ã±ï¿½ ï¿½ï¿½È£ ï¿½ï¿½ï¿½ï¿½
+		li.setComment_box(comment);//CommentDto ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		li.setWriter(request.getParameter("commentwriter"));//CommentDto ï¿½ï¿½ ï¿½Û¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			
-		mode.commentInsert(li); //´ñ±Û¾²±â ¸Þ¼Òµå ¿¡ º¯¼ö·Î li °´Ã¼ º¸³»ÁØ´Ù
+		mode.commentInsert(li); //ï¿½ï¿½Û¾ï¿½ï¿½ï¿½ ï¿½Þ¼Òµï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ li ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½
 		
 		return ".my?command=view&num="+li.getB_number();
 	}

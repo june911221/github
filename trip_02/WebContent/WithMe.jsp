@@ -19,8 +19,13 @@
  <head>
   <meta charset="UTF-8">
   <title>WithMe</title>
+
+
+
+
  </head>
  <body>
+
 
   <%
   	String ses=null;
@@ -38,22 +43,35 @@
  
  
  <section>
- <link rel="stylesheet" href="css/withme.css">
-<script>
-function writepage(id){//글쓰기누를시 페이지이동
-	if(id==null){
-		alert("로그인이 필요합니다.");
-		return false;
-	} 
-	location.href='WithMeWrite.jsp';
-	return true;
-}
-</script>
-
+ <!-- 메인배너   -->
+ <link rel="stylesheet" href="css/withme.css?ver=1.4">
 <!-- 메인배너   -->
 <div class="mainbox" >
 <img src="img/08.jpg"width="100%" height="500"/></div>
 
+<div class="container">
+
+			<!--     SIDE AREA -->
+			<div class="sideArea">
+
+
+				<ul class="sideMenu">
+					<li><a href="WithMe.do" class="has-submenu"><span
+							class="fa fa-table"></span>함께해요</a></li>
+					<li><a href="infoandtip.my?command=list&category=hugi"><span class="fa fa-sitemap"></span>여행후기</a></li>
+					<li><a href="infoandtip.my?command=list&category=infoandtip"><span class="fa fa-money"></span>정보&팁</a></li>
+					<li><a href="infoandtip.my?command=list&category=qa"><span class="fa fa-user-o"></span>Q&A</a></li>
+
+				</ul>
+			</div>
+			<!--     SIDE AREA -->
+
+		</div>
+		</div>
+
+		<h2 id="id">함께해요 게시판</h2>
+		<br> <br>
+		<hr>
 <div id="withmebox">
 <%
 request.setCharacterEncoding("UTF-8");
@@ -63,7 +81,6 @@ String path="./upload/";
 if(articleList != null && listCount > 0){
 for(int i=0; i<list.size(); i++){
 	String st="모집중";
-//out.print(path+list.get(i).getPhoto());
 if(list.get(i).getPeoplecount()==list.get(i).getPeople()){
 	st="마감";
 }
@@ -83,17 +100,9 @@ if(list.get(i).getPeoplecount()==list.get(i).getPeople()){
   </div>
 </div>
 <%} %>
-<script>
-function sessionIDcheck(id){
-	if(id==null){
-		alert("로그인이 필요합니다");
-		return false;
-	}
-	return true;
-}
-</script>
 </div>
-<input type=button onclick="return writepage(<%=ses%>)" name="write" id="btnwrite" value="글쓰기"/>
+<input type="hidden" id="sessionID" value="${ID}"/>
+<input type="button" onclick="Write()" name="write" id="btnwrite" value="글쓰기" />
 <div id="pageList">
 		<%if(nowPage<=1){ %>
 		
@@ -122,12 +131,30 @@ function sessionIDcheck(id){
 	{
 	%>
 	<div id="emptyArea">등록된 글이 없습니다.</div>
-	<input type="hidden" name="sessioncheck" id="sessioncheck" value=<%=ses%>>
-    <input type=button onclick="writepage()" name="write" id="btnwrite" value="글쓰기"/>
+    <input type="button" onclick="Write()" name="write" id="btnwrite" value="글쓰기" />
 	<%
 	}
 %>
+<script>
+function sessionIDcheck(id){
+	if(id==null){
+		alert("로그인이 필요합니다");
+		return false;
+	}
+	return true;
+}
 
+function Write(){//글쓰기누를시 페이지이동
+	var id=$("#sessionID").val();
+	if(id!=""){
+		location.href="WithMeWrite.jsp";
+		return true;
+	}
+	alert("로그인이 필요합니다");
+	return false;
+}
+</script>
  </section>
  </body>
+
 </html>

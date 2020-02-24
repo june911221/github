@@ -1,6 +1,6 @@
 <Context>
 	<Resource
-		name="jdbc/MyS"
+		name="jdbc/MySQLDB"
 		auth="Container"
 		type="javax.sql.DataSource"
 		username="root"

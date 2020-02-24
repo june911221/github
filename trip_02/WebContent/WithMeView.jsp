@@ -19,7 +19,7 @@ String pic4=view.getPic4();
 Date Writedate=view.getWritedate();
 Date limitdate=view.getLimitdate();
 String writer=view.getWriter();
-String localcontect=view.getLocalcontect();
+String localcontenct=view.getLocalcontenct();
 String contents=view.getContents();
 int num=view.getNum();
 String Page = (String)request.getParameter("page");
@@ -120,7 +120,7 @@ int check = (int)request.getAttribute("check");
           <label>신청인원</label>
         </div>
         <div class="inputContainer">
-          <input type="text" class="taskName" placeholder="연락가능한 연락처를 적어주세요" name="localcontect" id="localcontect" readonly value="<%=localcontect%>">
+          <input type="text" class="taskName" placeholder="연락가능한 연락처를 적어주세요" name="localcontenct" id="localcontenct" readonly value="<%=localcontenct%>">
           <label>현지연락처</label>
         </div>				
 	    <div class="inputContainer half last right">

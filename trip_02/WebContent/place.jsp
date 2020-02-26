@@ -32,7 +32,7 @@
 	<section>
 
 		<div class="mainbox">
-			<img src="img/08.jpg" width="100%" height="500" />
+			<img src="img/panorama_newyork.jpg" width="100%" height="500" />
 		</div>
 		<div class="container">
 
@@ -98,7 +98,7 @@ div.ellip {
 							<div class='contentbox' style=''>
 								<%="<div class='ellip' style='width:150px;'>" + view.get(i).getContents() + "</div>"%>
 							</div>
-							<div></div>
+							
 							<div class="product-price-btn">
 								<a><button type="button"
 										onclick="location.href='placedetail.jsp?num=<%=view.get(i).getNum()%>'">바로가기</button></a>

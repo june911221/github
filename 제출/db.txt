@@ -1,0 +1,33 @@
+CREATE TABLE `withme` (
+  `num` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(50) NOT NULL,
+  `date` date NOT NULL,
+  `people` int(11) NOT NULL,
+  `lim` varchar(200) DEFAULT NULL,
+  `photo` varchar(200) NOT NULL,
+  `pic1` varchar(200) DEFAULT NULL,
+  `pic2` varchar(200) DEFAULT NULL,
+  `pic3` varchar(200) DEFAULT NULL,
+  `pic4` varchar(200) DEFAULT NULL,
+  `writedate` date NOT NULL,
+  `limitdate` date NOT NULL,
+  `writer` varchar(50) NOT NULL,
+  `localcontenct` varchar(100) NOT NULL,
+  `contents` longtext NOT NULL,
+  PRIMARY KEY (`num`),
+  KEY `w_id_idx` (`writer`),
+  CONSTRAINT `w_id` FOREIGN KEY (`writer`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8
+
+
+
+CREATE TABLE `with_user` (
+  `id` varchar(50) NOT NULL,
+  `num` int(11) NOT NULL,
+  `tel` varchar(50) NOT NULL,
+  `count` int(11) NOT NULL,
+  KEY `w_id_idx` (`id`),
+  KEY `w_num_idx` (`num`),
+  CONSTRAINT `wu_id` FOREIGN KEY (`id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `wu_num` FOREIGN KEY (`num`) REFERENCES `withme` (`num`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8

@@ -3,8 +3,14 @@ package vo;
 public class Food_placeDto {
 	int num;
 	
-	String title,contents,pic,place,tel,time,category,cityname;
+	String title,contents,pic,place,tel,time,category,cityname,subtitle;
 	
+	public String getSubtitle() {
+		return subtitle;
+	}
+	public void setSubtitle(String subtitle) {
+		this.subtitle = subtitle;
+	}
 	public int getNum() {
 		return num;
 	}

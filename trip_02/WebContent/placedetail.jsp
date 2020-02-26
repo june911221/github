@@ -16,6 +16,7 @@
 	String place = dto.getPlace();
 	String tel = dto.getTel();
 	String time = dto.getTime();
+	String subtitle = dto.getSubtitle();
 	String category = dto.getCategory();
 	String cityname = dto.getCityname();
 %>
@@ -172,6 +173,9 @@ footer {
 				<tr>
 					<td colspan="2"><span><img src=img/text1.PNG
 							style="width: 30px; height: 30px;"> 본문 내용<br></td>
+				</tr>
+				<tr>
+					<td colspan="2" style="text-align: left; color:gray; "><h2><%=subtitle%></h2><br><br></td>
 				</tr>
 				<tr>
 					<td colspan="2" style="text-align: left;"><%=contents%> </span></td>

@@ -64,6 +64,7 @@ public class Food_placeDao {
 		    	dto.setCategory(rs.getString("category"));
 				dto.setTitle(rs.getString("title"));
 				dto.setCityname(rs.getString("cityname"));
+				dto.setSubtitle(rs.getString("subtitle"));
 				dto.setContents(rs.getString("contents"));
 				dto.setTel(rs.getString("tel"));
 				dto.setPic(rs.getString("pic"));
@@ -92,6 +93,7 @@ public class Food_placeDao {
 				dto.setCategory(rs.getString("category"));
 				dto.setTitle(rs.getString("title"));
 				dto.setCityname(rs.getString("cityname"));
+				dto.setSubtitle(rs.getString("subtitle"));
 				dto.setContents(rs.getString("contents"));
 				dto.setTel(rs.getString("tel"));
 				dto.setPic(rs.getString("pic"));

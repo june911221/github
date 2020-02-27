@@ -3,8 +3,20 @@ package vo;
 public class Food_placeDto {
 	int num;
 	
-	String title,contents,pic,place,tel,time,category,cityname,subtitle;
+	String title,contents,pic,place,tel,time,category,cityname,subtitle,lat,lng ;
 	
+	public String getLat() {
+		return lat;
+	}
+	public void setLat(String lat) {
+		this.lat = lat;
+	}
+	public String getLng() {
+		return lng;
+	}
+	public void setLng(String lng) {
+		this.lng = lng;
+	}
 	public String getSubtitle() {
 		return subtitle;
 	}

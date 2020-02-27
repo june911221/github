@@ -19,11 +19,15 @@
 	String subtitle = dto.getSubtitle();
 	String category = dto.getCategory();
 	String cityname = dto.getCityname();
+	String lat = dto.getLat();
+	String lng = dto.getLng();
 %>
 
 <!DOCTYPE html>
 <html>
 <head>
+<meta name="viewport" content="initial-scale=1.0">
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
 <meta charset="UTF-8">
 <title>명소</title>
 <style>
@@ -107,6 +111,13 @@ footer {
 	width: 100%;
 	background: #D6503E;
 }
+  #map {
+        height: 500px;
+        width:800px;
+        position:relative;
+        top:100px;
+        left:650px;
+      }
 </style>
 </head>
 <body>
@@ -181,6 +192,19 @@ footer {
 					<td colspan="2" style="text-align: left;"><%=contents%> </span></td>
 				</tr>
 			</table>
+			    <div id="map"></div>
+    <script>
+      var map;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: <%=lat%>, lng: <%=lng%>},
+          zoom: 18
+        });
+      }
+     
+    </script>
+     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZ_RlT_AbwseK450BB2gyyyf2EHlJ9a7E&callback=initMap"
+    async defer></script>
 	</section>
 	<footer>
 		제작자 : 박하영, 홍준영, 한상혁<br> copyright © TOURTIPS Inc. All rights

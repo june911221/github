@@ -71,6 +71,8 @@ public class Food_placeDao {
 				dto.setPlace(rs.getString("place"));
 				dto.setTime(rs.getString("time"));
 				dto.setNum(rs.getInt("num"));
+				dto.setLat(rs.getString("lat"));
+				dto.setLng(rs.getString("lng"));
 		    }
 		    
 		    stmt.close();
@@ -100,6 +102,8 @@ public class Food_placeDao {
 				dto.setPlace(rs.getString("place"));
 				dto.setTime(rs.getString("time"));
 				dto.setNum(rs.getInt("num"));
+				dto.setLat(rs.getString("lat"));
+				dto.setLng(rs.getString("lng"));
 				fp.add(dto);
 			}
 		

@@ -288,7 +288,7 @@ String path="./upload/";
 if(articleList != null && listCount > 0){
 for(int i=0; i<list.size(); i++){%>
 <div class="view">
-  <img src="<%=path%>/<%=list.get(i).getPic()%>" width="100%" height="100%"/>
+  <img src="<%-- <%=path%> --%>img/<%=list.get(i).getPic()%>" width="100%" height="100%"/>
   <div class="mask">
     <h2><%=list.get(i).getTitle()%></h2>
     <p><%=list.get(i).getContents()%></p>

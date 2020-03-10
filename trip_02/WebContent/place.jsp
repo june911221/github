@@ -11,7 +11,7 @@
 <head>
 <meta charset="UTF-8">
 <title>명소</title>
-<link rel="stylesheet" href="css/place.css?ver=1.44">
+<link rel="stylesheet" href="css/place.css?ver=1.5">
 </head>
 
 <body>
@@ -52,7 +52,7 @@
 			<!--     SIDE AREA -->
 
 		</div>
-		</div>
+
 
 
 

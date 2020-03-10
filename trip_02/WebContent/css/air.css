@@ -7,6 +7,57 @@ section{margin: auto;
  width:100%;
  height:1400px;
  }
+ 
+ /* SIDE CSS */
+.sideArea {
+	width: 200px;
+	min-width: 200px;
+	background: /* #c0c0c0 */ /* #ADCDED */ rgba( 173, 205, 237, 0.2);
+	position: absolute;
+	top: 715px;
+	bottom: 0;
+	left: 0;
+	transition: 0.5s;
+	height: 1370px;
+}
+
+.container.is-click .sideArea {
+	left: -200px;
+}
+
+.sideArea li>a {
+	display: block;
+	color: black;
+	font-weight: bold;
+	font-size: 12pt;
+	padding: 1em;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+	margin-bottom: 40px;
+	opacity: 1.0;
+}
+
+.sideArea li>a:hover {
+	background: rgba(255, 255, 255, 0.1);
+}
+
+
+.submenu {
+	display: none;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+	margin-top: 170px;
+}
+
+.submenu li>a {
+	padding-left: 2em;
+	border-bottom: none;
+}
+
+.sideMenu {
+	border-top: 1px solid rgba(255, 255, 255, 0.2);
+	margin-top: 200px;
+}
+/* ~사이드 메뉴 */
+ 
 /*사이드메뉴*/
 
  aside {

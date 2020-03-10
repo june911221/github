@@ -27,7 +27,7 @@ if(addr2==null){
   <meta charset="UTF-8">
   <title>Mypage</title>
   <!-- CSS -->
-  <link rel="stylesheet" href="css/mypage.css">
+  <link rel="stylesheet" href="css/mypage.css?ver=1.0">
 	<!-- JS -->
 	<script src="js/jquery-1.11.3.min.js"></script>
 	<script src="js/Mypages.js"></script>
@@ -46,17 +46,34 @@ if(addr2==null){
  <%} %>
  
   <section>
+  		<div class="container">
+			<!--   사이드메뉴 -->
+			<div class="sideArea">
+
+
+				<ul class="sideMenu">
+					<li><a href="User.jsp" class="user"><span
+							class="fa fa-mom"></span>회원정보수정</a></li>
+					<li><a href="#" class="scrap"><span class="fa fa-dad"></span>스크랩</a></li>
+					<li><a href="Air.jsp" class="flight"><span
+							class="fa fa-good"></span>항공예약확인/취소</a></li>
+					<li><a href="#" class="list"><span class="fa fa-god"></span>작성
+							게시물 관리</a></li>
+					<li><a href="UserDelete.jsp"><span class="fa fa-ggood"></span>회원탈퇴</a></li>
+				</ul>
+			</div>
+		</div>
 <!--   사이드메뉴 -->
-<aside>
+<!-- <aside>
 <ul class="note-wrap note" style="list-style-type:none">
 
- <li align="left", list style="none"><a href="User.jsp">회원정보수정</a></li>
+ <li align="left"><a href="User.jsp">회원정보수정</a></li>
  <li align="left"><a href="#">스크랩</a></li>
  <li align="left"><a href="Air.jsp">항공예약확인/취소</a></li>
  <li align="left"><a href="#">작성 게시물 관리</a></li>
  <li align="left"><a href="UserDelete.jsp">회원탈퇴</a></li>
  </ul>
- </aside> 
+ </aside>  -->
 
 <!-- 메인배너   -->
 <div class="mainbox" >

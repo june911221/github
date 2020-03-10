@@ -29,7 +29,7 @@ String path="./upload/";
  <%} %>
  
  <section>
-<img src="<%=path%>/<%=pic%>" width="300" height="300">
+<img src="<%-- <%=path%> --%>img/<%=pic%>" width="300" height="300">
 카테고리:<input type="text" value="<%=category%>" readonly>
 제목:<input type="text" value="<%=title%>">
 내용:<input type="text" value="<%=contents%>">

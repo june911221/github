@@ -23,7 +23,7 @@
  <%} %>
  
   <!-- CSS -->
-<link rel="stylesheet" href="css/air.css">
+<link rel="stylesheet" href="css/air.css?ver=1.0">
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	<!-- JS -->
@@ -34,17 +34,23 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
  
   <section>
-<!--   사이드메뉴 -->
-<aside>
-<ul class="note-wrap note" style="list-style-type:none">
+  <div class="container">
+			<!--   사이드메뉴 -->
+			<div class="sideArea">
 
- <li align="left", list style="none"><a href="User.jsp">회원정보수정</a></li>
- <li align="left"><a href="#">스크랩</a></li>
- <li align="left"><a href="Air.jsp">항공예약확인/취소</a></li>
- <li align="left"><a href="#">작성 게시물 관리</a></li>
- <li align="left"><a href="UserDelete.jsp">회원탈퇴</a></li>
- </ul>
- </aside> 
+
+				<ul class="sideMenu">
+					<li><a href="User.jsp" class="user"><span
+							class="fa fa-mom"></span>회원정보수정</a></li>
+					<li><a href="#" class="scrap"><span class="fa fa-dad"></span>스크랩</a></li>
+					<li><a href="Air.jsp" class="flight"><span
+							class="fa fa-good"></span>항공예약확인/취소</a></li>
+					<li><a href="#" class="list"><span class="fa fa-god"></span>작성
+							게시물 관리</a></li>
+					<li><a href="UserDelete.jsp"><span class="fa fa-ggood"></span>회원탈퇴</a></li>
+				</ul>
+			</div>
+		</div>
 
 <!-- 메인배너   -->
 <div class="mainbox" >

@@ -98,7 +98,8 @@ hr {
 	height: 700px;
 	position: absolute;
 	left: 400px;
-	margin-top: 90px;
+	top:750px;
+	margin-top: 200px;
 }
 
 #sub-menu>li {

@@ -11,7 +11,7 @@
 <head>
 <meta charset="UTF-8">
 <title>맛집</title>
-<link rel="stylesheet" href="css/place.css?ver=1.6">
+<link rel="stylesheet" href="css/place.css?ver=1.4">
 </head>
 <body>
 	<%

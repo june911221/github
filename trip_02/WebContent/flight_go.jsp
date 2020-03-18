@@ -1,3 +1,6 @@
+<%@page import="java.sql.Date"%>
+<%@page import="vo.AirDto"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -92,11 +95,23 @@ $(document).ready (function () {
 		<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 		<!-- js -->
 		<script language="JavaScript" src="js/index.js" charset="UTF-8"></script>
+<%
 
+ArrayList<AirDto>list=(ArrayList<AirDto>)request.getAttribute("data");
+for(int i=0; i<list.size(); i++){
+	if(dcity==autocomplete){
+	Date dday=list.get(i).getDday();
+	String dcity=list.get(i).getDcity();
+	Date aday=list.get(i).getAday();
+	String acity=list.get(i).getAcity();
+	String airline=list.get(i).getAirline();
+	}
+}
+%>
 		
 		<img src="img/UK_banner.png">
 	<div id="air_box"> 
-	
+
 	<!-- 라디오버튼 -->
 
 	<label class="box-radio-input">
@@ -210,9 +225,9 @@ if(seat.equals("옵션1")){
       <fieldset class="options">
 		
 		<h2 class="flight-info">
-          <span>2020년 2월 12일 (수)</span>    
-          <span>서울/인천(ICN) <span aria-hidden="true" class="usdot-arrow"> → </span> 
-          <span class="offscreen">&nbsp;&nbsp;</span> 런던(LHR) - 히드로  </span>
+          <span><%=request.getParameter("dal")%></span>    
+          <span><%=request.getParameter("autocomplete")%> <span aria-hidden="true" class="usdot-arrow"> → </span> 
+          <span class="offscreen">&nbsp;&nbsp;</span> <%=request.getParameter("autocomplete2")%> </span>
           </h2>
          
 		<ul>
@@ -242,8 +257,8 @@ if(seat.equals("옵션1")){
       <tr>
       <th scope="row">대한 항공</th>
       <td class="flight">
-      <dl><dt>KE907 </dt><dd>서울/인천(ICN)<br><span aria-hidden="true"> →
-       &nbsp;&nbsp;런던(LHR) - 히드로 </dd>
+      <dl><dt>KE907 </dt><dd><%=request.getParameter("autocomplete")%><br><span aria-hidden="true"> →</span>
+       &nbsp;&nbsp;<%=request.getParameter("autocomplete2")%> </dd>
       </dl></td><td>13:00
       </td><td>16:30</td><td> 
       <div>885,800</div></td></tr>
@@ -278,8 +293,8 @@ if(seat.equals("옵션1")){
       <tr>
       <th>아시아나 항공</th>
       <td class="flight">
-      <dl><dt>OZ521 </dt><dd>서울/인천(ICN)<br> → 
-     &nbsp;&nbsp;런던(LHR) - 히드로 </dd>
+      <dl><dt>OZ521 </dt><dd><%=request.getParameter("autocomplete")%><br> → 
+     &nbsp;&nbsp;<%=request.getParameter("autocomplete2")%> </dd>
       </dl></td><td>14:30
       </td><td>18:00</td><td> 
       <div>940,700</div></td></tr>
@@ -324,9 +339,9 @@ if(seat.equals("옵션1")){
       <fieldset class="options">
 		
 		<h2 class="flight-info">
-          <span>2020년 2월 18일 (화)</span>    
-          <span>런던(LHR) - 히드로  <span> → </span> 
-          <span>&nbsp;&nbsp;</span>서울/인천(ICN)</span>
+          <span><%=request.getParameter("dal2")%></span>    
+          <span><%=request.getParameter("autocomplete2")%> <span> → </span> 
+          <span>&nbsp;&nbsp;</span><%=request.getParameter("autocomplete")%></span>
           </h2>
          
 		<ul>
@@ -356,8 +371,8 @@ if(seat.equals("옵션1")){
       <tr>
       <th scope="row">대한 항공</th>
       <td class="flight">
-      <dl><dt>KE907 </dt><dd>런던(LHR) - 히드로<br>→
-       &nbsp;&nbsp;서울/인천(ICN) </dd>
+      <dl><dt>KE907 </dt><dd><%=request.getParameter("autocomplete2")%><br>→
+       &nbsp;&nbsp;<%=request.getParameter("autocomplete")%></dd>
       </dl></td><td>13:00
       </td><td>16:30</td><td> 
       <div>885,800</div></td></tr>
@@ -392,8 +407,8 @@ if(seat.equals("옵션1")){
       <tr>
       <th>아시아나 항공</th>
       <td>
-      <dl><dt>OZ521 </dt><dd>런던(LHR) - 히드로<br>→
-       &nbsp;&nbsp;서울/인천(ICN) </dd>
+      <dl><dt>OZ521 </dt><dd><%=request.getParameter("autocomplete2")%><br>→
+       &nbsp;&nbsp;<%=request.getParameter("autocomplete")%> </dd>
       </dl></td><td>14:30
       </td><td>18:00</td><td> 
       <div>940,700</div></td></tr>

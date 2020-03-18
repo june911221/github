@@ -10,6 +10,7 @@ import vo.CommentDto;
 
 public class CommentUpdate implements Cominterface {
 	static CommentUpdate ser = new CommentUpdate();
+
 	public static CommentUpdate instance() {
 		return ser;
 	}
@@ -17,18 +18,19 @@ public class CommentUpdate implements Cominterface {
 	@Override
 	public String showData(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
-		ActionCommentUpdate mode = ActionCommentUpdate.instance();//´ñ±Û¾²±â °´Ã¼»ı¼º
+		ActionCommentUpdate mode = ActionCommentUpdate.instance();// ëŒ“ê¸€ì“°ê¸° ê°ì²´ìƒì„±
+
+		String comment = new String(request.getParameter("comment_box").getBytes("8859_1"), "UTF-8");// ëŒ“ê¸€ ë‚´ìš©ì„ ë¶ˆëŸ¬ì™€ì„œ í•œê¸€ì´
 		
-		String comment=new String(request.getParameter("comment_box").getBytes("8859_1"),"UTF-8");//´ñ±Û ³»¿ëÀ» ºÒ·¯¿Í¼­ ÇÑ±ÛÀÌ ±úÁö´Â°É º¸¾ÈÈÄ º¯¼öÁöÁ¤
-		
-			
-		List<CommentDto> list = null;//List<CommentDto> °´Ã¼ »ı¼ºÈÄ   null°ªÀ¸·Î ÃÊ±âÈ­
-		CommentDto li=new CommentDto();//CommentDto °´Ã¼»ı¼º
-		li.setC_number(Integer.parseInt(request.getParameter("commnetnum")));//CommentDto ¿¡ °Ô½Ã±Û ¹øÈ£ ¼ÂÆÃ
-		li.setComment_box(comment);//CommentDto ¿¡ ´ñ±Û ¼ÂÆÃ
-		
-		mode.commentUpdate(li); //´ñ±Û¾²±â ¸Ş¼Òµå ¿¡ º¯¼ö·Î li °´Ã¼ º¸³»ÁØ´Ù
-		
-		return ".my?command=view&num="+request.getParameter("bnum");//num=°Ô½Ã±Û¹øÈ£ °Ô½Ã±Û¹øÈ£¸¦ °¡Áö°í °Ô½ÃÆÇView ÆäÀÌÁö·Î´Ù ½Ãµ¿
+		int page = Integer.parseInt(request.getParameter("page"));	//í˜ì´ì§€ë³€ìˆ˜
+
+		List<CommentDto> list = null;// List<CommentDto> ê°ì²´ ìƒì„±í›„ nullê°’ìœ¼ë¡œ ì´ˆê¸°í™”
+		CommentDto li = new CommentDto();// CommentDto ê°ì²´ìƒì„±
+		li.setC_number(Integer.parseInt(request.getParameter("commnetnum")));// CommentDto ì— ê²Œì‹œê¸€ ë²ˆí˜¸ ì…‹íŒ…
+		li.setComment_box(comment);// CommentDto ì— ëŒ“ê¸€ ì…‹íŒ…
+
+		mode.commentUpdate(li); // ëŒ“ê¸€ì“°ê¸° ë©”ì†Œë“œ ì— ë³€ìˆ˜ë¡œ li ê°ì²´ ë³´ë‚´ì¤€ë‹¤
+
+		return ".my?command=view&num=" + request.getParameter("bnum")+"&page="+page;// num=ê²Œì‹œê¸€ë²ˆí˜¸ ê²Œì‹œê¸€ë²ˆí˜¸ë¥¼ ê°€ì§€ê³  ê²Œì‹œíŒView í˜ì´ì§€ë¡œë‹¤ ì‹œë™
 	}
 }

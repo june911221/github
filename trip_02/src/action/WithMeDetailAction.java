@@ -9,33 +9,35 @@ import svc.WithMeSinchungCheckService;
 import vo.ActionForward;
 import vo.WithMeBean;
 
- public class WithMeDetailAction implements Action {
-	 
-	 public ActionForward execute(HttpServletRequest request,HttpServletResponse response) throws Exception{ 
-		HttpSession httpSession = request.getSession(true);//¼¼¼ÇÀ» °¡Á®¿Â´Ù
-		 
-		int num=Integer.parseInt(request.getParameter("num"));//ÆÄ¶ó¹ÌÅÍ·Î ³Ñ¾î¿Â °Ô½Ã±Û ¹øÈ£¸¦ Integer¸¦ ÅëÇØ intÅ¸ÀÔÀ¸·Î Çüº¯È¯ÈÄ º¯¼ö num¿¡ ¼ÂÆÃ
-		String page = request.getParameter("page"); //º¸°íÀÖ´ø °Ô½ÃÆÇ ÆäÀÌÁö¸¦ º¯¼ö page¿¡ ¼ÂÆÃ
-						
-		WithMeDetailService DetailService = new WithMeDetailService();//WithMeDetailService °´Ã¼»ı¼º
-		WithMeSinchungCheckService checkservice = new WithMeSinchungCheckService();//WithMeSinchungCheckService °´Ã¼ »ı¼º ½ÅÃ»ÀÎ¿ø Ã¼Å©¼­ºñ½ºÀÌ´Ù
-		
-		WithMeBean article = DetailService.getArticle(num);//WithMeDetailService Å¬·¡½º¿¡ °Ô½Ã±Û ¹øÈ£¸¦ º¸³» °Ô½Ã±Û ³»¿ëÀ» WithMeBean °´Ã¼¿¡  ´ã¾ÆµĞ´Ù 
-		
-		String id=(String) httpSession.getAttribute("ID");//¼¼¼Ç°ª¿¡¼­ ·Î±×ÀÎ ID¸¦  °¡Á®¿ÂÈÄ º¯¼ö id¿¡ ¼ÂÆÃ
-		
-		int check = 0;//·Î±×ÀÎ ID¸¦ °¡Áö°í ½ÅÃ»ÀÎ¿øÀÌ ÀÖ´ÂÁö Ã¼Å©ÇÏ±âÀ§ÇØ º¯¼ö check »ı¼ºÈÄ °ªÀº 0À»ÁØ´Ù
-		
-		if(id!=null) {
-		check = checkservice.sinchungCheck(num, id);//½ÅÃ»ÀÎ¿øÀ» Ã¼Å©ÇØ¼­ °ªÀ» ¹İÈ¯¹Ş´Â´Ù ¸¸¾à ·Î±×ÀÎID°¡ ÀÌ¹Ì ÇØ´ç °Ô½Ã±Û¿¡ ½ÅÃ»À» Çß´Ù¸é °ªÀº 1À» ¸®ÅÏ¹Ş´Â´Ù
+public class WithMeDetailAction implements Action {
+
+	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		HttpSession httpSession = request.getSession(true);// ì„¸ì…˜ì„ ê°€ì ¸ì˜¨ë‹¤
+
+		int num = Integer.parseInt(request.getParameter("num"));// íŒŒë¼ë¯¸í„°ë¡œ ë„˜ì–´ì˜¨ ê²Œì‹œê¸€ ë²ˆí˜¸ë¥¼ Integerë¥¼ í†µí•´ intíƒ€ì…ìœ¼ë¡œ í˜•ë³€í™˜í›„ ë³€ìˆ˜ numì— ì…‹íŒ…
+		String page = request.getParameter("page"); // ë³´ê³ ìˆë˜ ê²Œì‹œíŒ í˜ì´ì§€ë¥¼ ë³€ìˆ˜ pageì— ì…‹íŒ…
+
+		WithMeDetailService DetailService = new WithMeDetailService();// WithMeDetailService ê°ì²´ìƒì„±
+		WithMeSinchungCheckService checkservice = new WithMeSinchungCheckService();// WithMeSinchungCheckService ê°ì²´ ìƒì„±
+																					// ì‹ ì²­ì¸ì› ì²´í¬ì„œë¹„ìŠ¤ì´ë‹¤
+
+		WithMeBean article = DetailService.getArticle(num);// WithMeDetailService í´ë˜ìŠ¤ì— ê²Œì‹œê¸€ ë²ˆí˜¸ë¥¼ ë³´ë‚´ ê²Œì‹œê¸€ ë‚´ìš©ì„ WithMeBean ê°ì²´ì—
+															// ë‹´ì•„ë‘”ë‹¤
+
+		String id = (String) httpSession.getAttribute("ID");// ì„¸ì…˜ê°’ì—ì„œ ë¡œê·¸ì¸ IDë¥¼ ê°€ì ¸ì˜¨í›„ ë³€ìˆ˜ idì— ì…‹íŒ…
+
+		int check = 0;// ë¡œê·¸ì¸ IDë¥¼ ê°€ì§€ê³  ì‹ ì²­ì¸ì›ì´ ìˆëŠ”ì§€ ì²´í¬í•˜ê¸°ìœ„í•´ ë³€ìˆ˜ check ìƒì„±í›„ ê°’ì€ 0ì„ì¤€ë‹¤
+
+		if (id != null) {
+			check = checkservice.sinchungCheck(num, id);// ì‹ ì²­ì¸ì›ì„ ì²´í¬í•´ì„œ ê°’ì„ ë°˜í™˜ë°›ëŠ”ë‹¤ ë§Œì•½ ë¡œê·¸ì¸IDê°€ ì´ë¯¸ í•´ë‹¹ ê²Œì‹œê¸€ì— ì‹ ì²­ì„ í–ˆë‹¤ë©´ ê°’ì€ 1ì„ ë¦¬í„´ë°›ëŠ”ë‹¤
 		}
-				
-		ActionForward forward = new ActionForward();//¾×¼Ç °´Ã¼ »ı¼º
-		request.setAttribute("page", page);//page=page
-		request.setAttribute("check", check);//article=article
-	   	request.setAttribute("article", article);//article=article
-   		forward.setPath("/WithMeView.jsp");//¾×¼Ç ÆäÀÌÁö ¼ÂÆÃ
-   		return forward;
-	 }
-	 
+
+		ActionForward forward = new ActionForward();// ì•¡ì…˜ ê°ì²´ ìƒì„±
+		request.setAttribute("page", page);// page=page
+		request.setAttribute("check", check);// article=article
+		request.setAttribute("article", article);// article=article
+		forward.setPath("/WithMeView.jsp");// ì•¡ì…˜ í˜ì´ì§€ ì…‹íŒ…
+		return forward;
+	}
+
 }

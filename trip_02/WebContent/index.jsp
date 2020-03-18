@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*"%>
+<%@ page import="java.util.ArrayList"%>
+<%@ page import="vo.Food_placeDto"%>
 <!doctype html>
 <html lang="en">
  <head>
@@ -7,7 +9,7 @@
   <title>index</title>
 
   <!-- css -->
-<link rel="stylesheet" href="css/index.css">
+<link rel="stylesheet" href="css/index.css?ver=1.21">
   <!-- js -->
  </head>
  <body>
@@ -20,13 +22,15 @@
  <%} else{%>
  <jsp:include page="Loginheader.jsp"/>
  <%} %>
+
+
  
 <section>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />
  
 <!-- js -->
-<script language="JavaScript" src="js/index.js?ver=1" charset="UTF-8"></script>
+<script language="JavaScript" src="js/index1.js" charset="UTF-8"></script>
   
 <div class="contents">
 		<div class="banner">
@@ -108,32 +112,23 @@
 <input class="dal" type="text" value="출발일" id="testDatepicker">
 <input class="dal2" type="text" value="도착일" id="testDatepicker2">
 <button id= "green"><b>검색</b></button>
-
-
-
-
-
-  </div>
-
-
-  
- <div class="sample_image">
-<img id="london" src="img\london.png">
 </div>
-<div class="sample_image">
-<img id="pic1"src="img\picc1.jpg">
 </div>
-<div class="sample_image">
-<img id="pic2" src="img\picc2.jpg">
-</div>
-<div class="sample_image">
-<img id="pic3"src="img\picc3.jpg">
-</div> 
-</div>
+<!-- <span id="bottom"> -->
+<img src="img/food_place.png">
+<jsp:useBean id="mainlist" class="dao.Food_placeDao" />
+<%
+ArrayList<Food_placeDto> list = (ArrayList<Food_placeDto>)mainlist.Mainlist();
+
+for(int i=0; list.size()>i; i++){
+%>  
+ <span class="sample_image">
+ <a href="placedetail.jsp?num=<%=list.get(i).getNum()%>"><img id="london" src="img\<%=list.get(i).getPic()%>"></a>
+<%-- <%="<span class='ellip' style='width:200px;'>"+list.get(i).getSubtitle()+"</span>"%> --%>
+</span>
+<%}%>
+<!-- </span>   -->
 </section>
-   <footer>
-   제작자 : 박하영, 홍준영, 한상혁<br>
-   copyright © TOURTIPS Inc. All rights Reserved.
-   </footer>
+<footer><jsp:include page="footer.jsp"/></footer>
  </body>
 </html>

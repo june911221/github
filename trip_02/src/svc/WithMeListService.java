@@ -9,7 +9,7 @@ import vo.WithMeBean;
 
 public class WithMeListService {
 
-   public int getListCount() throws Exception{
+	public int getListCount() throws Exception {
 		int listCount = 0;
 		Connection con = getConnection();
 		WithMeDao withmeDAO = WithMeDao.getInstance();
@@ -17,19 +17,19 @@ public class WithMeListService {
 		listCount = withmeDAO.selectListCount();
 		close(con);
 		return listCount;
-		
+
 	}
 
-	public ArrayList<WithMeBean> getArticleList(int page,int limit) throws Exception{
-		
+	public ArrayList<WithMeBean> getArticleList(int page, int limit) throws Exception {
+
 		ArrayList<WithMeBean> articleList = null;
 		Connection con = getConnection();
 		WithMeDao withmeDAO = WithMeDao.getInstance();
 		withmeDAO.setConnection(con);
-		articleList = withmeDAO.selectArticleList(page,limit);
+		articleList = withmeDAO.selectArticleList(page, limit);
 		close(con);
 		return articleList;
-		
+
 	}
 
 }

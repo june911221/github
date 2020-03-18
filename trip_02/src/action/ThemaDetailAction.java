@@ -8,22 +8,22 @@ import vo.ActionForward;
 import vo.ThemaDto;
 
 public class ThemaDetailAction implements Action {
-	 
-	 public ActionForward execute(HttpServletRequest request,HttpServletResponse response) throws Exception{ 
-	   	
-		int num=Integer.parseInt(request.getParameter("num"));//ÆÄ¶ó¹ÌÅÍ·Î ³Ñ¾î¿Â °Ô½Ã±Û ¹øÈ£¸¦ Integer¸¦ ÅëÇØ intÅ¸ÀÔÀ¸·Î Çüº¯È¯ÈÄ º¯¼ö num¿¡ ¼ÂÆÃ
-		String page = request.getParameter("page"); //º¸°íÀÖ´ø °Ô½ÃÆÇ ÆäÀÌÁö¸¦ º¯¼ö page¿¡ ¼ÂÆÃ
-						
-		ThemaDetailService DetailService = new ThemaDetailService();//ThemaDetailService °´Ã¼»ı¼º
-		
-		ThemaDto article = DetailService.getArticle(num);//ThemaDetailService Å¬·¡½º¿¡ °Ô½Ã±Û ¹øÈ£¸¦ º¸³» °Ô½Ã±Û ³»¿ëÀ» WithMeBean °´Ã¼¿¡  ´ã¾ÆµĞ´Ù 
-				
-		ActionForward forward = new ActionForward();//¾×¼Ç °´Ã¼ »ı¼º
-		request.setAttribute("page", page);//page=page
-	   	request.setAttribute("article", article);//article=article
-  		forward.setPath("/ThemaView.jsp");//¾×¼Ç ÆäÀÌÁö ¼ÂÆÃ
-  		return forward;
-	 }
-	 
+
+	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+		int num = Integer.parseInt(request.getParameter("num"));// íŒŒë¼ë¯¸í„°ë¡œ ë„˜ì–´ì˜¨ ê²Œì‹œê¸€ ë²ˆí˜¸ë¥¼ Integerë¥¼ í†µí•´ intíƒ€ì…ìœ¼ë¡œ í˜•ë³€í™˜í›„ ë³€ìˆ˜ numì— ì…‹íŒ…
+		String page = request.getParameter("page"); // ë³´ê³ ìˆë˜ ê²Œì‹œíŒ í˜ì´ì§€ë¥¼ ë³€ìˆ˜ pageì— ì…‹íŒ…
+
+		ThemaDetailService DetailService = new ThemaDetailService();// ThemaDetailService ê°ì²´ìƒì„±
+
+		ThemaDto article = DetailService.getArticle(num);// ThemaDetailService í´ë˜ìŠ¤ì— ê²Œì‹œê¸€ ë²ˆí˜¸ë¥¼ ë³´ë‚´ ê²Œì‹œê¸€ ë‚´ìš©ì„ WithMeBean ê°ì²´ì—
+															// ë‹´ì•„ë‘”ë‹¤
+
+		ActionForward forward = new ActionForward();// ì•¡ì…˜ ê°ì²´ ìƒì„±
+		request.setAttribute("page", page);// page=page
+		request.setAttribute("article", article);// article=article
+		forward.setPath("/ThemaView.jsp");// ì•¡ì…˜ í˜ì´ì§€ ì…‹íŒ…
+		return forward;
+	}
 
 }

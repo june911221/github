@@ -5,7 +5,7 @@
 	<head>
 	 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
 	<title>citysel</title>
-<link rel="stylesheet" href="css/citysel.css">
+<link rel="stylesheet" href="css/citysel.css?ver=1">
 <script  src="js/CitySel.js"></script>
 	</head>
 	<body>
@@ -79,32 +79,30 @@
 	<!-- 명소 -->
     <div class="wrapper">
     <div class="product-img">
-      <img src="http://bit.ly/2tMBBTd" height="420" width="327">
+      <img src="img/bestplace.png" height="400" width="327">
     </div>
     <div class="product-info">
       <div class="product-text">
-        <h1>BESt 명소</h1>
-        <h2>by studio and friends</h2>
-        <p>Harvest Vases are a reinterpretation<br> of peeled fruits and vegetables as<br> functional objects. The surfaces<br> appear to be sliced and pulled aside,<br> allowing room for growth. </p>
+        <h1>추천명소 BEST</h1>
+        <p>여행준비 할 때 꼭 필요한<br>인기있는 관광지들을 소개합니다!<br> 도시별 추천 명소들을 확인해보세요!</p>
       </div>
       <div class="product-price-btn">
-        <a><button type="button">바로가기</button></a>
+        <a href="place.jsp?category1=명소"><button type="button">GO</button></a>
       </div>
     </div>
   </div>
 <!--  맛집 -->
      <div class="wrapper2">
     <div class="product-img">
-      <img src="http://bit.ly/2tMBBTd" height="420" width="327">
+      <img src="img/bestfood.jpg" height="400" width="327">
     </div>
     <div class="product-info">
       <div class="product-text">
-        <h1>BEST 맛집</h1>
-        <h2>by studio and friends</h2>
-        <p>Harvest Vases are a reinterpretation<br> of peeled fruits and vegetables as
+        <h1>추천맛집 BEST</h1>
+       <p>여행준비 할 때 꼭 필요한<br>맛집들을 소개합니다!<br> 도시별 추천 맛집들을 확인해보세요!</p>
       </div>
       <div class="product-price-btn">
-        <a><button type="button">바로가기</button></a>
+        <a href="food.jsp?category1=맛집"><button type="button">GO</button></a>
       </div>
     </div>
   </div>

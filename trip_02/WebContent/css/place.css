@@ -78,17 +78,14 @@ section {
 	top: 120px;
 	margin-right: 280px;
 }
-
-#id {
-	font-size: 18pt;
-	position: relative;
-	top: 60px;
-	left: 500px;
-}
+#title{
+position:relative;
+top:30px;
+left:25%;}
 
 hr {
 	position: relative;
-	top: 90px;
+	top: 60px;
 	left: 200px;
 	width: 100%;
 }
@@ -98,8 +95,7 @@ hr {
 	height: 700px;
 	position: absolute;
 	left: 400px;
-	top:750px;
-	margin-top: 200px;
+	margin-top: 90px;
 }
 
 #sub-menu>li {
@@ -121,6 +117,7 @@ hr {
 	font-size: 10pt;
 	float: left;
 	color: black;
+	margin-bottom:-70px;
 }
 
 #list2:hover {
@@ -133,7 +130,7 @@ hr {
 /*탭메뉴내용*/
 .wrapper2 {
 	height: 220px;
-	width: 354px;
+	width: 370px;
 	margin: 50px auto;
 	border-radius: 7px 7px 7px 7px;
 	/* VIA CSS MATIC https://goo.gl/cIbnS */
@@ -172,15 +169,15 @@ hr {
 }
 
 .product-text h1 {
-	margin: 0 0 0 38px;
+	position:relative;
+	left:30px;
+	margin-bottom:10px;
 	padding-top: 52px;
 	font-size: 15px;
 	color: #474747;
+	font-weight:bold;
 }
 
-.product-text h1, .product-price-btn p {
-	font-family: 'Bentham', serif;
-}
 
 .product-text h2 {
 	margin: 0 0 47px 38px;
@@ -207,9 +204,9 @@ hr {
 	height: 103px;
 	width: 70px;
 	margin-top: 17px;
-	position: relative;
-	top: 50px;
-	left: 100px;
+	position: absolute;
+	top: 250px;
+	left: 110px;
 }
 
 .product-price-btn p {
@@ -257,16 +254,68 @@ span {
 	background-color: #79b0a1;
 }
 /* 글씨 수 제한두기 */
-div.ellip {
-	position: relative;
-	width:400px;
-	top: -150px;
-	left: 20px;
-	overflow: hidden;
+.ellip {position:relative;
+top:-15px;
+left:25px;
+overflow: hidden;
 	text-overflow: ellipsis;
-	word-break: break-all;
-	/* white-space: nowrap; */
-}
+	word-wrap: break-word;
+	display: -webkit-box;
+	-webkit-line-clamp: 3; /* ellipsis line */
+	-webkit-box-orient: vertical;
+
+	/* webkit 엔진을 사용하지 않는 브라우저를 위한 속성. */
+	/* height = line-height * line = 1.2em * 3 = 3.6em  */
+	line-height: 1.2em;
+	height: 3.6em;
+	}
+
+#pageList{position:absolute;
+top:1880px;
+left:46%;}
+
+.page-item{float:left; list-style:none;}
+
+.pagination{list-style:none;
+	float:left;
+	display:inline;
+	 list-style:none;}
+	
+#page-id{float:left;
+display:block;
+	padding:8px;
+	margin-right:3px;
+	width:15px;
+	color:#000;
+	border:1px solid #D5D5D5;
+	text-align:center;
+	text-decoration:none;
+	font-size:11pt;
+	font-weight:bold;}
+
+#page-id2{float:left;
+display:block;
+	padding:8px;
+	margin-right:3px;
+	width:50px;
+	color:#000;
+	border:1px solid #D5D5D5;
+	text-align:center;
+	text-decoration:none;
+	font-size:11pt;
+	font-weight:bold;
+	}
+	
+#page-id:hover,page-id:focus
+{color:#fff;
+	border:1px solid #f40;
+	background-color:#f40;}
+	
+#page-id2:hover,page-id2:focus
+{color:#fff;
+	border:1px solid #f40;
+	background-color:#f40;}
+
 
 /* footer */
 footer {

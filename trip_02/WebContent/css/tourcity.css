@@ -9,7 +9,6 @@ section{
 height:2370px;
 }
 /*사이드메뉴*/
-
  aside {
  position: absolute;
  top:800px;
@@ -318,7 +317,7 @@ color:red;
 /*탭메뉴내용*/
 .wrapper2{
   height: 220px;
-  width: 354px;
+  width: 370px;
   margin: 50px auto;
   border-radius: 7px 7px 7px 7px;
   /* VIA CSS MATIC https://goo.gl/cIbnS */
@@ -361,11 +360,6 @@ position:relative;
   padding-top: 52px;
   font-size: 15px;
   color: #474747;
-}
-
-.product-text h1,
-.product-price-btn p {
-  font-family: 'Bentham', serif;
 }
 
 .product-text h2 {
@@ -440,6 +434,28 @@ span {
 .product-price-btn button:hover {
   background-color: #79b0a1;
 }
+
+#title{font-family:'Malgun Gothic';
+position:relative;
+left:-5px;
+top:13px;
+font-size:11pt;}
+
+/* 글씨 수 제한두기 */
+.ellip {position:relative;
+top:-15px;
+left:25px;
+overflow: hidden;
+	text-overflow: ellipsis;
+	word-wrap: break-word;
+	display: -webkit-box;
+	-webkit-line-clamp: 3; /* ellipsis line */
+	-webkit-box-orient: vertical;
+	/* webkit 엔진을 사용하지 않는 브라우저를 위한 속성. */
+	/* height = line-height * line = 1.2em * 3 = 3.6em  */
+	line-height: 1.5em;
+	height: 4.5em;
+	}
 
 footer{
 height:200px;

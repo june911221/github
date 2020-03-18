@@ -19,37 +19,35 @@ public class ThemaDao {
 	private ThemaDao() {
 		// TODO Auto-generated constructor stub
 	}
-	
 
-	public static ThemaDao getInstance(){
-		if(ThemaDAO == null){
+	public static ThemaDao getInstance() {
+		if (ThemaDAO == null) {
 			ThemaDAO = new ThemaDao();
 		}
 		return ThemaDAO;
 	}
 
-	public void setConnection(Connection con){
+	public void setConnection(Connection con) {
 		this.con = con;
 	}
-	
-	//ƒ´±€¿« ∞≥ºˆ ±∏«œ±‚.
+
+	// Ïπ¥Í∏ÄÏùò Í∞úÏàò Íµ¨ÌïòÍ∏∞.
 	public int selectListCount() {
 
-		int listCount= 0;
+		int listCount = 0;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		try{
-			//System.out.println("getConnection");
-			pstmt=con.prepareStatement("select count(*) from thema");
+		try {
+			pstmt = con.prepareStatement("select count(*) from thema");
 			rs = pstmt.executeQuery();
 
-			if(rs.next()){
-				listCount=rs.getInt(1);
+			if (rs.next()) {
+				listCount = rs.getInt(1);
 			}
-		}catch(Exception ex){
+		} catch (Exception ex) {
 
-		}finally{
+		} finally {
 			close(rs);
 			close(pstmt);
 		}
@@ -58,25 +56,24 @@ public class ThemaDao {
 
 	}
 
-	//ƒ´≈◊∞Ì∏Æ∫∞ ±€¿« ∞≥ºˆ ±∏«œ±‚.
+	// Ïπ¥ÌÖåÍ≥†Î¶¨Î≥Ñ Í∏ÄÏùò Í∞úÏàò Íµ¨ÌïòÍ∏∞.
 	public int selectcategoryListCount(String category) {
 
-		int listCount= 0;
+		int listCount = 0;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		try{
-			//System.out.println("getConnection");
-			pstmt=con.prepareStatement("select count(*) from thema where category=?");
+		try {
+			pstmt = con.prepareStatement("select count(*) from thema where category=?");
 			pstmt.setString(1, category);
 			rs = pstmt.executeQuery();
 
-			if(rs.next()){
-				listCount=rs.getInt(1);
+			if (rs.next()) {
+				listCount = rs.getInt(1);
 			}
-		}catch(Exception ex){
+		} catch (Exception ex) {
 
-		}finally{
+		} finally {
 			close(rs);
 			close(pstmt);
 		}
@@ -85,107 +82,107 @@ public class ThemaDao {
 
 	}
 
-	//±€ ∏Ò∑œ ∫∏±‚.	
-	public ArrayList<ThemaDto> selectArticleList(int page,int limit){
+	// ÌÖåÎßàÍ∏Ä Î™©Î°ù Ï†ÑÏ≤¥ Î≥¥Í∏∞.
+	public ArrayList<ThemaDto> selectArticleList(int page, int limit) {
 
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String board_list_sql="select * from thema order by num desc limit ?,?";
+		String board_list_sql = "select * from thema order by num desc limit ?,?";
 		ArrayList<ThemaDto> articleList = new ArrayList<ThemaDto>();
 		ThemaDto thema = null;
-		int startrow=(page-1)*limit; //¿–±‚ Ω√¿€«“ row π¯»£..	
+		int startrow = (page - 1) * limit; // ÏùΩÍ∏∞ ÏãúÏûëÌï† row Î≤àÌò∏..
 
-		try{
+		try {
 			pstmt = con.prepareStatement(board_list_sql);
 			pstmt.setInt(1, startrow);
 			pstmt.setInt(2, limit);
-			//System.out.println(pstmt);
-			rs = pstmt.executeQuery();		
-			
-			while(rs.next()){
+			// System.out.println(pstmt);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
 				thema = new ThemaDto();
 				thema.setNum(rs.getInt("num"));
 				thema.setTitle(rs.getString("title"));
 				thema.setCategory(rs.getString("category"));
 				thema.setContents(rs.getString("contents"));
 				thema.setPic(rs.getString("pic"));
+				thema.setCityname(rs.getString("cityname"));
 				articleList.add(thema);
 			}
-			
-		}catch(Exception ex){
-		}finally{
+
+		} catch (Exception ex) {
+		} finally {
 			close(rs);
 			close(pstmt);
 		}
 		return articleList;
 	}
-	
-	//ƒ´≈◊∞Ì∏Æ∫∞ ±€ ∏Ò∑œ ∫∏±‚.	
-		public ArrayList<ThemaDto> selectcategoryArticleList(int page,int limit,String category){
 
-			PreparedStatement pstmt = null;
-			ResultSet rs = null;
-			String board_list_sql="select * from thema where category=? order by num desc limit ?,?";
-			ArrayList<ThemaDto> articleList = new ArrayList<ThemaDto>();
-			ThemaDto thema = null;
-			int startrow=(page-1)*limit; //¿–±‚ Ω√¿€«“ row π¯»£..	
+	//ÌÖåÎßà Ïπ¥ÌÖåÍ≥†Î¶¨Î≥Ñ Í∏Ä Î™©Î°ù Î≥¥Í∏∞.
+	public ArrayList<ThemaDto> selectcategoryArticleList(int page, int limit, String category) {
 
-			try{
-				pstmt = con.prepareStatement(board_list_sql);
-				pstmt.setString(1, category);
-				pstmt.setInt(2, startrow);
-				pstmt.setInt(3, limit);
-				//System.out.println(pstmt);
-				rs = pstmt.executeQuery();		
-				
-				while(rs.next()){
-					thema = new ThemaDto();
-					thema.setNum(rs.getInt("num"));
-					thema.setTitle(rs.getString("title"));
-					thema.setCategory(rs.getString("category"));
-					thema.setContents(rs.getString("contents"));
-					thema.setPic(rs.getString("pic"));
-					articleList.add(thema);
-				}
-				
-			}catch(Exception ex){
-			}finally{
-				close(rs);
-				close(pstmt);
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String board_list_sql = "select * from thema where category=? order by num desc limit ?,?";
+		ArrayList<ThemaDto> articleList = new ArrayList<ThemaDto>();
+		ThemaDto thema = null;
+		int startrow = (page - 1) * limit; // ÏùΩÍ∏∞ ÏãúÏûëÌï† row Î≤àÌò∏..
+
+		try {
+			pstmt = con.prepareStatement(board_list_sql);
+			pstmt.setString(1, category);
+			pstmt.setInt(2, startrow);
+			pstmt.setInt(3, limit);
+			// System.out.println(pstmt);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				thema = new ThemaDto();
+				thema.setNum(rs.getInt("num"));
+				thema.setTitle(rs.getString("title"));
+				thema.setCategory(rs.getString("category"));
+				thema.setContents(rs.getString("contents"));
+				thema.setPic(rs.getString("pic"));
+				thema.setCityname(rs.getString("cityname"));
+				articleList.add(thema);
 			}
-			return articleList;
+
+		} catch (Exception ex) {
+		} finally {
+			close(rs);
+			close(pstmt);
 		}
-		
-	
-	//±€ ≥ªøÎ ∫∏±‚.
-			public ThemaDto selectArticle(int num){
+		return articleList;
+	}
 
-				PreparedStatement pstmt = null;
-				ResultSet rs = null;
-				ThemaDto Thema = null;
+	// Í∏Ä ÎÇ¥Ïö© Î≥¥Í∏∞.
+	public ThemaDto selectArticle(int num) {
 
-				try{
-					pstmt = con.prepareStatement(
-							"select * from thema where num=?");
-					pstmt.setInt(1, num);
-					rs= pstmt.executeQuery();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ThemaDto Thema = null;
 
-					if(rs.next()){
-						Thema = new ThemaDto();
-						Thema.setNum(rs.getInt("num"));
-						Thema.setTitle(rs.getString("title"));
-						Thema.setPic(rs.getString("pic"));
-						Thema.setContents(rs.getString("contents"));
-						Thema.setCategory(rs.getString("category"));
-					}
-				}catch(Exception ex){
-				}finally{
-					close(rs);
-					close(pstmt);
-				}
-				return Thema;
+		try {
+			pstmt = con.prepareStatement("select * from thema where num=?");
+			pstmt.setInt(1, num);
+			rs = pstmt.executeQuery();
 
+			if (rs.next()) {
+				Thema = new ThemaDto();
+				Thema.setNum(rs.getInt("num"));
+				Thema.setTitle(rs.getString("title"));
+				Thema.setPic(rs.getString("pic"));
+				Thema.setContents(rs.getString("contents"));
+				Thema.setCategory(rs.getString("category"));
+				Thema.setCityname(rs.getString("cityname"));
 			}
-			
-		
+		} catch (Exception ex) {
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return Thema;
+
+	}
+
 }

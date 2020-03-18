@@ -11,17 +11,17 @@ import vo.With_UserBean;
 public class With_UserCountDel implements Action {
 
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		HttpSession httpSession = request.getSession(true);// ¼¼¼ÇÀ» °¡Á®¿Â´Ù
-		With_UserCountDelService countDel = new With_UserCountDelService();// ÇÔ²²ÇØ¿ä ½ÅÃ»ÀÚ ¼­ºñ½º °´Ã¼»ı¼º
-		With_UserBean user = new With_UserBean();// ½ÅÃ»ÀÚ Dto °´Ã¼ »ı¼º
-		user.setNum(Integer.parseInt(request.getParameter("boardnum")));// °Ô½Ã±Û¹øÈ£ ÆÄ¶ó¹ÌÅÍ °ªÀÌ String ÇüÅÂÀÌ±â¿¡ IntÅ¸ÀÔÀ¸·ÎÇüº¯È¯
-		user.setId((String) httpSession.getAttribute("ID"));// ¼¼¼Ç°ª¿¡¼­ ·Î±×ÀÎ ID¸¦ °¡Á®¿ÂÈÄ user °´Ã¼¿¡ ¼ÂÆÃ
-		countDel.usercountDel(user);// WithMePeopleCountService ¸¦È£ÃâÇØ¼­ ¼ÂÆÃµÈ Withm_UserBean °´Ã¼°ªÀ» º¸³»ÁØ´Ù
+		HttpSession httpSession = request.getSession(true);// ì„¸ì…˜ì„ ê°€ì ¸ì˜¨ë‹¤
+		With_UserCountDelService countDel = new With_UserCountDelService();// í•¨ê»˜í•´ìš” ì‹ ì²­ì ì„œë¹„ìŠ¤ ê°ì²´ìƒì„±
+		With_UserBean user = new With_UserBean();// ì‹ ì²­ì Dto ê°ì²´ ìƒì„±
+		user.setNum(Integer.parseInt(request.getParameter("boardnum")));// ê²Œì‹œê¸€ë²ˆí˜¸ íŒŒë¼ë¯¸í„° ê°’ì´ String í˜•íƒœì´ê¸°ì— Intíƒ€ì…ìœ¼ë¡œí˜•ë³€í™˜
+		user.setId((String) httpSession.getAttribute("ID"));// ì„¸ì…˜ê°’ì—ì„œ ë¡œê·¸ì¸ IDë¥¼ ê°€ì ¸ì˜¨í›„ user ê°ì²´ì— ì…‹íŒ…
+		countDel.usercountDel(user);// WithMePeopleCountService ë¥¼í˜¸ì¶œí•´ì„œ ì…‹íŒ…ëœ Withm_UserBean ê°ì²´ê°’ì„ ë³´ë‚´ì¤€ë‹¤
 
-		ActionForward forward = new ActionForward();// ¾×¼Ç °´Ã¼Çü¼º
-		forward.setRedirect(true);// ¾×¼Ç¿¡ forward °¡ ¾Æ´Ñ ÆäÀÌÁö ÀÌµ¿ Redirect¸¦ ³Ö¾îÁØ´Ù
+		ActionForward forward = new ActionForward();// ì•¡ì…˜ ê°ì²´í˜•ì„±
+		forward.setRedirect(true);// ì•¡ì…˜ì— forward ê°€ ì•„ë‹Œ í˜ì´ì§€ ì´ë™ Redirectë¥¼ ë„£ì–´ì¤€ë‹¤
 		forward.setPath("WithMeDetail.do?num=" + user.getNum() + "&page=" + request.getParameter("page") + "&ID="
-				+ user.getId());// url¼ÂÆÃ
+				+ user.getId());// urlì…‹íŒ…
 
 		return forward;
 	}

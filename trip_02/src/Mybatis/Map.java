@@ -8,22 +8,21 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 public class Map {
 	private static SqlSessionFactory sqlSession;
-	public static SqlSessionFactory getSqlSession(){
+
+	public static SqlSessionFactory getSqlSession() {
 		return sqlSession;
 	}
 
-	static{
+	static {
 		try {
-			String resource = "Mybatis/conn.xml"; //DB ¿¬°á ³»¿ëÀ» °¡Áö°íÀÖ´Â conn.xml °æ·Î
+			String resource = "Mybatis/conn.xml"; // DB ì—°ê²° ë‚´ìš©ì„ ê°€ì§€ê³ ìˆëŠ” conn.xml ê²½ë¡œ
 			Reader reader = Resources.getResourceAsReader(resource);
-			
+
 			SqlSessionFactoryBuilder factory = new SqlSessionFactoryBuilder();
 			sqlSession = factory.build(reader);
-			
+
 		} catch (Exception e) {
 			System.out.println("SqlMapConfig err : " + e);
 		}
 	}
 }
-
-

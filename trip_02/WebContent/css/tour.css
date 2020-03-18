@@ -2,7 +2,7 @@
 a { text-decoration:none } /*링크밑줄제거*/
 /*섹션*/
 section{
-height:2700px;
+height:2300px;
 }
 /*메인베너*/
 #mainbanner{
@@ -72,7 +72,7 @@ figure.slider figure figcaption {
     margin: 30px auto;
 	position:absolute;
 	left:35.5%;
-	top:780px;
+	top:800px;
 }
 .tab-section1 {
     width: 670px;
@@ -156,7 +156,7 @@ height:750px;
 position:absolute;
 background:#f9f9f9;
 left:0%;
-top:1220px;
+top: 1100px;
 box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
 text-align:center;
 }
@@ -208,7 +208,6 @@ text-align:center;
 }
 
 .view p {
-  font-family: Georgia, serif;
   font-style: italic;
   font-size: 12px;
   position: relative;
@@ -380,9 +379,9 @@ text-align:center;
 /*명소*/
 .wrapper {
 position:absolute;
-top:2050px;
+top:1900px;
 left:200px;
-  height: 420px;
+  height: 400px;
   width: 654px;
   margin: 50px auto;
   border-radius: 7px 7px 7px 7px;
@@ -394,9 +393,9 @@ left:200px;
 
 .wrapper2{
 position:absolute;
-top:2300px;
+top:1900px;
 right:200px;
-  height: 420px;
+  height: 400px;
   width: 654px;
   margin: 50px auto;
   border-radius: 7px 7px 7px 7px;
@@ -408,7 +407,7 @@ right:200px;
 
 .product-img {
   float: left;
-  height: 420px;
+  height: 400px;
   width: 327px;
 }
 
@@ -418,7 +417,7 @@ right:200px;
 
 .product-info {
   float: left;
-  height: 420px;
+  height: 400px;
   width: 327px;
   border-radius: 0 7px 10px 7px;
   background-color: #ffffff;
@@ -438,13 +437,12 @@ right:200px;
 
 .product-text h1,
 .product-price-btn p {
-  font-family: 'Bentham', serif;
+
 }
 
 .product-text h2 {
   margin: 0 0 47px 38px;
   font-size: 13px;
-  font-family: 'Raleway', sans-serif;
   font-weight: 400;
   text-transform: uppercase;
   color: #d2d2d2;
@@ -454,12 +452,13 @@ right:200px;
 .product-text p {
   height: 125px;
   margin: 0 0 0 38px;
-  font-family: 'Playfair Display', serif;
   color: #8d8d8d;
   line-height: 1.7em;
   font-size: 15px;
   font-weight: lighter;
   overflow: hidden;
+    position:relative;
+top:50px;
 }
 
 .product-price-btn {
@@ -474,7 +473,6 @@ right:200px;
   position: absolute;
   top: -13px;
   height: 50px;
-  font-family: 'Trocchi', serif;
   margin: 0 0 0 38px;
   font-size: 28px;
   font-weight: lighter;
@@ -484,22 +482,21 @@ right:200px;
 span {
   display: inline-block;
   height: 50px;
-  font-family: 'Suranna', serif;
   font-size: 34px;
 }
 
 .product-price-btn button {
-  float: right;
+  position:relative;
+  left:80px;
+  top:-20px;
   display: inline-block;
   height: 50px;
   width: 176px;
-  margin: 0 40px 0 16px;
   box-sizing: border-box;
   border: transparent;
   border-radius: 60px;
-  font-family: 'Raleway', sans-serif;
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 23px;
+  font-weight:bold;
   text-transform: uppercase;
   letter-spacing: 0.2em;
   color: #ffffff;

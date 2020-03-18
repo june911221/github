@@ -10,24 +10,37 @@ import vo.BoardDto;
 
 public class ActionList {
 	static ActionList model = new ActionList();
-	public static ActionList instance(){
+
+	public static ActionList instance() {
 		return model;
 	}
 
+	private SqlSessionFactory factory = Map.getSqlSession();
 
-	private SqlSessionFactory factory = Map.getSqlSession(); //Map.java ?ŒŒ?¼?„ ì°¾ì•„?˜´
-
-	public List<BoardDto> boardlist(BoardDto li){
-		List<BoardDto> list = null;//List<BoardDto> °´Ã¼ »ı¼ºÈÄ null·Î ÃÊ±âÈ­ ½ÃÄÑÁØ´Ù
-		
+	public int boardlistcount(BoardDto li) {
 		SqlSession sqlSession = factory.openSession();
-		list = sqlSession.selectList("boardList",li);
-		//mapper.xml ¿¡¼­ boardList ¸¦ id·Î»ç¿ëÇÏ´Â select ±¸¹®¿¡ º¯¼ö¸¦ º¸³»ÁÖ¸é¼­ È£Ãâ("id",º¯¼ö) listº¯¼ö¿¡ select°ªµéÀ» ´ã¾ÆÁØ´Ù
-		
+		int listcount = 0;
+
+		listcount = sqlSession.selectOne("boardListcount", li);
+		// mapper.xml ì—ì„œ boardListcount ë¥¼ idë¡œì‚¬ìš©í•˜ëŠ” select êµ¬ë¬¸ì— ë³€ìˆ˜ë¥¼ ë³´ë‚´ì£¼ë©´ì„œ í˜¸ì¶œ("id",ë³€ìˆ˜)
+		// listcountë³€ìˆ˜ì— ê²Œì‹œê¸€ì˜ ìˆ˜ë¥¼ ë‹´ì•„ì¤€ë‹¤
+
+		sqlSession.close();
+		return listcount;
+	}
+
+	public List<BoardDto> boardlist(BoardDto li, int page, int limit) {
+		List<BoardDto> list = null;// List<BoardDto> ê°ì²´ ìƒì„±í›„ nullë¡œ ì´ˆê¸°í™” ì‹œì¼œì¤€ë‹¤
+
+		int startrow = (page - 1) * limit; // ì½ê¸° ì‹œì‘í•  row ë²ˆí˜¸..
+		li.setPagerow(startrow);// BoardDto ì— ì½ê¸°ì‹œì‘í•  rowë²ˆí˜¸ê°’ì„ ì…‹íŒ…
+
+		SqlSession sqlSession = factory.openSession();
+		list = sqlSession.selectList("boardList", li);
+		// mapper.xml ì—ì„œ boardList ë¥¼ idë¡œì‚¬ìš©í•˜ëŠ” select êµ¬ë¬¸ì— ë³€ìˆ˜ë¥¼ ë³´ë‚´ì£¼ë©´ì„œ í˜¸ì¶œ("id",ë³€ìˆ˜) listë³€ìˆ˜ì—
+		// selectê°’ë“¤ì„ ë‹´ì•„ì¤€ë‹¤
+
 		sqlSession.close();
 		return list;
 	}
 }
-
-
-

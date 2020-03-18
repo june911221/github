@@ -12,21 +12,20 @@ import vo.With_UserBean;
 
 public class With_UserCountDelService {
 
-	public void usercountDel(With_UserBean user) throws Exception{
+	public void usercountDel(With_UserBean user) throws Exception {
 		// TODO Auto-generated method stub
-		
+
 		Connection con = getConnection();
 		WithMeDao withmeDAO = WithMeDao.getInstance();
 		withmeDAO.setConnection(con);
 		int deleteCount = withmeDAO.countDel(user);
-		
-		if(deleteCount > 0){
+
+		if (deleteCount > 0) {
 			commit(con);
-		}
-		else{
+		} else {
 			rollback(con);
 		}
-		
+
 		close(con);
 	}
 }

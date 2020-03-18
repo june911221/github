@@ -47,7 +47,6 @@
 	        <ul class="dept01">
 				<li id="nop"><a href="" onclick="return noPageAction()">회원정보수정</a></li>
 				<li id="nop"><a href="" onclick="return noPageAction()">예약확인&취소</a></li>
-				<li id="nop"><a href="" onclick="return noPageAction()">게시글관리</a></li>
 				<li id="nop"><a href="" onclick="return noPageAction()">스크랩</a></li>
 			</ul>		
 	</ul>

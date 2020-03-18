@@ -3,13 +3,24 @@
 <%@ page import="vo.BoardDto"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="java.sql.Date"%>
+<%@ page import="vo.PageInfo"%>
+<%
+	ArrayList<BoardDto> articleList=(ArrayList<BoardDto>)request.getAttribute("data");
+    PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
+	
+	int nowPage=pageInfo.getPage();
+	int maxPage=pageInfo.getMaxPage();
+	int startPage=pageInfo.getStartPage();
+	int endPage=pageInfo.getEndPage();
+	int listCount=pageInfo.getListCount();
+%>
 <!doctype html>
 <!-- CSS -->
-<link rel="stylesheet" href="css/Hugi.css?ver=1.3">
+<link rel="stylesheet" href="css/Hugi.css?ver=1.5">
 <!-- js -->
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script src="./js/Hugi1.js"></script>
+<script src="./js/Hugi.js"></script>
 
 <html>
 <head>
@@ -42,11 +53,11 @@
 			<ul class="sideMenu">
 				<li><a href="WithMe.do" class="has-submenu"><span
 						class="fa fa-table"></span>함께해요</a></li>
-				<li><a href="infoandtip.my?command=list&category=hugi"><span
+				<li><a href="Hugi.my?command=list&category=hugi"><span
 						class="fa fa-sitemap"></span>여행후기</a></li>
 				<li><a href="infoandtip.my?command=list&category=infoandtip"><span
 						class="fa fa-money"></span>정보&팁</a></li>
-				<li><a href="infoandtip.my?command=list&category=qa"><span
+				<li><a href="QandA.my?command=list&category=qa"><span
 						class="fa fa-user-o"></span>Q&A</a></li>
 
 			</ul>
@@ -55,8 +66,8 @@
 
 		<!--banner -->
 
-		<img id="hugi_banner" src="img/hugi_banner.jpg" width="100%" height="300"> 
-			<img id="hugi_banner2" src="img/thum.jpg" width="55%" height="300">
+		<img id="hugi_banner" src="img/hugi_banner.jpg" width="100%" height="500"> 
+			<img id="hugi_banner2" src="img/thum.jpg" width="55%" height="500">
 
 		<!--banner -->
 
@@ -68,18 +79,18 @@
 			value=<%=ses%>> <input type=button onclick="writepage()"
 			name="write" id="btnwrite" value="글쓰기"/>
 		<div id="scbox">
-			<form action="Hugi.jsp" onsubmit="return search()" method="post">
+			<form  action="search.my?command=search&category=hugi" onsubmit="return secheck()" method="post">
 				<select class="sel" name="Boardselectmenu" id="Boardselectmenu">
 					<option id="op" value="none" selected>전체</option>
 					<option id="op" value="title_contents">제목+내용</option>
 					<option id="op" value="title">제목</option>
 					<option id="op" value="contents">내용</option>
 					<option id="op" value="writer">작성자</option>
-				</select> <input type="text" value="" name="searchinfo" id="searchinfo">
+				</select>
+			    <input type="text" value="" name="searchinfo" id="searchinfo">
 				<input id="search" type="submit" value="검색">
 		</div>
 		</form>
-		<!--검색 및 조회 -->
 
 		<!--table -->
 		<table class="sub_news" border="1" cellspacing="0">
@@ -93,59 +104,59 @@
 					<th width="50px;">조회수</th>
 				</tr>
 			</thead>
-			<%
-				/* String opt=null;
-				String text=null;
-				request.setCharacterEncoding("UTF-8");
-				response.setContentType("text/html;charset=UTF-8");
-				opt=(String)request.getParameter("Boardselectmenu");
-				text=(String)request.getParameter("searchinfo");
-				//out.print(opt+"   "+text);
-				if(text==""||opt==null||text==null){//검색어가 없거나 셀렉트값이 없으면 리스트 전체 순서대로 출력
-				ArrayList<boardDto> list=board.List();
-				out.print("<input type='hidden' id=size value="+list.size()+">");
-				//out.print(list.size());
-				
-				for(int i=0; i<list.size(); i++){
-				out.print("<tr id='tr_hover'>"+"<td width=100 align=center>"+list.get(i).getNum()+"</td>");
-				out.print("<td width=100 align=center>"+list.get(i).getCategory()+"</td>");
-				out.print("<td width=100 align=center>"+"<label class='newimg' id='newimg"+i+"'>new</label>"+"<a href='HugiContentsView.jsp?NO="+list.get(i).getNum()+"&hits="+list.get(i).getHits()+"'>"+list.get(i).getTitle()+"</a>"+"</td>");
-				out.print("<td width=100 align=center>"+list.get(i).getWriter()+"</td>");
-				out.print("<td width=100 align=center>"+list.get(i).getDate()+"</td>");
-				out.print("<td width=150 align=center>"+list.get(i).getHits()+"</td>"+"<tr>");
-				out.print("<input type='hidden' id='date"+i+"' value='"+list.get(i).getDate()+"'>");//hidden타입에 value값으로 날자를 넣어 스크립트에서 비교하기
-				}
-				}
-				else{//검색에따른 리스트 출력 
-				 ArrayList<boardDto> list=board.List(opt,text);
-				 for(int i=0; i<list.size(); i++){
-				out.print("<tr>"+"<td width=100 align=center>"+list.get(i).getNum()+"</td>");
-				out.print("<td width=100 align=center>"+list.get(i).getCategory()+"</td>");
-				out.print("<td width=100 align=center>"+"<a href='HugiContentsView.jsp?NO="+list.get(i).getNum()+"&hits="+list.get(i).getHits()+"'>"+list.get(i).getTitle()+"</a>"+"</td>");
-				out.print("<td width=100 align=center>"+list.get(i).getWriter()+"</td>");
-				out.print("<td width=100 align=center>"+list.get(i).getDate()+"</td>");
-				out.print("<td width=150 align=center>"+list.get(i).getHits()+"</td>"+"<tr>");
-					 }
-				} */
-			%>
-			<%
+<%
 				ArrayList<BoardDto> list = (ArrayList<BoardDto>) request.getAttribute("data");
-			out.print("<input type='hidden' id=size value=" + list.size() + ">");
+			    out.print("<input type='hidden' id=size value="+list.size()+">");
+			    if(articleList != null && listCount > 0){
 				for (int i = 0; i < list.size(); i++) {
 					out.print("<tr id='tr_hover'><td>" + list.get(i).getNum() + "</td>");
 					out.print("<td>" + list.get(i).getCategory() + "</td>");
 					out.print("<td><label class='newimg' id='newimg" + i
 							+ "'>new</label><a href='BoardView.my?command=view&num=" + list.get(i).getNum() + "&hits="
-							+ list.get(i).getHits() + "'>" + list.get(i).getTitle() + "</a></td>");
+							+ list.get(i).getHits() + "&page="+nowPage+"'>" + list.get(i).getTitle() + "</a></td>");
 					out.print("<td>" + list.get(i).getWriter() + "</td>");
 					out.print("<td>" + list.get(i).getDate() + "</td>");
 					out.print("<td>" + list.get(i).getHits() + "</td>");
-					out.print("<input type='hidden' id='date" + i + "' value='" + list.get(i).getDate() + "'>");//hidden타입에 value값으로 날자를 넣어 스크립트에서 비교하기
-				}
-			%>
-		</table>
-		<!--table -->
-	</section>
+					out.print("<input type='hidden' id='date" + i + "' value='" + list.get(i).getDate() + "'>");//hidden타입에 value값으로 날짜를 넣어 스크립트에서 비교하기
+					
+}%>
+     </table>
+	<!--pageList -->
+	<style>
+#pageList{
+position:absolute;
+top:1600px;
+left:50%;
+}
+</style>
+	<div id="pageList">
+	<%if(nowPage<=1){ %>
+		
+	<%}else{ %>
+	<a href=".my?command=list&category=hugi&page=<%=nowPage-1 %>">[이전]</a>&nbsp;
+	<%}%>
 
+	<%for(int a=startPage;a<=endPage;a++){
+	if(a==nowPage){%>
+    [<%=a %>]
+	<%}else{ %>
+	<a href=".my?command=list&category=hugi&page=<%=a %>">[<%=a %>]
+	</a>&nbsp;
+	<%} %>
+	<%} %>
+
+	<%if(nowPage>=maxPage){ %>
+		
+	<%}else{ %>
+	<a href=".my?command=list&category=hugi&page=<%=nowPage+1 %>">[다음]</a>
+	<%} %>
+	</div>
+	<%}else{%>
+	<tr id='tr_hover'><td colspan=6>등록된 게시글이 없습니다</td></tr>
+	</table>
+	<%}%>
+	</section>
+<footer><jsp:include page="footer.jsp"/></footer>
 </body>
+
 </html>

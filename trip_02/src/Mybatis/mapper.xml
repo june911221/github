@@ -3,59 +3,144 @@
 
 <mapper namespace="abc">
 
-<select id="boardList" resultType="Dto" parameterType="list"> <!-- 형태를 남긴다  List를써서 여러줄 받을수있음-->
-select * from board where category=#{category} order by num desc; 
-<!--카테고리를 구별해서 리스트를 뽑아주고 게시글 번호를 내림차순으로 정렬--> 
-</select>
+	<select id="boardListcount" resultType="java.lang.Integer"
+		parameterType="list"> <!-- 형태를 남긴다 List를써서 여러줄 받을수있음 -->
+		select count(*) from board where category=#{category};
+		<!-- 게시글의 숫자를 세준다 -->
+	</select>
 
-<select id="boardView" resultType="Dto" parameterType="list">
-select * from board where num=#{num}; 
-<!-- 게시글내용보기 where 변수는 게시글번호 -->
-</select>
+	<select id="countnone" resultType="java.lang.Integer"
+		parameterType="list"> <!-- 형태를 남긴다 List를써서 여러줄 받을수있음 -->
+		select count(*) from board where category=#{category} and writer like
+		'%${writer}%' or category=#{category} and contents like
+		'%${contents}%' or category=#{category} and title like '%${title}%';
+		<!-- 검색옵션 전체에서 검색된 게시글의 숫자를 세준다 -->
+	</select>
 
-<select id="CommentList" resultType="coDto" parameterType="list">
-select * from comment where B_number=#{b_number} order by c_number asc;
-<!-- 댓글불러오기 where 변수는 게시글번호 해당게시글에해당하는 댓글불러온다 -->
-</select>
+	<select id="counttitle" resultType="java.lang.Integer"
+		parameterType="list"> <!-- 형태를 남긴다 List를써서 여러줄 받을수있음 -->
+		select count(*) from board where category=#{category} and title like
+		'%${title}%';
+		<!-- 검색옵션 제목에서 검색된 게시글의 숫자를 세준다 -->
+	</select>
 
-<select id="commentModify" resultType="coDto" parameterType="list">
-select * from comment where C_number=#{c_number};
-<!-- 수정할 댓글불러오기 where 변수는 댓글번호 해당번호해당하는 댓글불러온다 -->
-</select>
+	<select id="counttitle_contents" resultType="java.lang.Integer"
+		parameterType="list"> <!-- 형태를 남긴다 List를써서 여러줄 받을수있음 -->
+		select count(*) from board where category=#{category} and contents
+		like '%${contents}%' or category=#{category} and title like
+		'%${title}%';
+		<!-- 검색옵션 제목+내용에서 검색된 게시글의 숫자를 세준다 -->
+	</select>
 
-<insert id="insertDB" parameterType="list"> 
-insert into board (category,title,writer,date,hits,contents) values(#{category},#{title},#{writer},now(),0,#{contents});
-<!-- 게시글쓰기 -->
-</insert>
+	<select id="countcontents" resultType="java.lang.Integer"
+		parameterType="list"> <!-- 형태를 남긴다 List를써서 여러줄 받을수있음 -->
+		select count(*) from board where category=#{category} and contents
+		like '%${contents}%';
+		<!-- 검색옵션 내용에서 검색된 게시글의 숫자를 세준다 -->
+	</select>
 
-<insert id="commentInsert" parameterType="list">
-insert into comment (b_number,comment_box,writer,date) values(#{b_number},#{comment_box},#{writer},now());
-<!-- 댓글 쓰기 -->
-</insert>
+	<select id="countwriter" resultType="java.lang.Integer"
+		parameterType="list"> <!-- 형태를 남긴다 List를써서 여러줄 받을수있음 -->
+		select count(*) from board where category=#{category} and writer like
+		'%${writer}%';
+		<!-- 검색옵션 작성자에서 검색된 게시글의 숫자를 세준다 -->
+	</select>
 
-<update id="updateDB" parameterType="list"> 
-update board set title=#{title},contents=#{contents} where num=#{num};
-<!-- 게시글 수정 where 변수는 게시글 번호 해당게시글을 수정한다 -->
-</update>
+	<select id="boardList" resultType="Dto" parameterType="list"> <!-- 형태를 남긴다 List를써서 여러줄 받을수있음 -->
+		select * from board where category=#{category} order by num desc limit
+		#{pagerow},10;
+		<!--카테고리를 구별해서 리스트를 뽑아주고 게시글 번호를 내림차순으로 정렬 -->
+	</select>
 
-<update id="hitsupdate" parameterType="list">
-update board set hits=#{hits} where num=#{num};
-<!-- 조회수 업데이트 where 변수는 게시글번호 해당게시글의 조회수를 +1만큼올린다 -->
-</update>
+	<select id="boardView" resultType="Dto" parameterType="list">
+		select * from board where num=#{num};
+		<!-- 게시글내용보기 where 변수는 게시글번호 -->
+	</select>
 
-<update id="commentupdateDB" parameterType="list"> 
-update comment set comment_box=#{comment_box} where c_number=#{c_number};
-<!-- 댓글삭제 where 변수는 댓글번호 -->
-</update>
+	<select id="searchnone" resultType="Dto" parameterType="list">
+		select * from board where category=#{category} and writer like
+		'%${writer}%' or category=#{category} and contents like
+		'%${contents}%' or category=#{category} and title like '%${title}%'
+		order by num desc;
+		<!-- 게시글검색중 옵션 전체검색 -->
+	</select>
 
-<delete id="deleteDB" parameterType="list"> 
-delete from board where num=#{num};
-<!-- 게시글삭제 where 변수는 게시글번호 -->
-</delete>
+	<select id="search_title" resultType="Dto" parameterType="list">
+		select * from board where category=#{category} and title like
+		'%${title}%' order by num desc;
+		<!-- 게시글검색중 옵션 제목검색 -->
+	</select>
 
-<delete id="commentdeleteDB" parameterType="list"> 
-delete from comment where c_number=#{c_number};
-<!-- 댓글삭제 where 변수는 댓글번호 -->
-</delete>
+	<select id="searchtitle_contents" resultType="Dto"
+		parameterType="list">
+		select * from board where category=#{category} and contents like
+		'%${contents}%' or category=#{category} and title like '%${title}%'
+		order by num desc;
+		<!-- 게시글검색중 옵션 제목+내용검색 -->
+	</select>
+
+	<select id="searchcontents" resultType="Dto"
+		parameterType="list">
+		select * from board where category=#{category} and contents like
+		'%${contents}%' order by num desc;
+		<!-- 게시글검색중 옵션 내용검색 -->
+	</select>
+
+	<select id="searchwriter" resultType="Dto" parameterType="list">
+		select * from board where category=#{category} and writer like
+		'%${writer}%' order by num desc;
+		<!-- 게시글검색중 옵션 글쓴이검색 -->
+	</select>
+
+	<select id="CommentList" resultType="coDto" parameterType="list">
+		select * from comment where B_number=#{b_number} order by c_number
+		asc;
+		<!-- 댓글불러오기 where 변수는 게시글번호 해당게시글에해당하는 댓글불러온다 -->
+	</select>
+
+	<select id="commentModify" resultType="coDto"
+		parameterType="list">
+		select * from comment where C_number=#{c_number};
+		<!-- 수정할 댓글불러오기 where 변수는 댓글번호 해당번호해당하는 댓글불러온다 -->
+	</select>
+
+
+	<insert id="insertDB" parameterType="list">
+		insert into board (category,title,writer,date,hits,contents)
+		values(#{category},#{title},#{writer},now(),0,#{contents});
+		<!-- 게시글쓰기 -->
+	</insert>
+
+	<insert id="commentInsert" parameterType="list">
+		insert into comment (b_number,comment_box,writer,date)
+		values(#{b_number},#{comment_box},#{writer},now());
+		<!-- 댓글 쓰기 -->
+	</insert>
+
+	<update id="updateDB" parameterType="list">
+		update board set title=#{title},contents=#{contents} where num=#{num};
+		<!-- 게시글 수정 where 변수는 게시글 번호 해당게시글을 수정한다 -->
+	</update>
+
+	<update id="hitsupdate" parameterType="list">
+		update board set hits=#{hits} where num=#{num};
+		<!-- 조회수 업데이트 where 변수는 게시글번호 해당게시글의 조회수를 +1만큼올린다 -->
+	</update>
+
+	<update id="commentupdateDB" parameterType="list">
+		update comment set comment_box=#{comment_box} where
+		c_number=#{c_number};
+		<!-- 댓글삭제 where 변수는 댓글번호 -->
+	</update>
+
+	<delete id="deleteDB" parameterType="list">
+		delete from board where num=#{num};
+		<!-- 게시글삭제 where 변수는 게시글번호 -->
+	</delete>
+
+	<delete id="commentdeleteDB" parameterType="list">
+		delete from comment where c_number=#{c_number};
+		<!-- 댓글삭제 where 변수는 댓글번호 -->
+	</delete>
 
 </mapper>

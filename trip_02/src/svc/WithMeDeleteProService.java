@@ -8,37 +8,23 @@ import java.sql.Connection;
 import dao.WithMeDao;
 
 public class WithMeDeleteProService {
-/*
-	public boolean isArticleWriter(int num) throws Exception {
-		// TODO Auto-generated method stub
-		
-		//boolean isArticleWriter = false;
-		Connection con = getConnection();
-		WithMeDao boardDAO = WithMeDao.getInstance();
-		boardDAO.setConnection(con);
-		isArticleWriter = boardDAO.isArticleBoardWriter(num);
-		close(con);
-		return isArticleWriter;
-		
-	}*/
 
-	public void removeArticle(int num) throws Exception{
+	public void removeArticle(int num) throws Exception {
 		// TODO Auto-generated method stub
-		
-		//boolean isRemoveSuccess = false;
+
+		// boolean isRemoveSuccess = false;
 		Connection con = getConnection();
 		WithMeDao withmeDAO = WithMeDao.getInstance();
 		withmeDAO.setConnection(con);
 		int deleteCount = withmeDAO.deleteArticle(num);
-		
-		if(deleteCount > 0){
+
+		if (deleteCount > 0) {
 			commit(con);
-			//isRemoveSuccess=true;
-		}
-		else{
+			// isRemoveSuccess=true;
+		} else {
 			rollback(con);
 		}
-		
+
 		close(con);
 	}
 

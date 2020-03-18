@@ -6,29 +6,31 @@ import javax.servlet.http.HttpServletResponse;
 import Mybatismodel.ActionUpdate;
 import vo.BoardDto;
 
-public class Update implements Cominterface{
+public class Update implements Cominterface {
 	static Update ser = new Update();
+
 	public static Update instance() {
 		return ser;
 	}
+
 	@Override
 	public String showData(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
-		ActionUpdate model = ActionUpdate.instance(); //°Ô½Ã±Û ¼öÁ¤ Action °´Ã¼ Çü¼º
-		
-		int num=Integer.parseInt(request.getParameter("num")); //°Ô½Ã±Û¹øÈ£ º¯¼ö¿¡´ã¾ÆÁØ´Ù
-		String category=new String(request.getParameter("category").getBytes("8859_1"),"UTF-8");//Ä«Å×°í¸®¸¦ º¯¼ö¿¡ ´ã¾ÆÁØ´Ù
-		String title=new String(request.getParameter("title").getBytes("8859_1"),"UTF-8");//±ÛÁ¦¸ñÀ» º¯¼ö¿¡´ã¾ÆÁØ´Ù
-		String contents=new String(request.getParameter("contents").getBytes("8859_1"),"UTF-8");//±Û³»¿ëÀ» º¯¼ö¿¡´ã¾ÆÁØ´Ù
-			
-		BoardDto list=new BoardDto();//BoardDto °´Ã¼ »ı¼º
-		list.setNum(num);//°Ô½Ã±Û ¹øÈ£ ¼ÂÆÃ
-		list.setTitle(title);//±ÛÁ¦¸ñ ¼ÂÆÃ
-		list.setCategory(category);//Ä«Å×°í¸® ¼ÂÆÃ
-		list.setContents(contents);//±Û³»¿ë ¼ÂÆÃ
-		
-		model.Update(list);//¾÷µ¥ÀÌÆ® ¾×¼Ç È£Ãâ list¸¦ º¯¼ö·Î º¸³»ÁØ´Ù
-		
-		return ".my?command=view&num="+list.getNum();
+		ActionUpdate model = ActionUpdate.instance(); // ê²Œì‹œê¸€ ìˆ˜ì • Action ê°ì²´ í˜•ì„±
+
+		int num = Integer.parseInt(request.getParameter("num")); // ê²Œì‹œê¸€ë²ˆí˜¸ ë³€ìˆ˜ì—ë‹´ì•„ì¤€ë‹¤
+		String category = new String(request.getParameter("category").getBytes("8859_1"), "UTF-8");// ì¹´í…Œê³ ë¦¬ë¥¼ ë³€ìˆ˜ì— ë‹´ì•„ì¤€ë‹¤
+		String title = new String(request.getParameter("title").getBytes("8859_1"), "UTF-8");// ê¸€ì œëª©ì„ ë³€ìˆ˜ì—ë‹´ì•„ì¤€ë‹¤
+		String contents = new String(request.getParameter("contents").getBytes("8859_1"), "UTF-8");// ê¸€ë‚´ìš©ì„ ë³€ìˆ˜ì—ë‹´ì•„ì¤€ë‹¤
+
+		BoardDto list = new BoardDto();// BoardDto ê°ì²´ ìƒì„±
+		list.setNum(num);// ê²Œì‹œê¸€ ë²ˆí˜¸ ì…‹íŒ…
+		list.setTitle(title);// ê¸€ì œëª© ì…‹íŒ…
+		list.setCategory(category);// ì¹´í…Œê³ ë¦¬ ì…‹íŒ…
+		list.setContents(contents);// ê¸€ë‚´ìš© ì…‹íŒ…
+
+		model.Update(list);// ì—…ë°ì´íŠ¸ ì•¡ì…˜ í˜¸ì¶œ listë¥¼ ë³€ìˆ˜ë¡œ ë³´ë‚´ì¤€ë‹¤
+
+		return ".my?command=view&num=" + list.getNum();
 	}
 }

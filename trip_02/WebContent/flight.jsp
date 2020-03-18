@@ -61,8 +61,8 @@ $(function(){
 		<script
 			src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 		<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
-		<script language="JavaScript" src="js/index.js?ver=1" charset="UTF-8"></script>
-		<link rel="stylesheet" href="css/flight.css?ver=1">		
+		<script language="JavaScript" src="js/index1.js" charset="UTF-8"></script>
+		<link rel="stylesheet" href="css/flight.css?ver=1.1">		
 		
 <div id="big_banner"><img src="img/bigbanner.jpg"></div>
 
@@ -71,7 +71,7 @@ $(function(){
 	
 	<!-- 라디오버튼 -->
 	
-	<form action="flight_go.jsp" method="post" autocomplete=off> 
+	<form action="flight.do" method="post" autocomplete=off> 
 	<label class="box-radio-input">
 	<input type="radio" name="cp_item" value="왕복" checked="checked"><span>왕복</span>
 	</label>
@@ -91,16 +91,16 @@ $(function(){
      <!-- 좌석등급-->
          <h2 id="h2_text2">좌석등급</h2>
     <label class="box-radio-input2">
-	<input type="radio" name="seat_item" value="옵션1" checked="checked" id="seat1"><span>이코노미</span>
+	<input type="radio" name="seat_item" value="이코노미" checked="checked" id="seat1"><span>이코노미</span>
 	</label>
     <label class="box-radio-input2">
-    <input type="radio" name="seat_item" value="옵션2" id="seat2"><span>비즈니스</span>
+    <input type="radio" name="seat_item" value="비즈니스" id="seat2"><span>비즈니스</span>
     </label>
     <label class="box-radio-input2">
-    <input type="radio" name="seat_item" value="옵션3" id="seat3"><span>퍼스트</span>
+    <input type="radio" name="seat_item" value="퍼스트" id="seat3"><span>퍼스트</span>
     </label>
          
-      
+     
     <div id = "text_section">     
     <input name="autocomplete" id="autocomplete" type="text" placeholder="출발지를 입력하세요"/>
 		<br>
@@ -111,9 +111,7 @@ $(function(){
 		
 		<input name="dal" class="dal" type="text" placeholder="출발일을 선택하세요" id="testDatepicker">
 		<input name="dal2" class="dal2" type="text" placeholder="도착일을 선택하세요" id="testDatepicker2">
-		<button  type="submit" class="pressDown" onclick="location.href='flight_go.jsp'">
-		GO
-		</button>
+		<button  type="submit" class="pressDown">GO</button>
 		</div>
 	</div>
 </form>  

@@ -2,6 +2,16 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="vo.BoardDto"%>
+<%@ page import="vo.PageInfo"%>
+<%
+	ArrayList<BoardDto> articleList=(ArrayList<BoardDto>)request.getAttribute("data");
+    PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
+	int listCount=pageInfo.getListCount();
+	int nowPage=pageInfo.getPage();
+	int maxPage=pageInfo.getMaxPage();
+	int startPage=pageInfo.getStartPage();
+	int endPage=pageInfo.getEndPage();
+%>
 <!DOCTYPE html>
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
@@ -52,9 +62,9 @@
 
 			<!--banner -->
 
-			<img id="hugi_banner" src="img/hugi_banner.jpg" width="100%"
-				height="300">
-			<img id="hugi_banner2" src="img/thum.jpg" width="55%" height="300">
+		<img id="hugi_banner" src="img/user_banner1.jpg" width="100%"
+				height="500">
+			<img id="hugi_banner2" src="img/traveltips.jpg" width="55%" height="400" style="margin-top:65px;">
 
 			<!--banner -->
 
@@ -63,7 +73,7 @@
 
 			<input type="button" onclick="writepage()" id="btnwrite" value="글쓰기" />
 			<div id="scbox">
-				<form action="Hugi.jsp" onsubmit="return search()" method="post">
+				<form action="search.my?command=search&category=infoandtip" onsubmit="return sescheck()" method="post">
 					<select class="sel" name="Boardselectmenu" id="Boardselectmenu">
 						<option id="op" value="none" selected>전체</option>
 						<option id="op" value="title_contents">제목+내용</option>
@@ -87,23 +97,69 @@
 			<%
 				ArrayList<BoardDto> list = (ArrayList<BoardDto>) request.getAttribute("data");
 				out.print("<input type='hidden' id=size value=" + list.size() + ">");
+				 if(articleList != null && listCount > 0){
 				for (int i = 0; i < list.size(); i++) {
 					out.print("<tr id='tr_hover'><td>" + list.get(i).getNum() + "</td>");
 					out.print("<td>" + list.get(i).getCategory() + "</td>");
 					out.print("<td><label class='newimg' id='newimg" + i
 							+ "'>new</label><a href='BoardView.my?command=view&num=" + list.get(i).getNum() + "&hits="
-							+ list.get(i).getHits() + "'>" + list.get(i).getTitle() + "</a></td>");
+							+ list.get(i).getHits() + "&page="+nowPage+"'>" + list.get(i).getTitle() + "</a></td>");
 					out.print("<td>" + list.get(i).getWriter() + "</td>");
 					out.print("<td>" + list.get(i).getDate() + "</td>");
 					out.print("<td>" + list.get(i).getHits() + "</td>");
 					out.print("<input type='hidden' id='date" + i + "' value='" + list.get(i).getDate() + "'>");//hidden타입에 value값으로 날자를 넣어 스크립트에서 비교하기
-				}
+				}				 
 			%>
 			<input type="hidden" value="${ID}" id="sessioncheck" />
 		</table>
+<!--pageList -->
+<style>
+#pageList{
+position:absolute;
+top:1600px;
+left:50%;
+}
+</style>
+	<div id="pageList">
+	<%if(nowPage<=1){ %>
+		
+	<%}else{ %>
+	<a href=".my?command=list&category=infoandtip&page=<%=nowPage-1 %>">[이전]</a>&nbsp;
+	<%}%>
 
+	<%for(int a=startPage;a<=endPage;a++){
+	if(a==nowPage){%>
+    [<%=a %>]
+	<%}else{ %>
+	<a href=".my?command=list&category=infoandtip&page=<%=a %>">[<%=a %>]
+	</a>&nbsp;
+	<%} %>
+	<%} %>
+
+	<%if(nowPage>=maxPage){ %>
+		
+	<%}else{ %>
+	<a href=".my?command=list&category=infoandtip&page=<%=nowPage+1 %>">[다음]</a>
+	<%} %>
+	</div>
+	<%}else{%>
+	<tr id='tr_hover'><td colspan=6>등록된 게시글이 없습니다</td></tr>
+	</table>
+	<%}%>
 
 		<script>
+		function secheck(){//검색어를입력안하면 메시지 출력
+			var text=$("#searchinfo").val();
+			//alert(typeof(text));
+			var check="null";
+			if(text==check||text==""){
+				alert("검색어를 입력하세요.");
+				return false;
+			}
+			return true;
+		}
+
+		
 			function writepage() {//session 을 ID가sessionchek인 input hidden박스에 value값으로 넣어주고 값 을 비교하여 로그인과 비로그인 구별하여 글쓰기제한둠
 				var sessioncheck = $("#sessioncheck").val();
 				var check = "null";

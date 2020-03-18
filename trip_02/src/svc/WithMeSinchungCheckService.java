@@ -7,16 +7,16 @@ import java.sql.Connection;
 import dao.WithMeDao;
 
 public class WithMeSinchungCheckService {
-	
-	public int sinchungCheck(int boardnum,String id) throws Exception{
+
+	public int sinchungCheck(int boardnum, String id) throws Exception {
 		// TODO Auto-generated method stub
-		
+
 		Connection con = getConnection();
-		WithMeDao withmeDAO = WithMeDao.getInstance();//WithMeDao °´Ã¼ »ı¼º
-		int check=0; //º¯¼ö check »ı¼º		
-		withmeDAO.setConnection(con);//withmDAO¿¡ Ä¿³Ø¼ÇÀ» setÇØÁØ´Ù
-		check=withmeDAO.cinchugcheck(boardnum, id);//½ÅÃ»ÀÚ Ã¼Å©¸¦ ÅëÇØ °ªÀ» ¸®ÅÏ ¹Ş´Â´Ù
-		
+		WithMeDao withmeDAO = WithMeDao.getInstance();// WithMeDao ê°ì²´ ìƒì„±
+		int check = 0; // ë³€ìˆ˜ check ìƒì„±
+		withmeDAO.setConnection(con);// withmDAOì— ì»¤ë„¥ì…˜ì„ setí•´ì¤€ë‹¤
+		check = withmeDAO.cinchugcheck(boardnum, id);// ì‹ ì²­ì ì²´í¬ë¥¼ í†µí•´ ê°’ì„ ë¦¬í„´ ë°›ëŠ”ë‹¤
+
 		return check;
 	}
 

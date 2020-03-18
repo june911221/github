@@ -17,59 +17,55 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 public class WithMeWriteProAction implements Action {
 
-	public ActionForward execute(HttpServletRequest request,HttpServletResponse response) throws Exception{
+	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-
-		ActionForward forward=null;
+		ActionForward forward = null;
 		WithMeBean withmeBean = null;
-		String realFolder="";
-		String saveFolder="/upload";
-		int fileSize=5*1024*1024;
+		String realFolder = "";
+		String saveFolder = "/upload";
+		int fileSize = 5 * 1024 * 1024;
 		ServletContext context = request.getServletContext();
-		realFolder=context.getRealPath(saveFolder);   		
-		MultipartRequest multi=new MultipartRequest(request,
-				realFolder,
-				fileSize,
-				"UTF-8",
+		realFolder = context.getRealPath(saveFolder);
+		MultipartRequest multi = new MultipartRequest(request, realFolder, fileSize, "UTF-8",
 				new DefaultFileRenamePolicy());
-		//System.out.println("realFolder="+realFolder);
-		//System.out.println("savefolder="+saveFolder);
-		
+		// System.out.println("realFolder="+realFolder);
+		// System.out.println("savefolder="+saveFolder);
+
 		withmeBean = new WithMeBean();
 		withmeBean.setTitle(multi.getParameter("title"));
-		withmeBean.setDate(Date.valueOf(multi.getParameter("date")));//Åõ¾îÀÏÀÚ(valueof·Î String Å¸ÀÔÀÎ ÆÄ¶ó¹ÌÅÍ¸¦ dateÅ¸ÀÔÀ¸·Î º¯È¯ ´Ü Çü½ÄÀº yyyy=mm=dd ÀÌ¿©¾ßÇÑ´Ù)	
-		withmeBean.setPeople(Integer.parseInt(multi.getParameter("people")));//ÀÎ¿ø¼ö(string Å¸ÀÔÀÎ ÆÄ¶ó¹ÌÅÍ¸¦ intÅ¸ÀÔÀ¸·Î Çüº¯È¯)
-		withmeBean.setLim(multi.getParameter("limit"));//Á¦ÇÑÁ¶°Ç
-		withmeBean.setLimitdate(Date.valueOf(multi.getParameter("limitdate")));//¿¹¾àÃÖÁ¾¸¶°¨ÀÏ
-		withmeBean.setWriter(multi.getParameter("writer"));//ÀÛ¼ºÀÚ
-		withmeBean.setLocalcontenct(multi.getParameter("localcontenct"));//ÇöÁö¿¬¶ôÃ³
-		withmeBean.setContents(multi.getParameter("contents"));//³»¿ë		
-		
-		withmeBean.setPhoto(multi.getFilesystemName("filedata0"));//¸ŞÀÎ»çÁø
-		withmeBean.setPic1(multi.getFilesystemName("filedata1"));//Ãß°¡»çÁø1
-		withmeBean.setPic2(multi.getFilesystemName("filedata2"));//Ãß°¡»çÁø2
-		withmeBean.setPic3(multi.getFilesystemName("filedata3"));//Ãß°¡»çÁø3
-		withmeBean.setPic4(multi.getFilesystemName("filedata4"));//Ãß°¡»çÁø4
-		
+		withmeBean.setDate(Date.valueOf(multi.getParameter("date")));// íˆ¬ì–´ì¼ì(valueofë¡œ String íƒ€ì…ì¸ íŒŒë¼ë¯¸í„°ë¥¼ dateíƒ€ì…ìœ¼ë¡œ ë³€í™˜ ë‹¨ í˜•ì‹ì€
+																		// yyyy=mm=dd ì´ì—¬ì•¼í•œë‹¤)
+		withmeBean.setPeople(Integer.parseInt(multi.getParameter("people")));// ì¸ì›ìˆ˜(string íƒ€ì…ì¸ íŒŒë¼ë¯¸í„°ë¥¼ intíƒ€ì…ìœ¼ë¡œ í˜•ë³€í™˜)
+		withmeBean.setLim(multi.getParameter("limit"));// ì œí•œì¡°ê±´
+		withmeBean.setLimitdate(Date.valueOf(multi.getParameter("limitdate")));// ì˜ˆì•½ìµœì¢…ë§ˆê°ì¼
+		withmeBean.setWriter(multi.getParameter("writer"));// ì‘ì„±ì
+		withmeBean.setLocalcontenct(multi.getParameter("localcontenct"));// í˜„ì§€ì—°ë½ì²˜
+		withmeBean.setContents(multi.getParameter("contents"));// ë‚´ìš©
+
+		withmeBean.setPhoto(multi.getFilesystemName("filedata0"));// ë©”ì¸ì‚¬ì§„
+		withmeBean.setPic1(multi.getFilesystemName("filedata1"));// ì¶”ê°€ì‚¬ì§„1
+		withmeBean.setPic2(multi.getFilesystemName("filedata2"));// ì¶”ê°€ì‚¬ì§„2
+		withmeBean.setPic3(multi.getFilesystemName("filedata3"));// ì¶”ê°€ì‚¬ì§„3
+		withmeBean.setPic4(multi.getFilesystemName("filedata4"));// ì¶”ê°€ì‚¬ì§„4
+
 		WithMeWriteProService WriteProService = new WithMeWriteProService();
 		boolean isWriteSuccess = WriteProService.registArticle(withmeBean);
-		//System.out.println("proAction="+isWriteSuccess);
-		if(!isWriteSuccess){
+		// System.out.println("proAction="+isWriteSuccess);
+		if (!isWriteSuccess) {
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
-			out.println("alert('µî·Ï½ÇÆĞ')");
+			out.println("alert('ë“±ë¡ì‹¤íŒ¨')");
 			out.println("history.back();");
 			out.println("</script>");
-		}
-		else{
+		} else {
 			forward = new ActionForward();
 			forward.setRedirect(true);
 			forward.setPath("WithMe.do");
 		}
 
 		return forward;
-		
-	}  	
-	
+
+	}
+
 }

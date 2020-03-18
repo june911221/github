@@ -21,59 +21,60 @@ public class WithMeModifyProAction implements Action {
 		ActionForward forward = null;
 		WithMeBean withmeBean = null;
 		String realFolder = "";
-		String saveFolder = "/upload"; // ¾÷·Îµå ÆÄÀÏ °æ·Î
+		String saveFolder = "/upload"; // ì—…ë¡œë“œ íŒŒì¼ ê²½ë¡œ
 		int fileSize = 5 * 1024 * 1024;
 		ServletContext context = request.getServletContext();
 		realFolder = context.getRealPath(saveFolder);
 		MultipartRequest multi = new MultipartRequest(request, realFolder, fileSize, "UTF-8",
 				new DefaultFileRenamePolicy());
-		// System.out.println("savefolder="+saveFolder);// ¾÷·Îµå ÆÄÀÏ°æ·Î Ãâ·Â
+		// System.out.println("savefolder="+saveFolder);// ì—…ë¡œë“œ íŒŒì¼ê²½ë¡œ ì¶œë ¥
 
 		withmeBean = new WithMeBean();
-		withmeBean.setNum(Integer.parseInt(multi.getParameter("num")));// °Ô½Ã±Û ¹øÈ£
-		withmeBean.setTitle(multi.getParameter("title"));// °Ô½Ã±Û Á¦¸ñ
-		withmeBean.setDate(Date.valueOf(multi.getParameter("date")));// Åõ¾îÀÏÀÚ(valueof·Î String Å¸ÀÔÀÎ ÆÄ¶ó¹ÌÅÍ¸¦ dateÅ¸ÀÔÀ¸·Î º¯È¯ ´Ü Çü½ÄÀº yyyy-mm-dd ÀÌ¿©¾ßÇÑ´Ù)
-		withmeBean.setPeople(Integer.parseInt(multi.getParameter("people")));// ÀÎ¿ø¼ö(string Å¸ÀÔÀÎ ÆÄ¶ó¹ÌÅÍ¸¦ intÅ¸ÀÔÀ¸·Î Çüº¯È¯)
-		withmeBean.setLim(multi.getParameter("limit"));// Á¦ÇÑÁ¶°Ç
-		withmeBean.setLimitdate(Date.valueOf(multi.getParameter("limitdate")));// ¿¹¾àÃÖÁ¾¸¶°¨ÀÏ
-		withmeBean.setWriter(multi.getParameter("writer"));// ÀÛ¼ºÀÚ
-		withmeBean.setLocalcontenct(multi.getParameter("localcontenct"));// ÇöÁö¿¬¶ôÃ³
-		withmeBean.setContents(multi.getParameter("contents"));// ³»¿ë
+		withmeBean.setNum(Integer.parseInt(multi.getParameter("num")));// ê²Œì‹œê¸€ ë²ˆí˜¸
+		withmeBean.setTitle(multi.getParameter("title"));// ê²Œì‹œê¸€ ì œëª©
+		withmeBean.setDate(Date.valueOf(multi.getParameter("date")));// íˆ¬ì–´ì¼ì(valueofë¡œ String íƒ€ì…ì¸ íŒŒë¼ë¯¸í„°ë¥¼ dateíƒ€ì…ìœ¼ë¡œ ë³€í™˜ ë‹¨ í˜•ì‹ì€
+																		// yyyy-mm-dd ì´ì—¬ì•¼í•œë‹¤)
+		withmeBean.setPeople(Integer.parseInt(multi.getParameter("people")));// ì¸ì›ìˆ˜(string íƒ€ì…ì¸ íŒŒë¼ë¯¸í„°ë¥¼ intíƒ€ì…ìœ¼ë¡œ í˜•ë³€í™˜)
+		withmeBean.setLim(multi.getParameter("limit"));// ì œí•œì¡°ê±´
+		withmeBean.setLimitdate(Date.valueOf(multi.getParameter("limitdate")));// ì˜ˆì•½ìµœì¢…ë§ˆê°ì¼
+		withmeBean.setWriter(multi.getParameter("writer"));// ì‘ì„±ì
+		withmeBean.setLocalcontenct(multi.getParameter("localcontenct"));// í˜„ì§€ì—°ë½ì²˜
+		withmeBean.setContents(multi.getParameter("contents"));// ë‚´ìš©
 
 		if (multi.getFilesystemName("filedata0") == null || multi.getFilesystemName("filedata0") == "") {
 			withmeBean.setPhoto(multi.getParameter("checkimg1"));
 		} else {
-			withmeBean.setPhoto(multi.getFilesystemName("filedata0"));// ¸ŞÀÎ»çÁø
+			withmeBean.setPhoto(multi.getFilesystemName("filedata0"));// ë©”ì¸ì‚¬ì§„
 		}
 		if (multi.getFilesystemName("filedata1") == null || multi.getFilesystemName("filedata1") == "") {
 			withmeBean.setPic1(multi.getParameter("checkimg2"));
 		} else {
-			withmeBean.setPic1(multi.getFilesystemName("filedata1"));// Ãß°¡»çÁø1
+			withmeBean.setPic1(multi.getFilesystemName("filedata1"));// ì¶”ê°€ì‚¬ì§„1
 		}
 		if (multi.getFilesystemName("filedata2") == null || multi.getFilesystemName("filedata2") == "") {
 			withmeBean.setPic2(multi.getParameter("checkimg3"));
 		} else {
-			withmeBean.setPic2(multi.getFilesystemName("filedata2"));// Ãß°¡»çÁø2
+			withmeBean.setPic2(multi.getFilesystemName("filedata2"));// ì¶”ê°€ì‚¬ì§„2
 		}
 		if (multi.getFilesystemName("filedata3") == null || multi.getFilesystemName("filedata3") == "") {
 			withmeBean.setPic3(multi.getParameter("checkimg4"));
 		} else {
-			withmeBean.setPic3(multi.getFilesystemName("filedata3"));// Ãß°¡»çÁø3
+			withmeBean.setPic3(multi.getFilesystemName("filedata3"));// ì¶”ê°€ì‚¬ì§„3
 		}
 		if (multi.getFilesystemName("filedata4") == null || multi.getFilesystemName("filedata4") == "") {
 			withmeBean.setPic4(multi.getParameter("checkimg5"));
 		} else {
-			withmeBean.setPic4(multi.getFilesystemName("filedata4"));// Ãß°¡»çÁø4
+			withmeBean.setPic4(multi.getFilesystemName("filedata4"));// ì¶”ê°€ì‚¬ì§„4
 		}
 
 		WithMeModifyProService ModifyProService = new WithMeModifyProService();
 		boolean isWriteSuccess = ModifyProService.modifyArticle(withmeBean);
-		System.out.println("proAction=" + isWriteSuccess);
+		// System.out.println("proAction=" + isWriteSuccess);
 		if (!isWriteSuccess) {
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
-			out.println("alert('µî·Ï½ÇÆĞ')");
+			out.println("alert('ë“±ë¡ì‹¤íŒ¨')");
 			out.println("history.back();");
 			out.println("</script>");
 		} else {

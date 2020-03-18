@@ -11,69 +11,70 @@ import vo.PageInfo;
 import vo.ThemaDto;
 
 public class ThemaListAction implements Action {
-	 
-	 public ActionForward execute(HttpServletRequest request,HttpServletResponse response) throws Exception{
-		 
-		ArrayList<ThemaDto> articleList=new ArrayList<ThemaDto>();
+
+	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+		ArrayList<ThemaDto> articleList = new ArrayList<ThemaDto>();
 		PageInfo pageInfo = new PageInfo();
-		int page=1;
-		int limit=9;
-		
-		if(request.getParameter("page")!=null){
-			page=Integer.parseInt(request.getParameter("page"));
-		}
-		if(request.getParameter("page")==null){
-			page=1;
-		}
-		
-		if(request.getParameter("category")==null) {
-		
-	    ThemaListService ListService = new ThemaListService();
-		int listCount=ListService.getListCount();
-		articleList = ListService.getArticleList(page,limit);
-		
-		//ÃÑ ÆäÀÌÁö ¼ö.
-  	    int maxPage=(int)((double)listCount/limit+0.95); //0.95¸¦ ´õÇØ¼­ ¿Ã¸² Ã³¸®.
-  		//ÇöÀç ÆäÀÌÁö¿¡ º¸¿©ÁÙ ½ÃÀÛ ÆäÀÌÁö ¼ö(1, 11, 21 µî...)
-  		int startPage = (((int) ((double)page / 9 + 0.9)) - 1) * 9 + 1;
-  		//ÇöÀç ÆäÀÌÁö¿¡ º¸¿©ÁÙ ¸¶Áö¸· ÆäÀÌÁö ¼ö.(10, 20, 30 µî...)
-  	        int endPage = startPage+9-1;
-		
-  		if (endPage> maxPage) endPage= maxPage;
+		int page = 1;
+		int limit = 6;
 
-  		pageInfo.setEndPage(endPage);
-  		pageInfo.setListCount(listCount);
-		pageInfo.setMaxPage(maxPage);
-		pageInfo.setPage(page);
-		pageInfo.setStartPage(startPage);
+		if (request.getParameter("page") != null) {
+			page = Integer.parseInt(request.getParameter("page"));
 		}
-		else {
-			    ThemaListService ListService = new ThemaListService();
-				int listCount=ListService.CategorygetListCount(request.getParameter("category"));
-				articleList = ListService.getcategoryArticleList(page,limit,request.getParameter("category"));
-				
-				//ÃÑ ÆäÀÌÁö ¼ö.
-		  	    int maxPage=(int)((double)listCount/limit+0.95); //0.95¸¦ ´õÇØ¼­ ¿Ã¸² Ã³¸®.
-		  		//ÇöÀç ÆäÀÌÁö¿¡ º¸¿©ÁÙ ½ÃÀÛ ÆäÀÌÁö ¼ö(1, 11, 21 µî...)
-		  		int startPage = (((int) ((double)page / 9 + 0.9)) - 1) * 9 + 1;
-		  		//ÇöÀç ÆäÀÌÁö¿¡ º¸¿©ÁÙ ¸¶Áö¸· ÆäÀÌÁö ¼ö.(10, 20, 30 µî...)
-		  	        int endPage = startPage+9-1;
-				
-		  		if (endPage> maxPage) endPage= maxPage;
+		if (request.getParameter("page") == null) {
+			page = 1;
+		}
 
-		  		pageInfo.setEndPage(endPage);
-		  		pageInfo.setListCount(listCount);
-				pageInfo.setMaxPage(maxPage);
-				pageInfo.setPage(page);
-				pageInfo.setStartPage(startPage);
-			
+		if (request.getParameter("category") == null) {
+
+			ThemaListService ListService = new ThemaListService();
+			int listCount = ListService.getListCount();
+			articleList = ListService.getArticleList(page, limit);
+
+			// ì´ íŽ˜ì´ì§€ ìˆ˜.
+			int maxPage = (int) ((double) listCount / limit + 0.95); // 0.95ë¥¼ ë”í•´ì„œ ì˜¬ë¦¼ ì²˜ë¦¬.
+			// í˜„ìž¬ íŽ˜ì´ì§€ì— ë³´ì—¬ì¤„ ì‹œìž‘ íŽ˜ì´ì§€ ìˆ˜
+			int startPage = (((int) ((double) page / 6 + 0.9)) - 1) * 6 + 1;
+			// í˜„ìž¬ íŽ˜ì´ì§€ì— ë³´ì—¬ì¤„ ë§ˆì§€ë§‰ íŽ˜ì´ì§€ ìˆ˜.
+			int endPage = startPage + 6 - 1;
+
+			if (endPage > maxPage)
+				endPage = maxPage;
+
+			pageInfo.setEndPage(endPage);
+			pageInfo.setListCount(listCount);
+			pageInfo.setMaxPage(maxPage);
+			pageInfo.setPage(page);
+			pageInfo.setStartPage(startPage);
+		} else {
+			ThemaListService ListService = new ThemaListService();
+			int listCount = ListService.CategorygetListCount(request.getParameter("category"));
+			articleList = ListService.getcategoryArticleList(page, limit, request.getParameter("category"));
+
+			// ì´ íŽ˜ì´ì§€ ìˆ˜.
+			int maxPage = (int) ((double) listCount / limit + 0.95); // 0.95ë¥¼ ë”í•´ì„œ ì˜¬ë¦¼ ì²˜ë¦¬.
+			// í˜„ìž¬ íŽ˜ì´ì§€ì— ë³´ì—¬ì¤„ ì‹œìž‘ íŽ˜ì´ì§€ ìˆ˜(1, 11, 21 ë“±...)
+			int startPage = (((int) ((double) page / 9 + 0.9)) - 1) * 9 + 1;
+			// í˜„ìž¬ íŽ˜ì´ì§€ì— ë³´ì—¬ì¤„ ë§ˆì§€ë§‰ íŽ˜ì´ì§€ ìˆ˜.(10, 20, 30 ë“±...)
+			int endPage = startPage + 9 - 1;
+
+			if (endPage > maxPage)
+				endPage = maxPage;
+
+			pageInfo.setEndPage(endPage);
+			pageInfo.setListCount(listCount);
+			pageInfo.setMaxPage(maxPage);
+			pageInfo.setPage(page);
+			pageInfo.setStartPage(startPage);
+
 		}
-		
+
 		request.setAttribute("pageInfo", pageInfo);
 		request.setAttribute("articleList", articleList);
-		ActionForward forward= new ActionForward();
-  		forward.setPath("/Thema.jsp");
-  		return forward;
-  		
-	 }
+		ActionForward forward = new ActionForward();
+		forward.setPath("/Thema.jsp");
+		return forward;
+
+	}
 }

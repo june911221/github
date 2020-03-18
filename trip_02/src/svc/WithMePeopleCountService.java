@@ -12,28 +12,26 @@ import vo.WithMeBean;
 import vo.With_UserBean;
 
 public class WithMePeopleCountService {
-	
-	public boolean peoplecount(With_UserBean user) throws Exception{
-		
+
+	public boolean peoplecount(With_UserBean user) throws Exception {
+
 		boolean isWriteSuccess = false;
 		Connection con = getConnection();
 		WithMeDao withmeDAO = WithMeDao.getInstance();
 		withmeDAO.setConnection(con);
-		
+
 		int insertCount = withmeDAO.peopleCount(user);
-		
-		if(insertCount > 0){
+
+		if (insertCount > 0) {
 			commit(con);
 			isWriteSuccess = true;
-		}
-		else{
+		} else {
 			rollback(con);
 		}
-		
+
 		close(con);
 		return isWriteSuccess;
-		
+
 	}
 
 }
-

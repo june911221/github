@@ -1,18 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*"%>
 <%@ page import="vo.CityDto"%>
+<%@ page import="vo.Food_placeDto"%>
+<%@ page import="dao.Food_placeDao"%>
 <%@ page import="dao.CityDao"%>
+<%@ page import="java.util.ArrayList" %>
 <!doctype html>
 <html>
  <head>
   <meta charset="UTF-8">
   <title>tourcity</title>
   <!-- CSS -->
-<link rel="stylesheet" href="css/tourcity.css">
+<link rel="stylesheet" href="css/tourcity.css?ver=1.1">
 	<!-- JS -->
 <script src="js/jquery-1.11.3.min.js"></script>
 <script src="js/TourCity.js"></script>
 <jsp:useBean id="Cityinfo" class="dao.CityDao" />
+<jsp:useBean id="food_place" class="dao.Food_placeDao" />
 <%
 CityDto city=(CityDto)Cityinfo.City(request.getParameter("cityname"));
 %> 
@@ -90,20 +94,14 @@ CityDto city=(CityDto)Cityinfo.City(request.getParameter("cityname"));
 
 <!--best명소&맛집-->
 <div class="best">
-
+<%
+ArrayList<Food_placeDto> best3=food_place.BestCity(request.getParameter("cityname"));
+for(int i=0; i<best3.size();i++ ){%>
 <div class="bestbanner">
-<div class="subtitle"><span>Best1</span></div>
-<img src="img/logo2.png">
+<div class="subtitle"><span>Best<%=i+1%></span></div>
+<a href=""><img src="img/<%=best3.get(i).getPic()%>"></a>
 </div>
-<div class="bestbanner">
-<div class="subtitle"><span>Best2</span></div>
-<img src="img/logo2.png">
-</div>
-<div class="bestbanner">
-<div class="subtitle"><span>Best3</span></div>
-<img src="img/logo2.png">
-</div>
-
+<%}%>
 </div>
 
 <!-- 탭메뉴 -->
@@ -116,204 +114,52 @@ CityDto city=(CityDto)Cityinfo.City(request.getParameter("cityname"));
 			<div id="sec1" class="tab2-content">
                 <p>
         <ul id="sub-menu">
+<%
+ArrayList<Food_placeDto> place=food_place.placeCitylist(request.getParameter("cityname"));
+for(int i=0; i<place.size();i++){%>
         <li id="list2"><div class="wrapper2">
     <div class="product-img">
-      <img src="http://bit.ly/2tMBBTd" height="210" width="200">
+      <img src="img/<%=place.get(i).getPic() %>" height="210" width="200">
     </div>
     <div class="product-info">
       <div class="product-text">
         <h1>BEST 명소</h1>
-        <h2>by studio and friends</h2>
-        <p>Harvest Vases are a reinterpretation</p>
+        <h2 id="title"><%=place.get(i).getTitle()%></h2>
+        <div class='ellip' style='width:150px;'><%=place.get(i).getContents()%></div>
       </div>
       <div class="product-price-btn">
-        <a><button type="button">바로가기</button></a>
+        <a href="placedetail.jsp?num=<%=place.get(i).getNum()%>"><button type="button">바로가기</button></a>
       </div>
     </div>
   </div>
   </li>
-   <li id="list2"> <div class="wrapper2">
-    <div class="product-img">
-      <img src="http://bit.ly/2tMBBTd" height="210" width="200">
-    </div>
-    <div class="product-info">
-      <div class="product-text">
-        <h1>BEST 명소</h1>
-        <h2>by studio and friends</h2>
-        <p>Harvest Vases are a reinterpretation</p>
-      </div>
-      <div class="product-price-btn">
-        <a><button type="button">바로가기</button></a>
-      </div>
-    </div>
-  </div>
-  </li>
-   <li id="list2"> <div class="wrapper2">
-    <div class="product-img">
-      <img src="http://bit.ly/2tMBBTd" height="210" width="200">
-    </div>
-    <div class="product-info">
-      <div class="product-text">
-        <h1>BEST 명소</h1>
-        <h2>by studio and friends</h2>
-        <p>Harvest Vases are a reinterpretation</p>
-      </div>
-      <div class="product-price-btn">
-        <a><button type="button">바로가기</button></a>
-      </div>
-    </div>
-  </div>
-  </li>
-   <li id="list2"> <div class="wrapper2">
-    <div class="product-img">
-      <img src="http://bit.ly/2tMBBTd" height="210" width="200">
-    </div>
-    <div class="product-info">
-      <div class="product-text">
-        <h1>BEST 명소</h1>
-        <h2>by studio and friends</h2>
-        <p>Harvest Vases are a reinterpretation</p>
-      </div>
-      <div class="product-price-btn">
-        <a><button type="button">바로가기</button></a>
-      </div>
-    </div>
-  </div>
-  </li>
-   <li id="list2"> <div class="wrapper2">
-    <div class="product-img">
-      <img src="http://bit.ly/2tMBBTd" height="210" width="200">
-    </div>
-    <div class="product-info">
-      <div class="product-text">
-        <h1>BEST 명소</h1>
-        <h2>by studio and friends</h2>
-        <p>Harvest Vases are a reinterpretation</p>
-      </div>
-      <div class="product-price-btn">
-        <a><button type="button">바로가기</button></a>
-      </div>
-    </div>
-  </div>
-  </li>
-   <li id="list2"> <div class="wrapper2">
-    <div class="product-img">
-      <img src="http://bit.ly/2tMBBTd" height="210" width="200">
-    </div>
-    <div class="product-info">
-      <div class="product-text">
-        <h1>BEST 명소</h1>
-        <h2>by studio and friends</h2>
-        <p>Harvest Vases are a reinterpretation</p>
-      </div>
-      <div class="product-price-btn">
-        <a><button type="button">바로가기</button></a>
-      </div>
-    </div>
-  </div>
-  </li>
-       </ul>
-                </p>
-            </div>
-            <div id="sec2" class="tab2-content">
+ <%}%>
+</ul>
+</p>
+</div>
+<div id="sec2" class="tab2-content">
                 <p>
-                    <ul id="sub-menu">
-         <li id="list2"> <div class="wrapper2">
+<ul id="sub-menu">
+<%
+ArrayList<Food_placeDto> food=food_place.foodCitylist(request.getParameter("cityname"));
+for(int i=0; i<food.size();i++){%>
+    <li id="list2"> <div class="wrapper2">
     <div class="product-img">
-      <img src="http://bit.ly/2tMBBTd" height="210" width="200">
+      <img src="img/<%=food.get(i).getPic()%>" height="210" width="200">
     </div>
     <div class="product-info">
       <div class="product-text">
         <h1>BEST 맛집</h1>
-        <h2>by studio and friends</h2>
-        <p>Harvest Vases are a reinterpretation</p>
+        <h2 id="title"><%=food.get(i).getTitle()%></h2>
+        <div class='ellip' style='width:150px;'><%=food.get(i).getContents()%></div>
       </div>
       <div class="product-price-btn">
-        <a><button type="button">바로가기</button></a>
+        <a href="placedetail.jsp?num=<%=food.get(i).getNum()%>"><button type="button">바로가기</button></a>
       </div>
     </div>
   </div>
   </li>
-   <li id="list2"> <div class="wrapper2">
-    <div class="product-img">
-      <img src="http://bit.ly/2tMBBTd" height="210" width="200">
-    </div>
-    <div class="product-info">
-      <div class="product-text">
-        <h1>BEST 맛집</h1>
-        <h2>by studio and friends</h2>
-        <p>Harvest Vases are a reinterpretation</p>
-      </div>
-      <div class="product-price-btn">
-        <a><button type="button">바로가기</button></a>
-      </div>
-    </div>
-  </div>
-  </li>
-   <li id="list2"> <div class="wrapper2">
-    <div class="product-img">
-      <img src="http://bit.ly/2tMBBTd" height="210" width="200">
-    </div>
-    <div class="product-info">
-      <div class="product-text">
-        <h1>BEST 맛집</h1>
-        <h2>by studio and friends</h2>
-        <p>Harvest Vases are a reinterpretation</p>
-      </div>
-      <div class="product-price-btn">
-        <a><button type="button">바로가기</button></a>
-      </div>
-    </div>
-  </div>
-  </li>
-   <li id="list2"> <div class="wrapper2">
-    <div class="product-img">
-      <img src="http://bit.ly/2tMBBTd" height="210" width="200">
-    </div>
-    <div class="product-info">
-      <div class="product-text">
-        <h1>BEST 맛집</h1>
-        <h2>by studio and friends</h2>
-        <p>Harvest Vases are a reinterpretation</p>
-      </div>
-      <div class="product-price-btn">
-        <a><button type="button">바로가기</button></a>
-      </div>
-    </div>
-  </div>
-  </li>
-   <li id="list2"> <div class="wrapper2">
-    <div class="product-img">
-      <img src="http://bit.ly/2tMBBTd" height="210" width="200">
-    </div>
-    <div class="product-info">
-      <div class="product-text">
-        <h1>BEST 맛집</h1>
-        <h2>by studio and friends</h2>
-        <p>Harvest Vases are a reinterpretation</p>
-      </div>
-      <div class="product-price-btn">
-        <a><button type="button">바로가기</button></a>
-      </div>
-    </div>
-  </div>
-  </li>
-   <li id="list2"> <div class="wrapper2">
-    <div class="product-img">
-      <img src="http://bit.ly/2tMBBTd" height="210" width="200">
-    </div>
-    <div class="product-info">
-      <div class="product-text">
-        <h1>BEST 맛집</h1>
-        <h2>by studio and friends</h2>
-        <p>Harvest Vases are a reinterpretation</p>
-      </div>
-      <div class="product-price-btn">
-        <a><button type="button">바로가기</button></a>
-      </div>
-    </div>
-  </div>
-  </li>
+ <%}%>
   </ul>
    </div>
     </div>

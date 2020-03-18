@@ -1,9 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*"%>
 <%@ page import="vo.UserDto"%>
+<%@ page import="vo.BoardDto"%>
+<%@ page import="vo.Food_placeDto"%>
+<%@ page import="dao.Food_placeDao"%>
 <%@ page import="dao.UserDao"%>
 <%@ page import="java.util.ArrayList" %>
 <jsp:useBean id="user" class="dao.UserDao"/>
+<jsp:useBean id="scrap" class="dao.Food_placeDao"/>
 <%
 String id=(String)session.getAttribute("ID");
 ArrayList<UserDto> userlist=user.UserList(id);
@@ -27,7 +31,7 @@ if(addr2==null){
   <meta charset="UTF-8">
   <title>Mypage</title>
   <!-- CSS -->
-  <link rel="stylesheet" href="css/mypage.css?ver=1.0">
+  <link rel="stylesheet" href="css/mypage.css?ver=1">
 	<!-- JS -->
 	<script src="js/jquery-1.11.3.min.js"></script>
 	<script src="js/Mypages.js"></script>
@@ -46,34 +50,16 @@ if(addr2==null){
  <%} %>
  
   <section>
-  		<div class="container">
-			<!--   사이드메뉴 -->
-			<div class="sideArea">
-
-
-				<ul class="sideMenu">
-					<li><a href="User.jsp" class="user"><span
-							class="fa fa-mom"></span>회원정보수정</a></li>
-					<li><a href="#" class="scrap"><span class="fa fa-dad"></span>스크랩</a></li>
-					<li><a href="Air.jsp" class="flight"><span
-							class="fa fa-good"></span>항공예약확인/취소</a></li>
-					<li><a href="#" class="list"><span class="fa fa-god"></span>작성
-							게시물 관리</a></li>
-					<li><a href="UserDelete.jsp"><span class="fa fa-ggood"></span>회원탈퇴</a></li>
-				</ul>
-			</div>
-		</div>
 <!--   사이드메뉴 -->
-<!-- <aside>
+<aside>
 <ul class="note-wrap note" style="list-style-type:none">
 
- <li align="left"><a href="User.jsp">회원정보수정</a></li>
- <li align="left"><a href="#">스크랩</a></li>
+ <li align="left", list style="none"><a href="User.jsp">회원정보수정</a></li>
+ <li align="left"><a href="scrappage.do">스크랩</a></li>
  <li align="left"><a href="Air.jsp">항공예약확인/취소</a></li>
- <li align="left"><a href="#">작성 게시물 관리</a></li>
  <li align="left"><a href="UserDelete.jsp">회원탈퇴</a></li>
  </ul>
- </aside>  -->
+ </aside> 
 
 <!-- 메인배너   -->
 <div class="mainbox" >
@@ -155,84 +141,18 @@ if(addr2==null){
 	 <br><br>
      <hr>
 
-	<div id="menubox1"><img src="img/board.png"><h2>등록한 게시물</h2></div>
-	<table class="basic2">
-
-		<tr><td width="156"style="background:#EAEAEA"><b>등록일자</b></td>
-		<td width="470"style="background:#EAEAEA"><b>글 제목</b></td> 
-		<td width="156"style="background:#EAEAEA"><b>게시판</b></td>
-		<td width="156"style="background:#EAEAEA"><b>조회수</b></td>
-		</tr>
-		<tr>
-		<td>2019-12-01</td>
-		<td>aaa</td>
-		<td>함께해요</td>
-		<td>50</td>
-
-		<tr>
-		<td>2019-02-15</td>
-		<td>bbb</td>
-		<td>여행후기</td>
-		<td>200</td>
-		</tr>
-
-		<tr>
-		<td>2018-05-04</td>
-		<td>ccc</td>
-		<td>정보&팁</td>
-		<td>157</td>
-		</tr>
-	 </table>
-	 
-	 <br><br>
-     <hr>
 	 <div><img src="img/scrap.png"><h2>나의 스크랩</h2></div>
+<%
+int scraplist =(int)scrap.ScrapList(id);
+if (scraplist > 0) {%>
+	<%=scraplist%> 개의 게시물을 스크랩 하셨습니다 <a href="scrappage.do">스크랩 보러가기</a>
+<%}else{%>
+<div>스크랩한 게시물이 없습니다</div>
+<%}%>
+    
 
-	    <ul id="sub-menu">
-        <li id="list2"><div class="wrapper2">
-    <div class="product-img">
-      <img src="img/da.png" height="210" width="200">
-    </div>
-    <div class="product-info">
-      <div class="product-text">
-       <h3>다낭여행 <br>맛집후기!</h3>
-      </div>
-      <div class="product-price-btn">
-        <a><button type="button">바로가기</button></a>
-      </div>
-    </div>
-  </div>
-  </li>
-   <li id="list2"> <div class="wrapper2">
-    <div class="product-img">
-      <img src="img/post2.png" height="210" width="200">
-    </div>
-    <div class="product-info">
-      <div class="product-text">
-      <h3>코타키나발루 <br>여행후기</h3>
-      </div>
-      <div class="product-price-btn">
-        <a><button type="button">바로가기</button></a>
-      </div>
-    </div>
-  </div>
-  </li>
-   <li id="list2"> <div class="wrapper2">
-    <div class="product-img">
-      <img src="img/food1.png" height="210" width="200">
-    </div>
-    <div class="product-info">
-      <div class="product-text">
-        <h3>파리 BEST <br>맛집추천!!</h3>
-      </div>
-      <div class="product-price-btn">
-        <a><button type="button">바로가기</button></a>
-      </div>
-    </div>
-  </div>
-  </li>
    
-       </ul>
+
   
 </div>
 </section>

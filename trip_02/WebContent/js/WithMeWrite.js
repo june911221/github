@@ -10,12 +10,38 @@
 	        height: 400,                 // set editor height
 	        minHeight: 400,             // set minimum height of editor
 	        maxHeight: 400,             // set maximum height of editor
-	        focus: true                    // set focus to editable area after initializing summernote
+	        focus: true ,
+	    	callbacks: { // 콜백을 사용
+		           // 이미지를 업로드할 경우 이벤트를 발생
+			       onImageUpload: function(files, editor, welEditable) {
+			       validation(files[0]);
+				   sendFile(files[0], this);
+				}
+			}
+	                    
 	    });
 	});	
+/* summernote에서 이미지 업로드시 실행할 함수 */
+	function sendFile(file, el) {// 파일 전송을 위한 폼생성
+		var form_data = new FormData();
+	  	form_data.append('file', file);
+	  	$.ajax({// ajax를 통해 파일 업로드 처리
+	    	data: form_data,
+	    	type: "POST",
+	    	url: "./summernote_imageUpload.jsp",
+	    	cache: false,
+	    	contentType: false,
+	    	enctype: 'multipart/form-data',
+	    	processData: false,
+	    	success: function(img_name) {// 처리가 성공할 경우
+	    	  	// 에디터에 이미지 출력
+	    	  //console.log(img_name+"dd")
+	    	  $(el).summernote('editor.insertImage', "."+img_name);
+	    	}
+	  	});
+	}
 
-
-function validation(fileName) {
+function validation(fileName) {//파일 확장자 체크
 	fileName = fileName + "";
 	var fileNameExtensionIndex = fileName.lastIndexOf('.') + 1;
 	var fileNameExtension = fileName.toLowerCase().substring(
@@ -312,6 +338,7 @@ function validation(fileName) {
 
 	//클릭시 파일 첨부
 	$('#fileclick').on('click',function() {	
+		
 		var filecheck0=$("#uploadInputBox0").val();
 		var filecheck1=$("#uploadInputBox1").val();
 		var filecheck2=$("#uploadInputBox2").val();

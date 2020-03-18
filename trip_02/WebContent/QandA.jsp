@@ -46,9 +46,9 @@
 
 			<!--banner -->
 
-			<img id="hugi_banner" src="img/hugi_banner.jpg" width="100%"
-				height="300">
-			<img id="hugi_banner2" src="img/thum.jpg" width="55%" height="300">
+			<img id="hugi_banner" src="img/user_banner1.jpg" width="100%"
+				height="500" style="opacity: 0.8;">
+			<img id="hugi_banner2" src="img/qna.jpg" width="413px" height="413px" style="margin-top:50px; margin-left:280px;">
 
 			<!--banner -->
 

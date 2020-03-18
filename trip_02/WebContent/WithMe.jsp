@@ -4,6 +4,8 @@
 <%@ page import="vo.PageInfo"%>
 <%@ page import="dao.WithMeDao"%>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.Date" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 <%
 	ArrayList<WithMeBean> articleList=(ArrayList<WithMeBean>)request.getAttribute("articleList");
     PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
@@ -44,7 +46,7 @@
  
  <section>
  <!-- 메인배너   -->
- <link rel="stylesheet" href="css/withme.css?ver=1.4">
+ <link rel="stylesheet" href="css/withme.css?ver=1.3">
 <!-- 메인배너   -->
 <div class="mainbox" >
 <img src="img/08.jpg"width="100%" height="500"/></div>
@@ -78,10 +80,16 @@ request.setCharacterEncoding("UTF-8");
 ArrayList<WithMeBean> list=(ArrayList<WithMeBean>)request.getAttribute("articleList");
 out.print("<input type='hidden' id=size value="+list.size()+">");
 String path="./upload/";
+SimpleDateFormat simpleformat = new SimpleDateFormat("yyyy-MM-dd");//SimpleDateFormat을 이용해 원하는 형태로 날짜 출력
+String Stringtoday=simpleformat.format(new Date());//현재날짜를 String 타입으로 yyyy-mm-dd형태로 받아낸다
+Date today = simpleformat.parse(Stringtoday);//String 형태로 받은 날짜를 Date 타입으로 고쳐준다
+
 if(articleList != null && listCount > 0){
-for(int i=0; i<list.size(); i++){
+	for(int i=0; i<list.size(); i++){
+	int compare = today.compareTo(list.get(i).getLimitdate());//compareTo 를 이용하여 현재날짜와 DB에 있는 마감 날짜를 비교한다
 	String st="모집중";
-if(list.get(i).getPeoplecount()==list.get(i).getPeople()){
+	//out.println("<input type='hidden' id="today >");
+if(list.get(i).getPeoplecount()==list.get(i).getPeople()||compare>0){
 	st="마감";
 }
 %>
@@ -104,25 +112,25 @@ if(list.get(i).getPeoplecount()==list.get(i).getPeople()){
 <input type="hidden" id="sessionID" value="${ID}"/>
 <input type="button" onclick="Write()" name="write" id="btnwrite" value="글쓰기" />
 <div id="pageList">
+<ul class="pagination">
 		<%if(nowPage<=1){ %>
 		
 		<%}else{ %>
-		<a href="WithMe.do?page=<%=nowPage-1 %>">[이전]</a>&nbsp;
+		<li class="page-item"><a a id="page-id2" href="WithMe.do?page=<%=nowPage-1 %>">[이전]</a></li>&nbsp;
 		<%} %>
 
 		<%for(int a=startPage;a<=endPage;a++){
 				if(a==nowPage){%>
-		[<%=a %>]
+		<li class="page-item"><a id="page-id" href="WithMe.do?page=<%=a %>"><%=a %></a></li>
 		<%}else{ %>
-		<a href="WithMe.do?page=<%=a %>">[<%=a %>]
-		</a>&nbsp;
+		<li class="page-item"><a id="page-id" href="WithMe.do?page=<%=a %>"><%=a %></a></li>&nbsp;
 		<%} %>
 		<%} %>
 
 		<%if(nowPage>=maxPage){ %>
 		
 		<%}else{ %>
-		<a href="WithMe.do?page=<%=nowPage+1 %>">[다음]</a>
+		<li class="page-item"><a a id="page-id2" href="WithMe.do?page=<%=nowPage+1 %>">[다음]</a></li>
 		<%} %>
 	</div>
 	<%

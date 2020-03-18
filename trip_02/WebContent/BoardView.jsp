@@ -5,7 +5,7 @@
 <%@page import="vo.CommentDto"%>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="js/BoardView2.js"></script>
-<link rel="stylesheet" href="css/BoardView.css?ver=1.5">
+<link rel="stylesheet" href="css/BoardView.css?ver=1.6">
 
 <!doctype html>
 <html>
@@ -27,6 +27,7 @@
  
 <section>
 <% 
+int Page=Integer.parseInt(request.getParameter("page"));
 ArrayList<BoardDto> list = (ArrayList<BoardDto>)request.getAttribute("data");
 int num=list.get(0).getNum();
 String category=list.get(0).getCategory();
@@ -35,6 +36,16 @@ String writer=list.get(0).getWriter();
 Date date=list.get(0).getDate();
 int hits=list.get(0).getHits();
 String contents=list.get(0).getContents();
+String ca=null;
+if(category.equals("여행후기")){
+	ca="hugi";
+}
+else if(category.equals("정보&팁")){
+	ca="infoandtip";
+}
+else{
+	ca="qa";
+}
 %>
 
 <input type="hidden" name="sessionID" id="sessionID" value=${ID}>
@@ -46,11 +57,11 @@ String contents=list.get(0).getContents();
 <table class="write_table">
 <tr>
 <th>카테고리</th>
-<td><input type="text" id="category"name="category" value="<%=category%>" readonly></td>
+<td><input type="hidden" id="category" name="category" value="<%=category%>"><%=category%></td>
 </tr>
 <tr>
 <th>제목</th>
-<td><input type="text" id="title" name="title" value="<%=title%>" size="100" readonly></td>
+<td><div id="titlediv"><%=title%></div><input type="hidden" id="title" name="title" value="<%=title%>" size="100" readonly></td>
 </tr>
 <tr>
 <th>글쓴이</th>
@@ -76,7 +87,7 @@ String contents=list.get(0).getContents();
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
 </tr>
 </table>
-<input type=button id="list" onclick="history.go(-1)" value="목록으로" />
+<input type=button id="list" onclick="location.href='.my?command=list&category=<%=ca%>&page=<%=Page%>'" value="목록으로" />
 <input type="hidden" id="update" onclick="return updata()" value="수정" >
 <input type="hidden" id="delete" onclick="delclick()" value="삭제">
 
@@ -90,7 +101,7 @@ String contents=list.get(0).getContents();
 <input type="hidden" name="bnum" value="<%=num%>">
 <input type="hidden" name="commentwriter" value="${ID}">
 <input type="text" id="comment_box" name="comment_box">
-<input type="button" id="comments_btn" onclick="return commentcheck()" value="등록">
+<input type="button" id="comments_btn" onclick="return commentcheck(<%=Page %>)" value="등록">
 </form>
 </div>
 
@@ -102,8 +113,8 @@ for(int i=0;i<commentlist.size();i++){%>
 <div id="commentlist">
 <input type="text" class="com_writer" id="writer<%=commentlist.get(i).getC_number()%>" readonly value="<%=commentlist.get(i).getWriter()%>">
 <input type="text" class="com_cobox" id="cobox<%=commentlist.get(i).getC_number()%>" readonly value="<%=commentlist.get(i).getComment_box()%>">
-<a href="" id="com_update" onclick="return commentup(<%=commentlist.get(i).getC_number()%>)">수정</a>
-<a href=".my?command=commentdel&bnum=<%=commentlist.get(i).getB_number()%>&commentnum=<%=commentlist.get(i).getC_number()%>" id="com_delete" onclick="return commentdel(<%=commentlist.get(i).getC_number()%>)">삭제</a>
+<a href="" id="com_update" onclick="return commentup(<%=commentlist.get(i).getC_number()%>,<%=Page%>)">수정</a>
+<a href=".my?command=commentdel&bnum=<%=commentlist.get(i).getB_number()%>&commentnum=<%=commentlist.get(i).getC_number()%>&page=<%=Page%>" id="com_delete" onclick="return commentdel(<%=commentlist.get(i).getC_number()%>)">삭제</a>
 
 </div>
 <%}%>

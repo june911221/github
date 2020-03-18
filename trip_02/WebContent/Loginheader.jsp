@@ -46,7 +46,6 @@
 	        <ul class="dept01">
 				<li id="nop"><a href="User.jsp">회원정보수정</a></li>
 				<li id="nop"><a href="Air.jsp">예약확인&취소</a></li>
-				<li id="nop"><a href="#">게시글관리</a></li>
 				<li id="nop"><a href="#">스크랩</a></li>
 			</ul>
 	

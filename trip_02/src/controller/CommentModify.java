@@ -11,6 +11,7 @@ import vo.CommentDto;
 
 public class CommentModify implements Cominterface {
 	static CommentModify ser = new CommentModify();
+
 	public static CommentModify instance() {
 		return ser;
 	}
@@ -18,14 +19,14 @@ public class CommentModify implements Cominterface {
 	@Override
 	public String showData(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
-		ActionCommentModify mode = ActionCommentModify.instance();//´ñ±Û ¼öÁ¤Ã¢ °´Ã¼»ı¼º
-		CommentDto li=new CommentDto();//CommentDto °´Ã¼»ı¼º
-		li.setC_number(Integer.parseInt(request.getParameter("commentnum")));//CommentDto ¿¡ °Ô½Ã±Û ¹øÈ£ ¼ÂÆÃ	
-		
-		ArrayList<CommentDto> list=(ArrayList<CommentDto>)mode.commentModify(li); //´ñ±Û¾²±â ¸Ş¼Òµå ¿¡ º¯¼ö·Î li °´Ã¼ º¸³»ÁØ´Ù
-		
-		request.setAttribute("commentdata", list);//commentdata=list
-		
+		ActionCommentModify mode = ActionCommentModify.instance();// ëŒ“ê¸€ ìˆ˜ì •ì°½ ê°ì²´ìƒì„±
+		CommentDto li = new CommentDto();// CommentDto ê°ì²´ìƒì„±
+		li.setC_number(Integer.parseInt(request.getParameter("commentnum")));// CommentDto ì— ê²Œì‹œê¸€ ë²ˆí˜¸ ì…‹íŒ…
+
+		ArrayList<CommentDto> list = (ArrayList<CommentDto>) mode.commentModify(li); // ëŒ“ê¸€ì“°ê¸° ë©”ì†Œë“œ ì— ë³€ìˆ˜ë¡œ li ê°ì²´ ë³´ë‚´ì¤€ë‹¤
+
+		request.setAttribute("commentdata", list);// commentdata=list
+
 		return "CommentModify.jsp";
 	}
 }

@@ -1,0 +1,153 @@
+section {
+	width: 100%;
+	height: 1700px;
+}
+
+table {
+	float: right;
+	margin-right: 150px;
+	text-align: center;
+	width: 60%;
+	/*  border:solid 1px black;   */
+}
+
+td, tr {
+	/*  border:solid 1px black; */
+	
+}
+
+ul {
+	list-style: none;
+}
+
+/* SIDE CSS */
+.sideArea {
+	width: 200px;
+	min-width: 200px;
+	background: /* #c0c0c0 */ rgba( 173, 205, 237, 0.2);
+	position: absolute;
+	top: 200px;
+	bottom: 0;
+	left: 0;
+	transition: 0.5s;
+	height: 1715px;
+}
+
+.container.is-click .sideArea {
+	left: -200px;
+}
+
+.sideArea li>a {
+	display: block;
+	color: black;
+	font-weight: bold;
+	padding: 1em;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+	margin-bottom: 40px;
+	opacity: 1.0;
+}
+
+.sideArea li>a:hover {
+	background: rgba(255, 255, 255, 0.1);
+}
+
+.sideArea li>a>.fa {
+	width: 1em;
+	text-align: center;
+	margin-right: 10px;
+}
+
+.submenu {
+	display: none;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+	margin-top: 170px;
+}
+
+.submenu li>a {
+	padding-left: 2em;
+	border-bottom: none;
+}
+
+.sideMenu {
+	border-top: 1px solid rgba(255, 255, 255, 0.2);
+	margin-top: 200px;
+}
+#point1{position:relative;
+left:-2%;
+top:10px;}
+
+hr{position:relative;
+top:70px;
+left:-10%;}
+
+#title{font-size:30px;
+position:relative;
+left:-40%;
+top:50px;
+}
+
+#big_img{position:relative;
+top:60px;
+left:-10%;
+}
+
+#subtitle{position:relative;
+top:350px;
+line-height: 50px;}
+
+#contents{position:relative;
+top:310px;
+line-height: 30px;}
+
+#line0{position:absolute;
+top:970px;}
+
+#line1{position:absolute;
+top:1030px;}
+
+#line2{position:absolute;
+top:1100px;
+}
+
+#line3{position:absolute;
+top:1170px;}
+
+.scrapbtn{position:absolute;
+left:50%;}
+
+  #map {
+        height: 400px;
+        width:400px;
+        position:relative;
+        top:790px;
+        left:59%;
+      }
+
+.scrapbtn{position:relative;
+top:145px;
+left:72%;
+box-shadow:inset 0px 1px 0px 0px #ffffff;
+	background:linear-gradient(to bottom, #f9f9f9 5%, #e9e9e9 100%);
+	background-color:#f9f9f9;
+	border-radius:9px;
+	border:2px solid #dcdcdc;
+	display:inline-block;
+	cursor:pointer;
+	color:#666666;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:7px 20px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffffff;}
+
+.scrapbtn:hover {
+	background:linear-gradient(to bottom, #e9e9e9 5%, #f9f9f9 100%);
+	background-color:#e9e9e9;
+}
+
+footer {
+	height: 200px;
+	width: 100%;
+	background: #D6503E;
+}

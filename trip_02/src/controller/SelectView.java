@@ -13,36 +13,38 @@ import vo.CommentDto;
 
 public class SelectView implements Cominterface {
 	static SelectView ser = new SelectView();
+
 	public static SelectView instance() {
 		return ser;
 	}
-	
+
 	@Override
 	public String showData(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
-		ActionListView model = ActionListView.instance();//°Ô½Ã±Ûº¸±â Action °´Ã¼Çü¼º
-		ActionHitsUp mode2 = ActionHitsUp.instance();//Á¶È¸¼ö Áõ°¡ Action °´Ã¼ Çü¼º
-		ActionCommentList mode3 = ActionCommentList.instance();//´ñ±Û¸®½ºÆ® Action°´Ã¼ Çü¼º
-		
-		int num=Integer.parseInt(request.getParameter("num"));//°Ô½Ã±Û¹øÈ£¸¦ º¯¼ö num¿¡ ´ã¾ÆÁØ´Ù
-					
-		BoardDto li=new BoardDto();//BoardDto °´Ã¼»ı¼º
-		li.setNum(num);//°´Ã¼¿¡ ±Û¹øÈ£ ¼ÂÆÃ
-		
-		if(request.getParameter("hits") != null) {
-		int hits=Integer.parseInt(request.getParameter("hits"))+1;//Á¶È¸¼ö¸¦ º¯¼ö hits¿¡ ´ã¾ÆÁÖ´Âµ¥ ÀÌ‹š ³Ñ¾î¿Â ÆÄ¶ó¹ÌÅÍ°ª¿¡ +1À»½ÃÄÑ Á¶È¸¼ö°¡ Áõ°¡ÇÑ»óÅÂ·Î hits´ã¾ÆÁØ´Ù
-		li.setHits(hits);//°´Ã¼¿¡ Á¶È¸¼ö ¼ÂÆÃ
-		mode2.HitsUp(li);//Á¶È¸¼ö Áõ°¡¾×¼Ç¿¡ li °ªÀ» º¸³»ÁØ´Ù
+
+		ActionListView model = ActionListView.instance();// ê²Œì‹œê¸€ë³´ê¸° Action ê°ì²´í˜•ì„±
+		ActionHitsUp mode2 = ActionHitsUp.instance();// ì¡°íšŒìˆ˜ ì¦ê°€ Action ê°ì²´ í˜•ì„±
+		ActionCommentList mode3 = ActionCommentList.instance();// ëŒ“ê¸€ë¦¬ìŠ¤íŠ¸ Actionê°ì²´ í˜•ì„±
+
+		int num = Integer.parseInt(request.getParameter("num"));// ê²Œì‹œê¸€ë²ˆí˜¸ë¥¼ ë³€ìˆ˜ numì— ë‹´ì•„ì¤€ë‹¤
+
+		BoardDto li = new BoardDto();// BoardDto ê°ì²´ìƒì„±
+		li.setNum(num);// ê°ì²´ì— ê¸€ë²ˆí˜¸ ì…‹íŒ…
+
+		if (request.getParameter("hits") != null) {
+			int hits = Integer.parseInt(request.getParameter("hits")) + 1;// ì¡°íšŒìˆ˜ë¥¼ ë³€ìˆ˜ hitsì— ë‹´ì•„ì£¼ëŠ”ë° ì´ë–„ ë„˜ì–´ì˜¨ íŒŒë¼ë¯¸í„°ê°’ì— +1ì„ì‹œì¼œ
+																			// ì¡°íšŒìˆ˜ê°€ ì¦ê°€í•œìƒíƒœë¡œ hitsë‹´ì•„ì¤€ë‹¤
+			li.setHits(hits);// ê°ì²´ì— ì¡°íšŒìˆ˜ ì…‹íŒ…
+			mode2.HitsUp(li);// ì¡°íšŒìˆ˜ ì¦ê°€ì•¡ì…˜ì— li ê°’ì„ ë³´ë‚´ì¤€ë‹¤
 		}
-				
-		ArrayList<BoardDto> list = (ArrayList<BoardDto>)model.boardlist(li);//°Ô½Ã±Û »ó¼¼º¸±â
-		//ActionÆäÀÌÁö¿¡ num º¯¼ö¸¦ º¸³»ÁÖ°í  ArrayList<BoardDto> º¯¼ö list¿¡  ¸®ÅÏ°ªÀ» ´ã¾ÆÁØ´Ù
-		ArrayList<CommentDto> commentlist = (ArrayList<CommentDto>)mode3.commentlist(num);//ÇØ´ç°Ô½Ã±Û¿¡ ´ñ±Û ºÒ·¯¿À±â
-		//ActionÆäÀÌÁö¿¡ num º¯¼ö¸¦ º¸³»ÁÖ°í  ArrayList<CommentDto> º¯¼ö commentlist¿¡  ¸®ÅÏ°ªÀ» ´ã¾ÆÁØ´Ù
-		
-		request.setAttribute("data", list);//data=list(°Ô½Ã±Û³»¿ë)
-		request.setAttribute("codata",commentlist);//codata=commentlist(´ñ±Û¸®½ºÆ®)
-		
+
+		ArrayList<BoardDto> list = (ArrayList<BoardDto>) model.boardlist(li);// ê²Œì‹œê¸€ ìƒì„¸ë³´ê¸°
+		// Actioní˜ì´ì§€ì— num ë³€ìˆ˜ë¥¼ ë³´ë‚´ì£¼ê³  ArrayList<BoardDto> ë³€ìˆ˜ listì— ë¦¬í„´ê°’ì„ ë‹´ì•„ì¤€ë‹¤
+		ArrayList<CommentDto> commentlist = (ArrayList<CommentDto>) mode3.commentlist(num);// í•´ë‹¹ê²Œì‹œê¸€ì— ëŒ“ê¸€ ë¶ˆëŸ¬ì˜¤ê¸°
+		// Actioní˜ì´ì§€ì— num ë³€ìˆ˜ë¥¼ ë³´ë‚´ì£¼ê³  ArrayList<CommentDto> ë³€ìˆ˜ commentlistì— ë¦¬í„´ê°’ì„ ë‹´ì•„ì¤€ë‹¤
+
+		request.setAttribute("data", list);// data=list(ê²Œì‹œê¸€ë‚´ìš©)
+		request.setAttribute("codata", commentlist);// codata=commentlist(ëŒ“ê¸€ë¦¬ìŠ¤íŠ¸)
+
 		return "BoardView.jsp";
 	}
 }

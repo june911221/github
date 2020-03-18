@@ -7,19 +7,18 @@ import vo.ActionForward;
 
 public class WithMeDeleteProAction implements Action {
 
-	public ActionForward execute(HttpServletRequest request,HttpServletResponse response) 
-			throws Exception{	 
+	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-		ActionForward forward = null;//¾×¼Ç º¯¼ö »ı¼º null·Î ÃÊ±âÈ­
-		int num=Integer.parseInt(request.getParameter("num"));//°Ô½Ã±Û ¹øÈ£ ¼ÂÆÃ String Å¸ÀÔ ÆÄ¶ó¹ÌÅÍ¸¦ Integer·Î Çüº¯È¯
-		String nowPage = request.getParameter("page");//»èÁ¦ÇÑ °Ô½Ã±ÛÀÌ ÀÖ´ø ÆäÀÌÁö¹øÈ£ º¯¼ö¿¡ ¼ÂÆÃ
-				
-		WithMeDeleteProService DeleteProService = new WithMeDeleteProService();//WithMeDeleteProService °´Ã¼ »ı¼º
-		DeleteProService.removeArticle(num);//WithMeDeleteProService °´Ã¼¸¦ ÅëÇØ removeArticle ¸Ş¼Òµå¸¦ È£ÃâÇÏ°í º¯¼ö·Î °Ô½Ã±Û ¹øÈ£¸¦ º¸³½´Ù
-	
-		forward = new ActionForward();//°´Ã¼ »ı¼º
-		forward.setRedirect(true);//ÆäÀÌÁö ÀÌµ¿ Redirect¿¡ true°ªÀ» ÁÖ¾î ÆäÀÌÁö°íÁ¤ÀÌ¾Æ´Ñ ÆäÀÌÁöÀÌµ¿À» ÇÑ´Ù
-		forward.setPath("WithMe.do?page=" + nowPage);// ÀÌµ¿ÇÒ urlÁÖ¼Ò ¼ÂÆÃ
+		ActionForward forward = null;// ì•¡ì…˜ ë³€ìˆ˜ ìƒì„± nullë¡œ ì´ˆê¸°í™”
+		int num = Integer.parseInt(request.getParameter("num"));// ê²Œì‹œê¸€ ë²ˆí˜¸ ì…‹íŒ… String íƒ€ì… íŒŒë¼ë¯¸í„°ë¥¼ Integerë¡œ í˜•ë³€í™˜
+		String nowPage = request.getParameter("page");// ì‚­ì œí•œ ê²Œì‹œê¸€ì´ ìˆë˜ í˜ì´ì§€ë²ˆí˜¸ ë³€ìˆ˜ì— ì…‹íŒ…
+
+		WithMeDeleteProService DeleteProService = new WithMeDeleteProService();// WithMeDeleteProService ê°ì²´ ìƒì„±
+		DeleteProService.removeArticle(num);// WithMeDeleteProService ê°ì²´ë¥¼ í†µí•´ removeArticle ë©”ì†Œë“œë¥¼ í˜¸ì¶œí•˜ê³  ë³€ìˆ˜ë¡œ ê²Œì‹œê¸€ ë²ˆí˜¸ë¥¼ ë³´ë‚¸ë‹¤
+
+		forward = new ActionForward();// ê°ì²´ ìƒì„±
+		forward.setRedirect(true);// í˜ì´ì§€ ì´ë™ Redirectì— trueê°’ì„ ì£¼ì–´ í˜ì´ì§€ê³ ì •ì´ì•„ë‹Œ í˜ì´ì§€ì´ë™ì„ í•œë‹¤
+		forward.setPath("WithMe.do?page=" + nowPage);// ì´ë™í•  urlì£¼ì†Œ ì…‹íŒ…
 
 		return forward;
 	}

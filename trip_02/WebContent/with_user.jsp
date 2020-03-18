@@ -4,6 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <title>With_user</title>
+<link rel="stylesheet" href="css/with_user.css">
 </head>
 <body>
 <%
@@ -13,7 +14,8 @@ int limitpeople=Integer.parseInt(request.getParameter("limitpeople"));//해당 �
 int count=Integer.parseInt(request.getParameter("count"));//현재까지 신청한 신청인원수를 변수에 담아둔다
 %>
 <form action="WithMePeopleCount.do?boardnum=<%=num%>&page=<%=pag%>" name="countform" onsubmit="return sinchung(<%=limitpeople%>,<%=count%>)"  method="post" target="withmeform">
-<select name="peoplecount">
+<h1>함께해요 신청</h1>
+<div id= "per">인원  <select id="peoplecount" name="peoplecount">
 <option value="0" selected>신청인원을 선택해주세요</option>
 <option value="1">1</option>
 <option value="2">2</option>
@@ -26,10 +28,15 @@ int count=Integer.parseInt(request.getParameter("count"));//현재까지 신청�
 <option value="9">9</option>
 <option value="10">10</option>
 </select>
-<input type="text" id="tel" name="tel">
+</div>
+
+<div id= "call">
+연락처  <input type="text" id="tel" name="tel" placeholder="연락처 및 카톡아이디를 입력해주세요.">
+</div>
 <input type="hidden" id="sessionID" name="sessionID" value="${ID}">
-<input type="submit" value="신청">
+<input id="in" type="submit" value="신청">
 </form>
+
 <script>
 function sinchung(limitpeople,count){ //함꼐해요 신청
 	
@@ -39,7 +46,7 @@ function sinchung(limitpeople,count){ //함꼐해요 신청
 	var countHap=peoplecount+count;//형변환한 신청인원수와 지금까지 신청인원을 더한다
 
 	if(f.tel.value==""){//연락처 입력란이 공백이면 경고창 출력
-		alert("연락처를 입력해주세요");
+		alert("연락처 및 카톡아이디를 입력해주세요.");
 	    return false;
 	}
 	

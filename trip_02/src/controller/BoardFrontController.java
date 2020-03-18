@@ -6,8 +6,11 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import action.Action;
-import action.ScrapAction;
+import action.FlightGo;
+import action.ScrapPageAction;
 import action.ThemaDetailAction;
 import action.ThemaListAction;
 import action.WithMeDeleteProAction;
@@ -18,141 +21,194 @@ import action.WithMePeopleCountAction;
 import action.WithMeWriteProAction;
 import action.With_UserCountDel;
 import action.With_UserPeopleCountInfoAction;
+import svc.ScrapService;
+import svc.ScrapdeleteService;
 import vo.ActionForward;
+import vo.ScrapDto;
 
 @WebServlet("*.do")
-public class BoardFrontController extends javax.servlet.http.HttpServlet 
-{
-	protected void doProcess(HttpServletRequest request, HttpServletResponse response) 
+public class BoardFrontController extends javax.servlet.http.HttpServlet {
+	protected void doProcess(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		request.setCharacterEncoding("UTF-8");
-		String RequestURI=request.getRequestURI();
-		String contextPath=request.getContextPath();
-		String command=RequestURI.substring(contextPath.length());
-		ActionForward forward=null;
-		Action action=null;
 
-		if(command.equals("/WithMeWrite.do")){//ÇÔ²²ÇØ¿ä ±Ûµî·Ï
-			action  = new WithMeWriteProAction();
+		request.setCharacterEncoding("UTF-8");
+		String RequestURI = request.getRequestURI();
+		String contextPath = request.getContextPath();
+		String command = RequestURI.substring(contextPath.length());
+		ActionForward forward = null;
+		Action action = null;
+
+		if (command.equals("/WithMeWrite.do")) {// ï¿½â‘£ï¿½ï¿½ëŒï¿½ï¿½ æ¹²ï¿½ï¿½ê¹…ï¿½
+			action = new WithMeWriteProAction();
 			try {
-				forward=action.execute(request, response );
+				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
-        else if(command.equals("/WithMePeopleCountPage.do")){//ÇÔ²²ÇØ¿ä ½ÅÃ» ÆË¾÷ÆäÀÌÁö
-        	forward=new ActionForward();
+		} else if (command.equals("/WithMePeopleCountPage.do")) {// ï¿½â‘£ï¿½ï¿½ëŒï¿½ï¿½ ï¿½ï¿½ï§£ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ëŒï¿½
+			forward = new ActionForward();
 			forward.setPath("/with_user.jsp");
-		}
-        else if(command.equals("/With_userDel.do")){//ÇÔ²²ÇØ¿ä ½ÅÃ» Ãë¼Ò
-        	action  = new With_UserCountDel();
+		} else if (command.equals("/With_userDel.do")) {// ï¿½â‘£ï¿½ï¿½ëŒï¿½ï¿½ ï¿½ï¿½ï§£ï¿½ ç—â‘¥ï¿½ï¿½
+			action = new With_UserCountDel();
 			try {
-				forward=action.execute(request, response );
+				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
-		else if(command.equals("/WithMePeopleCount.do")){//ÇÔ²²ÇØ¿ä ½ÅÃ»
-			action  = new WithMePeopleCountAction();
+		} else if (command.equals("/WithMePeopleCount.do")) {// ï¿½â‘£ï¿½ï¿½ëŒï¿½ï¿½ ï¿½ï¿½ï§£ï¿½
+			action = new WithMePeopleCountAction();
 			try {
-				forward=action.execute(request, response );
+				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
-		else if(command.equals("/With_UserPeopleCountInfo.do")){//ÇÔ²²ÇØ¿ä ½ÅÃ»ÀÚ ¸®½ºÆ® ÆË¾÷Ã¢
-			action  = new With_UserPeopleCountInfoAction();
+		} else if (command.equals("/With_UserPeopleCountInfo.do")) {// ï¿½â‘£ï¿½ï¿½ëŒï¿½ï¿½ ï¿½ï¿½ï§£ï¿½ï¿½ï¿½ ç”±ÑŠï¿½ã…½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï§¡ï¿½
+			action = new With_UserPeopleCountInfoAction();
 			try {
-				forward=action.execute(request, response );
+				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
-		else if(command.equals("/WithMeWriteForm.do")){//ÇÔ²²ÇØ¿ä ±Û¾²±âÆäÀÌÁö
-			forward=new ActionForward();
+		} else if (command.equals("/WithMeWriteForm.do")) {// ï¿½â‘£ï¿½ï¿½ëŒï¿½ï¿½ æ¹²ï¿½ï¿½ê³Œë¦°ï¿½ï¿½ï¿½ëŒï¿½
+			forward = new ActionForward();
 			forward.setPath("/WithMeWrite.jsp");
-		}
-		else if(command.equals("/WithMe.do")){//ÇÔ²²ÇØ¿ä ÆäÀÌÁö
+		} else if (command.equals("/WithMe.do")) {// ï¿½â‘£ï¿½ï¿½ëŒï¿½ï¿½ ï¿½ï¿½ï¿½ëŒï¿½
 			action = new WithMeListAction();
-			try{
-				forward=action.execute(request, response);
-			}catch(Exception e){
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
-		else if(command.equals("/WithMeDetail.do")){//ÇÔ²²ÇØ¿ä »ó¼¼º¸±â
+		} else if (command.equals("/WithMeDetail.do")) {// ï¿½â‘£ï¿½ï¿½ëŒï¿½ï¿½ ï¿½ï¿½ï¿½ëªƒë‚«æ¹²ï¿½
 			action = new WithMeDetailAction();
-			try{
-				forward=action.execute(request, response);
-			}catch(Exception e){
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
-		else if(command.equals("/WithMeDeletePro.do")){//ÇÔ²²ÇØ¿ä °Ô½Ã±Û»èÁ¦
-			//System.out.println("control");
+		} else if (command.equals("/WithMeDeletePro.do")) {// ï¿½â‘£ï¿½ï¿½ëŒï¿½ï¿½ å¯ƒï¿½ï¿½ï¿½æ¹²ï¿½ï¿½ï¿½ï¿½ï¿½
 			action = new WithMeDeleteProAction();
-			try{
-				forward=action.execute(request, response);
-			}catch(Exception e){
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
 				e.printStackTrace();
-			}			
-		}
-		else if(command.equals("/WithMeModifyPro.do")){//ÇÔ²²ÇØ¿ä °Ô½Ã±Û¼öÁ¤
+			}
+		} else if (command.equals("/WithMeModifyPro.do")) {// ï¿½â‘£ï¿½ï¿½ëŒï¿½ï¿½ å¯ƒï¿½ï¿½ï¿½æ¹²ï¿½ï¿½ï¿½ï¿½ï¿½
 			action = new WithMeModifyProAction();
-			try{
-				forward=action.execute(request, response);
-			}catch(Exception e){
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}	
-		else if(command.equals("/Thema.do")){//Å×¸¶ ÆäÀÌÁö
+		} else if (command.equals("/Thema.do")) {// ï¿½ï¿½ï§ï¿½ ï¿½ï¿½ï¿½ëŒï¿½
 			action = new ThemaListAction();
-			try{
-				forward=action.execute(request, response);
-			}catch(Exception e){
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
-		else if(command.equals("/ThemaView.do")){//Å×¸¶ »ó¼¼º¸±â ÆäÀÌÁö
+		} else if (command.equals("/ThemaView.do")) {// ï¿½ï¿½ï§ï¿½ ï¿½ï¿½ï¿½ëªƒë‚«æ¹²ï¿½ ï¿½ï¿½ï¿½ëŒï¿½
 			action = new ThemaDetailAction();
-			try{
-				forward=action.execute(request, response);
-			}catch(Exception e){
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/scrappage.do")) {// ï¿½ï¿½ï§ï¿½ ï¿½ï¿½ï¿½ëªƒë‚«æ¹²ï¿½ ï¿½ï¿½ï¿½ëŒï¿½
+			action = new ScrapPageAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} 	else if(command.equals("/flight.do")) {//å ì™ì˜™å ï¿½ å ì™ì˜™å ì™ì˜™
+			System.out.println("dd");
+			action = new FlightGo();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-		else if(command.equals("/Scrap.do")){//Å×¸¶ »ó¼¼º¸±â ÆäÀÌÁö
-			action = new ScrapAction();
-			try{
-				forward=action.execute(request, response);
-			}catch(Exception e){
-				e.printStackTrace();
+		else if (command.equals("/Scrap.do")) {// å¯ƒï¿½ï¿½ï¿½æ¹²ï¿½ ï¿½ã…½ï¿½Ñ‰ï¿½ï¿½
+
+			HttpSession httpSession = request.getSession(true);// ï¿½ëª„ï¿½ï¿½ï¿½ï¿½ åª›ï¿½ï¿½ëª„ï¿½â‘¤ï¿½ï¿½
+			ScrapService scrapservice = new ScrapService();// ï¿½ã…½ï¿½Ñ‰ï¿½ï¿½ ï¿½ï¿½é®ï¿½ï¿½ï¿½ åª›ï¿½ï§£ëŒï¿½ï¿½ï¿½ï¿½
+			ScrapDto scrap = new ScrapDto();// ï¿½ã…½ï¿½Ñ‰ï¿½ï¿½ Dto åª›ï¿½ï§£ï¿½ ï¿½ï¿½ï¿½ï¿½
+			scrap.setNum(Integer.parseInt(request.getParameter("number")));// å¯ƒï¿½ï¿½ï¿½æ¹²ï¿½è¸°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ì‡°ï¿½ëª…ï¿½ï¿½ åª›ï¿½ï¿½ï¿½ String ï¿½ï¿½ï¿½ï¿½ï¿½ë‹¿ë¦°ï¿½ï¿½ Intï¿½ï¿½ï¿½ï¿½ï¿½ì‡°ï¿½ï¿½ï¿½è¹‚ï¿½ï¿½ï¿½
+			scrap.setId((String) httpSession.getAttribute("ID"));// ï¿½ëª„ï¿½ï¿½åª›ï¿½ï¿½ï¿½ï¿½ï¿½ æ¿¡ï¿½æ´¹ëª„ï¿½ï¿½ IDç‘œï¿½ åª›ï¿½ï¿½ëª„ï¿½â‘¦ï¿½ï¿½ åª›ï¿½ï§£ëŒï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+
+			int insertcount = 0;// insertcount è¹‚ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+			if (request.getParameter("table").equals("food_place")) {// ï¿½ï¿½ï¿½ëŒ€ï¿½ï¿½ï¿½ ï¿½ê³•ï¿½ï¿½ ï¿½ã…½ï¿½Ñ‰ï¿½â‘¹ï¿½ï¿½ ï¿½ã…»â…¤å¯ƒï¿½ï¿½ï¿½ï¿½ï¿½(food_place)ï¿½ã…½ï¿½Ñ‰ï¿½ï¿½
+				try {
+					insertcount = scrapservice.Scrapfoodplace(scrap);
+					// scrapService ç‘œì‡³ï¿½ëª„ï¿½ï¿½ëŒï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ScrapDto åª›ï¿½ï§£ë‹¿ï¿½ï¿½ï¿½ è¹‚ëŒ€ï¿½ëŒï¿½ï¿½ï¿½
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			} else {
+				try {// ï¿½ï¿½ï§ï¿½ ï¿½ã…½ï¿½Ñ‰ï¿½ï¿½
+					insertcount = scrapservice.Scrapthema(scrap);
+					// scrapService ç‘œì‡³ï¿½ëª„ï¿½ï¿½ëŒï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ScrapDto åª›ï¿½ï§£ë‹¿ï¿½ï¿½ï¿½ è¹‚ëŒ€ï¿½ëŒï¿½ï¿½ï¿½
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
+
+			response.getWriter().print(insertcount);
+		} else if (command.equals("/ScrapDel.do")) {// å¯ƒï¿½ï¿½ï¿½æ¹²ï¿½ ï¿½ã…½ï¿½Ñ‰ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+
+			HttpSession httpSession = request.getSession(true);// ï¿½ëª„ï¿½ï¿½ï¿½ï¿½ åª›ï¿½ï¿½ëª„ï¿½â‘¤ï¿½ï¿½
+			ScrapdeleteService scrapdeleteservice = new ScrapdeleteService();// ï¿½ã…½ï¿½Ñ‰ï¿½ï¿½ ï¿½ï¿½é®ï¿½ï¿½ï¿½ åª›ï¿½ï§£ëŒï¿½ï¿½ï¿½ï¿½
+			ScrapDto scrap = new ScrapDto();// ï¿½ã…½ï¿½Ñ‰ï¿½ï¿½ Dto åª›ï¿½ï§£ï¿½ ï¿½ï¿½ï¿½ï¿½
+			scrap.setNum(Integer.parseInt(request.getParameter("number")));// å¯ƒï¿½ï¿½ï¿½æ¹²ï¿½è¸°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ì‡°ï¿½ëª…ï¿½ï¿½ åª›ï¿½ï¿½ï¿½ String ï¿½ï¿½ï¿½ï¿½ï¿½ë‹¿ë¦°ï¿½ï¿½ Intï¿½ï¿½ï¿½ï¿½ï¿½ì‡°ï¿½ï¿½ï¿½è¹‚ï¿½ï¿½ï¿½
+			scrap.setId((String) httpSession.getAttribute("ID"));// ï¿½ëª„ï¿½ï¿½åª›ï¿½ï¿½ï¿½ï¿½ï¿½ æ¿¡ï¿½æ´¹ëª„ï¿½ï¿½ IDç‘œï¿½ åª›ï¿½ï¿½ëª„ï¿½â‘¦ï¿½ï¿½ åª›ï¿½ï§£ëŒï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+			scrap.setCategory(request.getParameter("category"));// å¯ƒï¿½ï¿½ã…ºï¿½ ç§»ëŒ„ï¿½ï¿½æ€¨ï¿½ç”±ï¿½ åª›ï¿½ï¿½ï¿½ åª›ï¿½ï¿½ëª„ï¿½â‘¤ï¿½ï¿½
+			int insertcount = 1;// insertcount è¹‚ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+			if (request.getParameter("table").equals("food_place")) {
+				try {
+					insertcount = scrapdeleteservice.Scrapdel(scrap);
+					// scrapService ç‘œì‡³ï¿½ëª„ï¿½ï¿½ëŒï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ScrapDto åª›ï¿½ï§£ë‹¿ï¿½ï¿½ï¿½ è¹‚ëŒ€ï¿½ëŒï¿½ï¿½ï¿½
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			} else {
+				try {
+					insertcount = scrapdeleteservice.Scrapdel(scrap);
+					// scrapService ç‘œì‡³ï¿½ëª„ï¿½ï¿½ëŒï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ScrapDto åª›ï¿½ï§£ë‹¿ï¿½ï¿½ï¿½ è¹‚ëŒ€ï¿½ëŒï¿½ï¿½ï¿½
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+
+			response.getWriter().print(insertcount);
 		}
-		
-		if(forward != null){
-			
-			if(forward.isRedirect()){
+
+		if (forward != null) {
+
+			if (forward.isRedirect()) {
 				response.sendRedirect(forward.getPath());
-			}else{
-				RequestDispatcher dispatcher=
-						request.getRequestDispatcher(forward.getPath());
+			} else {
+				RequestDispatcher dispatcher = request.getRequestDispatcher(forward.getPath());
 				dispatcher.forward(request, response);
 			}
-			
-		}
-		
-	}
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
-			throws ServletException, IOException {
-		doProcess(request,response);
-	}  	
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+		}
+
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		doProcess(request,response);
-	}   
-	
+		doProcess(request, response);
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		doProcess(request, response);
+	}
+
 }

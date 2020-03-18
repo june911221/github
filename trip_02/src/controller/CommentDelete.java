@@ -8,24 +8,27 @@ import vo.CommentDto;
 
 public class CommentDelete implements Cominterface {
 	static CommentDelete ser = new CommentDelete();
+
 	public static CommentDelete instance() {
 		return ser;
 	}
-	
+
 	@Override
 	public String showData(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
-		ActionCommentDelete mode = ActionCommentDelete.instance(); //delete action °´Ã¼ Çü¼º
-				
-		CommentDto list=new CommentDto();//CommentDto °´Ã¼ Çü¼º
+		ActionCommentDelete mode = ActionCommentDelete.instance(); // delete action ê°ì²´ í˜•ì„±
+
+		int page = Integer.parseInt(request.getParameter("page"));	//í˜ì´ì§€ë³€ìˆ˜
+		
+		CommentDto list = new CommentDto();// CommentDto ê°ì²´ í˜•ì„±
 		list.setC_number(Integer.parseInt(request.getParameter("commentnum")));
-		//°´Ã¼¿¡ ´ñ±Û¹øÈ£ ¼ÂÆÃ(String Å¸ÀÔÀ¸·Î ³Ñ¾î¿Â ÆÄ¶ó¹ÌÅÍÀÌ±â¿¡ Int Å¸ÀÔÀÎ ´ñ±Û¹øÈ£¿¡ ¼ÂÆÃÇÏ±âÀ§¿¡ Integer¸¦ÅëÇÑ Çüº¯È¯)
-		
+		// ê°ì²´ì— ëŒ“ê¸€ë²ˆí˜¸ ì…‹íŒ…(String íƒ€ì…ìœ¼ë¡œ ë„˜ì–´ì˜¨ íŒŒë¼ë¯¸í„°ì´ê¸°ì— Int íƒ€ì…ì¸ ëŒ“ê¸€ë²ˆí˜¸ì— ì…‹íŒ…í•˜ê¸°ìœ„ì— Integerë¥¼í†µí•œ í˜•ë³€í™˜)
+
 		mode.commentDelete(list);
-		//delete¾×¼Ç¿¡ °Ô½Ã±Ûº¯¼ö Àü´Ş
-		
-		return ".my?command=view&num="+request.getParameter("bnum"); 
-		//´ñ±Û»èÁ¦ÈÄ °Ô½Ã±Û ¹øÈ£¸¦ ÆÄ¶ó¹ÌÅÍ·Î ºäÆäÀÌÁö·Î Àü´Ş ÇØ¼­ º¸°íÀÖ´ø ÆäÀÌÁö·Î ´Ù½Ã ÀÌµ¿ÇÑ´Ù 
+		// deleteì•¡ì…˜ì— ê²Œì‹œê¸€ë³€ìˆ˜ ì „ë‹¬
+
+		return ".my?command=view&num=" + request.getParameter("bnum")+"&page="+page;
+		// ëŒ“ê¸€ì‚­ì œí›„ ê²Œì‹œê¸€ ë²ˆí˜¸ë¥¼ íŒŒë¼ë¯¸í„°ë¡œ ë·°í˜ì´ì§€ë¡œ ì „ë‹¬ í•´ì„œ ë³´ê³ ìˆë˜ í˜ì´ì§€ë¡œ ë‹¤ì‹œ ì´ë™í•œë‹¤
 	}
 
 }

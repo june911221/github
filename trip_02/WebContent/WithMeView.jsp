@@ -44,12 +44,47 @@ int check = (int)request.getAttribute("check");
  <%} %>
 
 <section>
-<link rel="stylesheet" href="css/WithMeView.css">
-<!-- partial:index.partial.html -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-
+<link rel="stylesheet" href="css/WithMeView.css?ver=1.1">
 <form action="" method="post" id="WithMeform" enctype="multipart/form-data">
-<!-- 이미지 미리보기 컨테이너  -->
+
+  <div class="textboxcontainer">
+      <h2>함 께 해 요</h2><br>
+        
+        <input type="hidden" class="taskName" name="num" id="num" value="<%=num%>">
+         
+        <div class="inputContainer">
+          <input type="text" class="taskName" name="writer" id="writer" value="<%=writer%>" readonly>
+          <label>작성자</label>
+        </div>
+        <div class="inputContainer">
+          <input type="text" class="taskName" placeholder="제목을 입력하세요" name="title" id="title" value="<%=title%>" readonly>
+          <label>제목</label>
+        </div>
+        <div class="inputContainer">
+          <input type="text" class="taskName" placeholder="제한조건이 있으면 적어주세요" name="limit" id="limit" value="<%=lim%>" readonly>
+          <label>제한조건</label>
+        </div>        
+        <div class="inputContainer">
+          <input type="text" class="taskName" placeholder="숫자만 입력해주세요" name="people" id="people" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" value="<%=people%>" readonly>
+          <label>모집인원</label>
+        </div>        
+        <div class="inputContainer">
+          <input type="text" class="taskName" placeholder="숫자만 입력해주세요" name="peoplecount" id="peoplecount" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" value="<%=peoplecount%>" readonly>
+          <label>신청인원</label>
+        </div>
+        <div class="inputContainer">
+          <input type="text" class="taskName" placeholder="연락가능한 연락처를 적어주세요" name="localcontenct" id="localcontenct" readonly value="<%=localcontenct%>">
+          <label>현지연락처</label>
+        </div>				
+	    <div class="inputContainer half last right">
+          <input type="date" class="taskDate" name="date" id="date" value="<%=date%>" readonly>
+          <label>만남일</label>
+        </div>
+		  <div class="inputContainer half last right">
+          <input type="date"  class="taskDate" name="limitdate" id="limitdate" value="<%=limitdate%>" readonly >
+          <label>마감일</label>
+        </div><br><br><br><br>
+        <!-- 이미지 미리보기 컨테이너  -->
 <div class="image-viewer">
 <!-- 파일첨부 버튼  -->
 <label class="waves-effect waves-teal btn-flat" for="uploadInputBox0" style="display: none;" id="fileclick">사진첨부:Click!</label>
@@ -92,45 +127,6 @@ int check = (int)request.getAttribute("check");
 <input id="uploadInputBox2"  type="file" style="display:none;" name="filedata2"/>
 <input id="uploadInputBox3"  type="file" style="display:none;" name="filedata3"/>
 <input id="uploadInputBox4"  type="file" style="display:none;" name="filedata5"/>
-  <div class="textboxcontainer">
-      <h2>함 께 해 요</h2><br>
-        <div class="inputContainer">
-        <input type="hidden" class="taskName" name="num" id="num" value="<%=num%>">
-          <input type="text" class="taskName" name="category" id="category" value="함께해요" readonly>
-          <label>카테고리</label>
-        </div>
-        <div class="inputContainer">
-          <input type="text" class="taskName" name="writer" id="writer" value="<%=writer%>" readonly>
-          <label>작성자</label>
-        </div>
-        <div class="inputContainer">
-          <input type="text" class="taskName" placeholder="제목을 입력하세요" name="title" id="title" value="<%=title%>" readonly>
-          <label>제목</label>
-        </div>
-        <div class="inputContainer">
-          <input type="text" class="taskName" placeholder="제한조건이 있으면 적어주세요" name="limit" id="limit" value="<%=lim%>" readonly>
-          <label>제한조건</label>
-        </div>        
-        <div class="inputContainer">
-          <input type="text" class="taskName" placeholder="숫자만 입력해주세요" name="people" id="people" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" value="<%=people%>" readonly>
-          <label>모집인원</label>
-        </div>        
-        <div class="inputContainer">
-          <input type="text" class="taskName" placeholder="숫자만 입력해주세요" name="peoplecount" id="peoplecount" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" value="<%=peoplecount%>" readonly>
-          <label>신청인원</label>
-        </div>
-        <div class="inputContainer">
-          <input type="text" class="taskName" placeholder="연락가능한 연락처를 적어주세요" name="localcontenct" id="localcontenct" readonly value="<%=localcontenct%>">
-          <label>현지연락처</label>
-        </div>				
-	    <div class="inputContainer half last right">
-          <input type="date" class="taskDate" name="date" id="date" value="<%=date%>" readonly>
-          <label>만남일</label>
-        </div>
-		  <div class="inputContainer half last right">
-          <input type="date"  class="taskDate" name="limitdate" id="limitdate" value="<%=limitdate%>" readonly >
-          <label>마감일</label>
-        </div><br><br><br><br>
 		 <div>
 		 <pre id="pre"><%=contents%></pre>
          <textarea name='contents' id='contents'><%=contents%></textarea>
@@ -147,6 +143,7 @@ int check = (int)request.getAttribute("check");
 </div>
 <input type="hidden" name="sessionID" id="sessionID" value=${ID}>
 </form>
+<script  src="js/WithMeView.js?ver=1"></script>
 <script>
 
 function sinchung1(boardnum,page,people,count){//신청버튼 이벤트
@@ -179,25 +176,15 @@ function countdel(boardnum,page){
 
 function countlist(boardnum){
 	var url = "With_UserPeopleCountInfo.do?boardnum="+boardnum; //팝업창에 나올 url주소셋팅
-	window.open(url, "", "width=570,height=300");//셋팅한 url주소를 입력하고 팝업창을띄운다
+	window.open(url, "", "width=624,height=299");//셋팅한 url주소를 입력하고 팝업창을띄운다
 }
 </script>
-<!-- include libraries(jQuery, bootstrap) 썸머노트 여기서부터-->
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
-<!-- include summernote css/js-->
 <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
- <!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-<!-- Latest compiled and minified JavaScript  여기까지-->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-<!-- partial -->
-<script  src="js/WithMeView.js"></script>
   </section>
 
 </body>

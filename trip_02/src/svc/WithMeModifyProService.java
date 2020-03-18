@@ -8,24 +8,23 @@ import vo.WithMeBean;
 public class WithMeModifyProService {
 
 	public boolean modifyArticle(WithMeBean article) throws Exception {
-		
+
 		boolean isModifySuccess = false;
 		Connection con = getConnection();
 		WithMeDao withmedao = WithMeDao.getInstance();
 		withmedao.setConnection(con);
 		int updateCount = withmedao.updateArticle(article);
-		
-		if(updateCount > 0){
+
+		if (updateCount > 0) {
 			commit(con);
-			isModifySuccess=true;
-		}
-		else{
+			isModifySuccess = true;
+		} else {
 			rollback(con);
 		}
-		
+
 		close(con);
 		return isModifySuccess;
-		
+
 	}
 
 }

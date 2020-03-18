@@ -1,0 +1,35 @@
+h1{position:relative;
+left:21%;}
+
+#t_head
+{padding-right: 80px;
+padding-bottom: 10px;
+border-bottom:1.5px solid lightgray;
+}
+
+#keywords{border:1px solid black;
+position:relative;
+top:5px;
+left:55px;
+padding:10px;
+text-align:left;
+width: 470;}
+
+#table_tr{position:relative;
+left:15px;}
+
+span {
+    position: relative;
+    left: 35px;}
+    
+.lalign{position:relative;
+padding:10px;
+left: 45px;}
+
+.lalign2{position:relative;
+padding:10px;
+left: 55px;}
+
+.lalign3{position:relative;
+padding:10px;
+left: 30px;}

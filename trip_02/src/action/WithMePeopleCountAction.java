@@ -15,22 +15,23 @@ public class WithMePeopleCountAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
-		WithMePeopleCountService Peoplecount = new WithMePeopleCountService();//ÇÔ²²ÇØ¿ä ½ÅÃ»ÀÚ ¼­ºñ½º °´Ã¼»ı¼º
-		
-		With_UserBean user=new With_UserBean();//½ÅÃ»ÀÚ Dto °´Ã¼ »ı¼º
-		user.setNum(Integer.parseInt(request.getParameter("boardnum")));//°Ô°Ô½Ã±Û¹øÈ£  ÆÄ¶ó¹ÌÅÍ °ªÀÌ String ÇüÅÂÀÌ±â¿¡ IntÅ¸ÀÔÀ¸·ÎÇüº¯È¯
-		user.setId(request.getParameter("sessionID"));//½ÅÃ»ÀÚ ID ¼ÂÆÃ
-		user.setTel(request.getParameter("tel"));//½ÅÃ»ÀÚ ¿¬¶ôÃ³ ¼ÂÆÃ
-		user.setCount(Integer.parseInt(request.getParameter("peoplecount")));//½ÅÃ»ÀÎ¿ø ¼ÂÆÃ ÆÄ¶ó¹ÌÅÍ °ªÀÌ String ÇüÅÂÀÌ±â¿¡ IntÅ¸ÀÔÀ¸·ÎÇüº¯È¯
-		
-		Peoplecount.peoplecount(user);// WithMePeopleCountService ¸¦È£ÃâÇØ¼­ ¼ÂÆÃµÈ Withm_UserBean °´Ã¼°ªÀ» º¸³»ÁØ´Ù
-		
-		System.out.println(request.getParameter("page"));
-		
-		ActionForward forward = new ActionForward();//¾×¼Ç °´Ã¼Çü¼º
-		forward.setRedirect(true);//¾×¼Ç¿¡ forward °¡ ¾Æ´Ñ ÆäÀÌÁö ÀÌµ¿ Redirect¸¦ ³Ö¾îÁØ´Ù
-		forward.setPath("WithMeDetail.do?num="+user.getNum()+"&page="+request.getParameter("page")+"&ID="+user.getId());//url¼ÂÆÃ
-		
+		WithMePeopleCountService Peoplecount = new WithMePeopleCountService();// í•¨ê»˜í•´ìš” ì‹ ì²­ì ì„œë¹„ìŠ¤ ê°ì²´ìƒì„±
+
+		With_UserBean user = new With_UserBean();// ì‹ ì²­ì Dto ê°ì²´ ìƒì„±
+		user.setNum(Integer.parseInt(request.getParameter("boardnum")));// ê²Œê²Œì‹œê¸€ë²ˆí˜¸ íŒŒë¼ë¯¸í„° ê°’ì´ String í˜•íƒœì´ê¸°ì— Intíƒ€ì…ìœ¼ë¡œí˜•ë³€í™˜
+		user.setId(request.getParameter("sessionID"));// ì‹ ì²­ì ID ì…‹íŒ…
+		user.setTel(request.getParameter("tel"));// ì‹ ì²­ì ì—°ë½ì²˜ ì…‹íŒ…
+		user.setCount(Integer.parseInt(request.getParameter("peoplecount")));// ì‹ ì²­ì¸ì› ì…‹íŒ… íŒŒë¼ë¯¸í„° ê°’ì´ String í˜•íƒœì´ê¸°ì— Intíƒ€ì…ìœ¼ë¡œí˜•ë³€í™˜
+
+		Peoplecount.peoplecount(user);// WithMePeopleCountService ë¥¼í˜¸ì¶œí•´ì„œ ì…‹íŒ…ëœ Withm_UserBean ê°ì²´ê°’ì„ ë³´ë‚´ì¤€ë‹¤
+
+		// System.out.println(request.getParameter("page"));
+
+		ActionForward forward = new ActionForward();// ì•¡ì…˜ ê°ì²´í˜•ì„±
+		forward.setRedirect(true);// ì•¡ì…˜ì— forward ê°€ ì•„ë‹Œ í˜ì´ì§€ ì´ë™ Redirectë¥¼ ë„£ì–´ì¤€ë‹¤
+		forward.setPath("WithMeDetail.do?num=" + user.getNum() + "&page=" + request.getParameter("page") + "&ID="
+				+ user.getId());// urlì…‹íŒ…
+
 		return forward;
 
 	}

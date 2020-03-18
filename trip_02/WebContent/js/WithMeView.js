@@ -324,12 +324,12 @@ $(document).ready(function() {//이미지가 없는건 블라인드처리
 
 function updata(){//수정버튼 누를시이벤트
 		$('#contents').summernote({
-			width:710,
-			minWidth:710,
-			maxWidth:710,
-	        height: 400,                 // set editor height
-	        minHeight: 400,             // set minimum height of editor
-	        maxHeight: 400,             // set maximum height of editor
+			width:640,
+			minWidth:640,
+			maxWidth:640,
+	        height: 300,                 // set editor height
+	        minHeight: 300,             // set minimum height of editor
+	        maxHeight: 300,             // set maximum height of editor
 	        focus: true                    // set focus to editable area after initializing summernote
 	    });		
     $("#pre").css("display","none");
@@ -417,11 +417,11 @@ $(document).ready(function() {//게시글 상세보기를 했을때 세션ID값�
 	var sessionID=$("#sessionID").val();
 	
 	if(writer==sessionID){
-		alert("d");
 		$("#sin").attr("type","hidden");
 		$("#sindel").attr("type","hidden");
 		$("#update").attr("type","button");
 		$("#delete").attr("type","button");	
 		$("#sininfo").attr("type","button");	
 	}
+	
 });

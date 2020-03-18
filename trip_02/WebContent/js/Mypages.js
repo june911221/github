@@ -1,14 +1,14 @@
 
-	//»çÀÌµå¸Þ´º
+	//ì‚¬ì´ë“œë©”ë‰´
 $(window).scroll(  
     function(){  
-        //½ºÅ©·ÑÀÇ À§Ä¡°¡ »ó´Ü¿¡¼­ 800º¸´Ù Å©¸é  
+        //ìŠ¤í¬ë¡¤ì˜ ìœ„ì¹˜ê°€ ìƒë‹¨ì—ì„œ 800ë³´ë‹¤ í¬ë©´  
         if($(window).scrollTop() > 738){  
             $('aside').addClass("sidefixed");  
-            //À§ÀÇ if¹®¿¡ ´ëÇÑ Á¶°Ç ¸¸Á·½Ã fixed¶ó´Â class¸¦ ºÎ¿©ÇÔ  
+            //ìœ„ì˜ ifë¬¸ì— ëŒ€í•œ ì¡°ê±´ ë§Œì¡±ì‹œ fixedë¼ëŠ” classë¥¼ ë¶€ì—¬í•¨  
         }else{  
             $('aside').removeClass("sidefixed");  
-            //À§ÀÇ if¹®¿¡ ´ëÇÑ Á¶°Ç ¾Æ´Ñ°æ¿ì fixed¶ó´Â class¸¦ »èÁ¦ÇÔ  
+            //ìœ„ì˜ ifë¬¸ì— ëŒ€í•œ ì¡°ê±´ ì•„ë‹Œê²½ìš° fixedë¼ëŠ” classë¥¼ ì‚­ì œí•¨  
         }  
     }  
 );  

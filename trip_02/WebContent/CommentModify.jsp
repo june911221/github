@@ -11,12 +11,13 @@
 <body>
 
 <%
+int Page = Integer.parseInt(request.getParameter("page"));
 ArrayList<CommentDto> commentlist = (ArrayList<CommentDto>)request.getAttribute("commentdata");
 String comment=commentlist.get(0).getComment_box();
 int commentnum=commentlist.get(0).getC_number();
 int boardnum=commentlist.get(0).getB_number();
 %>
-<form action=".my?command=commentupdate&commnetnum=<%=commentnum%>&bnum=<%=boardnum%>" onsubmit="return Modify()" target="commentModifyform" method="post">
+<form action=".my?command=commentupdate&commnetnum=<%=commentnum%>&bnum=<%=boardnum%>&page=<%=Page%>" onsubmit="return Modify()" target="commentModifyform" method="post">
 <textarea rows="7" cols="70" name="comment_box" id="comment_box"><%=comment%></textarea>
 <input id="update" type="submit" value="수정">
 </form>
